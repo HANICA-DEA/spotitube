@@ -1,5 +1,5 @@
 # OoseEaiClient [![Build Status](https://travis-ci.org/meronbrouwer/oose-dea-eai-client.svg?branch=master)](https://travis-ci.org/meronbrouwer/oose-dea-eai-client)
-)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.1.
 
