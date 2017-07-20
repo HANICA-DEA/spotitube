@@ -1,6 +1,6 @@
-# OoseEaiClient [![Build Status](https://travis-ci.org/meronbrouwer/oose-dea-eai-client.svg?branch=master)](https://travis-ci.org/meronbrouwer/oose-dea-eai-client) [![Coverage Status](https://coveralls.io/repos/github/meronbrouwer/oose-dea-eai-client/badge.svg?branch=master)](https://coveralls.io/github/meronbrouwer/oose-dea-eai-client?branch=master)
+# OOSE DEA EAI Client [![Build Status](https://travis-ci.org/meronbrouwer/oose-dea-eai-client.svg?branch=master)](https://travis-ci.org/meronbrouwer/oose-dea-eai-client) [![Coverage Status](https://coveralls.io/repos/github/meronbrouwer/oose-dea-eai-client/badge.svg?branch=master)](https://coveralls.io/github/meronbrouwer/oose-dea-eai-client?branch=master)
 
-This repository contains a front-end for the final progamming assignment 
+This repository contains a front-end for the final programming assignment 
 of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.han.nl/).
 
 

@@ -1,11 +1,11 @@
 {
-  "name": "oose-eai-client",
+  "name": "oose-dea-eai-client",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --target production --base-href \"/oose-eai-client/\"",
+    "build": "ng build --target production --base-href \"/oose-dea-eai-client/\"",
     "test": "ng test --watch false",
     "test-coverage": "ng test --watch false --code-coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
