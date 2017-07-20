@@ -20,7 +20,7 @@ before_install:
 script:
   - ng -v
   - ng lint
-  - ng test --watch false
+  - npm run test-coverage
   - ng build --target production --base-href "/oose-eai-client/"
 
 after_success:
