@@ -21,4 +21,7 @@ script:
   - ng -v
   - ng lint
   - ng test --watch false
-  - ng build --target production --base-href "/spotiTube/"
+  - ng build --target production --base-href "/oose-eai-client/"
+
+after_success:
+   - npm run coveralls
