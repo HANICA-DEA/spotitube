@@ -25,3 +25,6 @@ script:
 
 after_success:
    - npm run coveralls
+   - [ $TRAVIS_BRANCH = master ] && bash deploy.sh
+
+   7cddba0e7ae5996ece875f69f91934c76afbce0d
