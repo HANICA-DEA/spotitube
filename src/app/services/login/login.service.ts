@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AppConstants} from '../../app.constants';
-import {Subject} from 'rxjs';
-import {LoggingService} from '../logging/logging.service';
+import {Subject} from 'rxjs/Subject';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {LoginRequest} from '../../models/login-request/login-request.model';
+import {LoginResponse} from '../../models/login-response/login-response.model';
 
 @Injectable()
 export class LoginService {
@@ -12,7 +14,7 @@ export class LoginService {
   public serverUrlChanged$ = this.serverUrlChanged.asObservable();
   public userChanged$ = this.userChanged.asObservable();
 
-  constructor(private loggingService: LoggingService) {
+  constructor(private httpClient: HttpClient) {
     this.initLocalStorageListeners();
   }
 
@@ -20,17 +22,31 @@ export class LoginService {
    * Login to the application
    *
    * @param {string} user
-   * @param {string} serverUrl? If none is given, the current value for the serverUrl is used
+   * @param {string} password
+   * @param {string} serverUrl
    */
-  public login(user: string, password: string, serverUrl?: string) {
-    if (serverUrl) {
-      this.persistServerUrl(serverUrl);
-    }
-    if (user) {
-      this.persistUserToken(user);
-    }
+  public login(user: string, password: string, serverUrl: string) {
 
-    this.loggingService.info('Logging in to ' + serverUrl + ' with user ' + user + ' and password ' + password);
+    this.persistServerUrl(serverUrl);
+    this.persistUser(user);
+
+    this.handleLoginRequest(user, password);
+  }
+
+  private handleLoginRequest(user: string, password: string): void {
+    const loginRequest = new LoginRequest(user, password);
+
+    this.httpClient.post<LoginResponse>('http://' + this.retrieveServerUrl() + AppConstants.API_LOGIN, JSON.stringify(loginRequest))
+      .subscribe(data => this.handleLoginResponse(data), err => this.handleLoginErrors(err));
+  }
+
+  private handleLoginResponse(response: LoginResponse): void {
+    this.persistToken(response.token);
+    this.persistUser(response.user);
+  }
+
+  private handleLoginErrors(error: HttpErrorResponse): void {
+    console.log('Something went wrong!', error)
   }
 
   /**
@@ -46,8 +62,8 @@ export class LoginService {
    * @return {Promise<string>}
    */
   public getUser(): Promise<string> {
-    const user = this.retrieveUserToken();
 
+    const user = this.retrieveUser();
     if (user) {
       return Promise.resolve(user);
     } else {
@@ -91,18 +107,26 @@ export class LoginService {
     window.addEventListener(AppConstants.STORAGE_EVENT_LISTENER_KEY, (event: StorageEvent) => this.handleStorageChange(event));
   }
 
+  private persistUser(user: string): void {
+    localStorage.setItem(AppConstants.LOCAL_STORAGE_KEY_USER, user);
+    this.userChanged.next(user)
+  }
+
   private persistServerUrl(serverUrl: string): void {
     localStorage.setItem(AppConstants.LOCAL_STORAGE_KEY_SERVER_URL, serverUrl);
     this.serverUrlChanged.next(serverUrl)
+  }
+
+  private persistToken(token: string): void {
+    localStorage.setItem(AppConstants.LOCAL_STORAGE_KEY_USER_TOKEN, token);
   }
 
   private retrieveServerUrl(): string {
     return localStorage.getItem(AppConstants.LOCAL_STORAGE_KEY_SERVER_URL);
   }
 
-  private persistUserToken(token: string): void {
-    localStorage.setItem(AppConstants.LOCAL_STORAGE_KEY_USER_TOKEN, token);
-    this.userChanged.next(token);
+  private retrieveUser(): string {
+    return localStorage.getItem(AppConstants.LOCAL_STORAGE_KEY_USER);
   }
 
   private retrieveUserToken(): string {

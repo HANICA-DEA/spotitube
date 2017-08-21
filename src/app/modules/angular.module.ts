@@ -14,7 +14,7 @@ import {HttpClientModule} from '@angular/common/http';
     CommonModule,
     FlexLayoutModule,
     FormsModule,
-    HttpModule
+    HttpClientModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -22,7 +22,7 @@ import {HttpClientModule} from '@angular/common/http';
     CommonModule,
     FlexLayoutModule,
     FormsModule,
-    HttpModule
+    HttpClientModule
   ]
 })
 export class SpotitubeAngularModule {
