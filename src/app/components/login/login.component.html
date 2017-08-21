@@ -1,0 +1,22 @@
+<md-card>
+  <md-card-content class="flex-container"
+                   fxLayout="column">
+    <md-input-container class="flex-item">
+      <input mdInput placeholder="Server URL" [(ngModel)]="serverUrl">
+    </md-input-container>
+
+    <md-input-container class="flex-item">
+      <input mdInput placeholder="User" [(ngModel)]="user">
+    </md-input-container>
+
+    <md-input-container class="flex-item">
+      <input type="password" mdInput placeholder="Password" [(ngModel)]="password">
+    </md-input-container>
+  </md-card-content>
+
+  <md-card-actions align="end">
+    <button md-button [disabled]="!user || user.trim() === '' || !serverUrl || serverUrl.trim() === ''"
+            (click)="login()"> Login
+    </button>
+  </md-card-actions>
+</md-card>

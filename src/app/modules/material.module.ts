@@ -18,10 +18,16 @@ import {
 
 @NgModule({
   imports: [
+    MdButtonModule,
+    MdCardModule,
+    MdIconModule,
     MdInputModule,
     MdToolbarModule
   ],
   exports: [
+    MdButtonModule,
+    MdCardModule,
+    MdIconModule,
     MdInputModule,
     MdToolbarModule
   ]
