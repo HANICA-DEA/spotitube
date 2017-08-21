@@ -36,7 +36,7 @@ export class LoginService {
   private handleLoginRequest(user: string, password: string): void {
     const loginRequest = new LoginRequest(user, password);
 
-    this.httpClient.post<LoginResponse>('http://' + this.retrieveServerUrl() + AppConstants.API_LOGIN, JSON.stringify(loginRequest))
+    this.httpClient.post<LoginResponse>(this.retrieveServerUrl() + AppConstants.API_LOGIN, JSON.stringify(loginRequest))
       .subscribe(data => this.handleLoginResponse(data), err => this.handleLoginErrors(err));
   }
 

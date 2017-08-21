@@ -2,15 +2,22 @@
   <md-card-content class="flex-container"
                    fxLayout="column">
     <md-input-container class="flex-item">
-      <input mdInput placeholder="Server URL" [(ngModel)]="serverUrl">
+      <input mdInput
+             placeholder="Server URL"
+             [(ngModel)]="serverUrl"
+             pattern="http://[a-zA-Z0-9:]+"
+             required>
+      <md-error>Please provide a server url, including the substring http://</md-error>
     </md-input-container>
 
     <md-input-container class="flex-item">
-      <input mdInput placeholder="User" [(ngModel)]="user">
+      <input mdInput placeholder="User" [(ngModel)]="user" required>
+      <md-error>Please provide an user</md-error>
     </md-input-container>
 
     <md-input-container class="flex-item">
-      <input type="password" mdInput placeholder="Password" [(ngModel)]="password">
+      <input type="password" mdInput placeholder="Password" [(ngModel)]="password" required>
+      <md-error>Please provide a password</md-error>
     </md-input-container>
   </md-card-content>
 
