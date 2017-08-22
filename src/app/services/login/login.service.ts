@@ -4,9 +4,11 @@ import {Subject} from 'rxjs/Subject';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {LoginRequest} from '../../models/login-request/login-request.model';
 import {LoginResponse} from '../../models/login-response/login-response.model';
+import {RestfulSpotitubeClientService} from '../restful-spotitube-client/restful-spotitube-client.service';
+import {LoggingService} from '../logging/logging.service';
 
 @Injectable()
-export class LoginService {
+export class LoginService extends RestfulSpotitubeClientService {
 
   private serverUrlChanged = new Subject<string>();
   private userChanged = new Subject<string>();
@@ -14,7 +16,10 @@ export class LoginService {
   public serverUrlChanged$ = this.serverUrlChanged.asObservable();
   public userChanged$ = this.userChanged.asObservable();
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, loggingService: LoggingService) {
+
+    super(loggingService);
+
     this.initLocalStorageListeners();
   }
 
@@ -31,22 +36,6 @@ export class LoginService {
     this.persistUser(user);
 
     this.handleLoginRequest(user, password);
-  }
-
-  private handleLoginRequest(user: string, password: string): void {
-    const loginRequest = new LoginRequest(user, password);
-
-    this.httpClient.post<LoginResponse>(this.retrieveServerUrl() + AppConstants.API_LOGIN, JSON.stringify(loginRequest))
-      .subscribe(data => this.handleLoginResponse(data), err => this.handleLoginErrors(err));
-  }
-
-  private handleLoginResponse(response: LoginResponse): void {
-    this.persistToken(response.token);
-    this.persistUser(response.user);
-  }
-
-  private handleLoginErrors(error: HttpErrorResponse): void {
-    console.log('Something went wrong!', error)
   }
 
   /**
@@ -86,15 +75,34 @@ export class LoginService {
     }
   }
 
+  private handleLoginRequest(user: string, password: string): void {
+    const loginRequest = new LoginRequest(user, password);
+
+    this.httpClient.post<LoginResponse>(
+      this.retrieveServerUrl() + AppConstants.API_LOGIN,
+      JSON.stringify(loginRequest),
+      {headers: this.headers})
+      .subscribe(data => this.handleLoginResponse(data), err => this.handleLoginErrors(err));
+  }
+
+  private handleLoginResponse(response: LoginResponse): void {
+    this.persistToken(response.token);
+    this.persistUser(response.user);
+  }
+
+  private handleLoginErrors(error: HttpErrorResponse): void {
+    this.handleErrors(error);
+
+    this.clearStorage();
+  }
+
   private clearStorage(): void {
-    localStorage.removeItem(AppConstants.LOCAL_STORAGE_KEY_USER_TOKEN);
-    this.serverUrlChanged.next('');
-    localStorage.removeItem(AppConstants.LOCAL_STORAGE_KEY_SERVER_URL);
-    this.userChanged.next('');
+    this.clearToken();
+    this.clearServerUrl();
+    this.clearUser();
   }
 
   private handleStorageChange(event: StorageEvent): void {
-    console.log('Storage change event: ', event);
     if (event.key === AppConstants.LOCAL_STORAGE_KEY_SERVER_URL) {
       const serverUrl = event.newValue;
       this.serverUrlChanged.next(serverUrl)
@@ -105,6 +113,20 @@ export class LoginService {
 
   private initLocalStorageListeners(): void {
     window.addEventListener(AppConstants.STORAGE_EVENT_LISTENER_KEY, (event: StorageEvent) => this.handleStorageChange(event));
+  }
+
+  private clearUser(): void {
+    localStorage.removeItem(AppConstants.LOCAL_STORAGE_KEY_USER);
+    this.userChanged.next('');
+  }
+
+  private clearToken(): void {
+    localStorage.removeItem(AppConstants.LOCAL_STORAGE_KEY_USER_TOKEN);
+  }
+
+  private clearServerUrl(): void {
+    localStorage.removeItem(AppConstants.LOCAL_STORAGE_KEY_SERVER_URL);
+    this.serverUrlChanged.next('');
   }
 
   private persistUser(user: string): void {

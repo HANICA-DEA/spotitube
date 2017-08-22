@@ -22,6 +22,7 @@ import {
     MdCardModule,
     MdIconModule,
     MdInputModule,
+    MdSnackBarModule,
     MdToolbarModule
   ],
   exports: [
@@ -29,6 +30,7 @@ import {
     MdCardModule,
     MdIconModule,
     MdInputModule,
+    MdSnackBarModule,
     MdToolbarModule
   ]
 })
