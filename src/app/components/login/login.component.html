@@ -1,8 +1,12 @@
 <md-card>
+  <md-card-title>
+    Welcome to Spotitube
+  </md-card-title>
   <md-card-content class="flex-container"
                    fxLayout="column">
     <md-input-container class="flex-item">
-      <input mdInput
+      <input id="urlInput"
+             mdInput
              placeholder="Server URL"
              [(ngModel)]="serverUrl"
              pattern="http://[a-zA-Z0-9:]+"

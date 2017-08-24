@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from './services/login/login.service';
 import {MdSnackBar} from '@angular/material';
+import {Settings} from './models/settings/settings.interface.model';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initUserName();
-    this.initServerUrl();
+    this.initSettings();
     this.initErrorSnackbar();
   }
 
@@ -32,17 +32,21 @@ export class AppComponent implements OnInit {
     this.loginService.restError$.subscribe(error => this.snackBar.open('Http status code ' + error, 'close'));
   }
 
-  private initServerUrl(): void {
-    this.loginService.getServerUrl()
-      .then(url => this.serverUrl = url)
-      .catch(any => this.serverUrl = undefined);
-    this.loginService.serverUrlChanged$.subscribe(url => this.serverUrl = url);
+  private initSettings(): void {
+    this.loginService.getSettings()
+      .then(settings => this.setSettings(settings))
+      .catch(any => this.setSettings(undefined));
+    this.loginService.settingsChanged$.subscribe(settings => this.setSettings(settings));
   }
 
-  private initUserName(): void {
-    this.loginService.getUser()
-      .then(user => this.user = user)
-      .catch(any => this.user = undefined);
-    this.loginService.userChanged$.subscribe(user => this.user = user);
+  private setSettings(settings: Settings): void {
+    if (settings) {
+      this.serverUrl = settings.server;
+      this.user = settings.user;
+    } else {
+      this.serverUrl = undefined;
+      this.user = undefined;
+    }
+
   }
 }

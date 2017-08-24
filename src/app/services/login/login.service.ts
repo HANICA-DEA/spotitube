@@ -6,16 +6,27 @@ import {LoginRequest} from '../../models/login-request/login-request.model';
 import {LoginResponse} from '../../models/login-response/login-response.model';
 import {RestfulSpotitubeClientService} from '../restful-spotitube-client/restful-spotitube-client.service';
 import {LoggingService} from '../logging/logging.service';
+import {Settings} from '../../models/settings/settings.interface.model';
+import {SettingsImpl} from '../../models/settings/settings.model';
 
 @Injectable()
 export class LoginService extends RestfulSpotitubeClientService {
 
-  private serverUrlChanged = new Subject<string>();
-  private userChanged = new Subject<string>();
+  private settingsChanged = new Subject<Settings>();
 
-  public serverUrlChanged$ = this.serverUrlChanged.asObservable();
-  public userChanged$ = this.userChanged.asObservable();
+  /**
+   * Register to this observable to be notified when the settings change.
+   *
+   * @type {Observable<Settings>}
+   */
+  public settingsChanged$ = this.settingsChanged.asObservable();
 
+  /**
+   * Create a new LoginService
+   *
+   * @param {HttpClient} httpClient
+   * @param {LoggingService} loggingService
+   */
   constructor(private httpClient: HttpClient, loggingService: LoggingService) {
 
     super(loggingService);
@@ -32,9 +43,7 @@ export class LoginService extends RestfulSpotitubeClientService {
    */
   public login(user: string, password: string, serverUrl: string) {
 
-    this.persistServerUrl(serverUrl);
-    this.persistUser(user);
-
+    this.createNewSettings(serverUrl);
     this.handleLoginRequest(user, password);
   }
 
@@ -46,33 +55,12 @@ export class LoginService extends RestfulSpotitubeClientService {
   }
 
   /**
-   * Return the name of the current user.
+   * Get the current SettingsImpl.
    *
-   * @return {Promise<string>}
+   * @return {Promise<Settings>}
    */
-  public getUser(): Promise<string> {
-
-    const user = this.retrieveUser();
-    if (user) {
-      return Promise.resolve(user);
-    } else {
-      return Promise.reject('No user available');
-    }
-  }
-
-  /**
-   * Return the serverUrl.
-   *
-   * @return {Promise<string>}
-   */
-  public getServerUrl(): Promise<string> {
-    const serverUrl = this.retrieveServerUrl();
-
-    if (serverUrl) {
-      return Promise.resolve(serverUrl);
-    } else {
-      return Promise.reject('No serverUrl available');
-    }
+  public getSettings(): Promise<Settings> {
+    return Promise.resolve(this.retrieve());
   }
 
   private handleLoginRequest(user: string, password: string): void {
@@ -86,8 +74,11 @@ export class LoginService extends RestfulSpotitubeClientService {
   }
 
   private handleLoginResponse(response: LoginResponse): void {
-    this.persistToken(response.token);
-    this.persistUser(response.user);
+    const settings = this.retrieve();
+    settings.user = response.user;
+    settings.token = response.token;
+
+    this.persist(settings);
   }
 
   private handleLoginErrors(error: HttpErrorResponse): void {
@@ -97,17 +88,13 @@ export class LoginService extends RestfulSpotitubeClientService {
   }
 
   private clearStorage(): void {
-    this.clearToken();
-    this.clearServerUrl();
-    this.clearUser();
+    localStorage.removeItem(AppConstants.LOCAL_STORAGE_KEY_SETTINGS);
+    this.settingsChanged.next(undefined);
   }
 
   private handleStorageChange(event: StorageEvent): void {
-    if (event.key === AppConstants.LOCAL_STORAGE_KEY_SERVER_URL) {
-      const serverUrl = event.newValue;
-      this.serverUrlChanged.next(serverUrl)
-    } else if (event.key === AppConstants.LOCAL_STORAGE_KEY_USER_TOKEN) {
-      this.userChanged.next()
+    if (event.key === AppConstants.LOCAL_STORAGE_KEY_SETTINGS) {
+      this.settingsChanged.next(JSON.parse(event.newValue));
     }
   }
 
@@ -115,43 +102,28 @@ export class LoginService extends RestfulSpotitubeClientService {
     window.addEventListener(AppConstants.STORAGE_EVENT_LISTENER_KEY, (event: StorageEvent) => this.handleStorageChange(event));
   }
 
-  private clearUser(): void {
-    localStorage.removeItem(AppConstants.LOCAL_STORAGE_KEY_USER);
-    this.userChanged.next('');
+  private createNewSettings(serverUrl: string): void {
+    const settings = new SettingsImpl();
+    settings.server = serverUrl;
+    this.persist(settings);
   }
 
-  private clearToken(): void {
-    localStorage.removeItem(AppConstants.LOCAL_STORAGE_KEY_USER_TOKEN);
+  private persist(settings: Settings): void {
+    localStorage.setItem(AppConstants.LOCAL_STORAGE_KEY_SETTINGS, JSON.stringify(settings));
+    this.settingsChanged.next(settings)
   }
 
-  private clearServerUrl(): void {
-    localStorage.removeItem(AppConstants.LOCAL_STORAGE_KEY_SERVER_URL);
-    this.serverUrlChanged.next('');
-  }
+  private retrieve(): Settings {
+    const json = localStorage.getItem(AppConstants.LOCAL_STORAGE_KEY_SETTINGS);
 
-  private persistUser(user: string): void {
-    localStorage.setItem(AppConstants.LOCAL_STORAGE_KEY_USER, user);
-    this.userChanged.next(user)
-  }
-
-  private persistServerUrl(serverUrl: string): void {
-    localStorage.setItem(AppConstants.LOCAL_STORAGE_KEY_SERVER_URL, serverUrl);
-    this.serverUrlChanged.next(serverUrl)
-  }
-
-  private persistToken(token: string): void {
-    localStorage.setItem(AppConstants.LOCAL_STORAGE_KEY_USER_TOKEN, token);
+    if (json) {
+      return JSON.parse(json);
+    } else {
+      return new SettingsImpl();
+    }
   }
 
   private retrieveServerUrl(): string {
-    return localStorage.getItem(AppConstants.LOCAL_STORAGE_KEY_SERVER_URL);
-  }
-
-  private retrieveUser(): string {
-    return localStorage.getItem(AppConstants.LOCAL_STORAGE_KEY_USER);
-  }
-
-  private retrieveUserToken(): string {
-    return localStorage.getItem(AppConstants.LOCAL_STORAGE_KEY_USER_TOKEN);
+    return this.retrieve().server;
   }
 }

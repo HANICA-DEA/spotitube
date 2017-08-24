@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../services/login/login.service';
+import {Settings} from '../../models/settings/settings.interface.model';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +17,21 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginService.getServerUrl()
-      .then(url => this.serverUrl = url)
+    this.loginService.getSettings()
+      .then(settings => this.serverUrl = settings.server)
       .catch(any => this.serverUrl = '');
-    this.loginService.serverUrlChanged$.subscribe(url => this.serverUrl = url);
+    this.loginService.settingsChanged$.subscribe(settings => this.setServer(settings));
   }
 
   public login(): void {
     this.loginService.login(this.user, this.password, this.serverUrl)
+  }
+
+  private setServer(settings: Settings): void {
+    if (settings) {
+      this.serverUrl = settings.server;
+    } else {
+      this.serverUrl = undefined;
+    }
   }
 }
