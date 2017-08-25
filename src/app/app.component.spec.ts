@@ -6,15 +6,21 @@ import {SpotitubeAngularModule} from './modules/angular.module';
 import {SpotitubeMaterialModule} from './modules/material.module';
 import {LoginComponent} from './components/login/login.component';
 import {LoggingService} from './services/logging/logging.service';
+import {PlaylistOverviewComponent} from './components/playlists-overview/playlists-overview.component';
+import {PlaylistsComponent} from './components/playlists/playlists.component';
+import {PlaylistComponent} from './components/playlist/playlist.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
+        PlaylistOverviewComponent,
+        PlaylistsComponent,
+        PlaylistComponent,
         LoginComponent
       ],
-      imports : [
+      imports: [
         SpotitubeAngularModule,
         SpotitubeMaterialModule
       ],

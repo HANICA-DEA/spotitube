@@ -15,7 +15,39 @@ To enable this, follow the steps below.
 * Ensure that you understand the _why_. For instance, read: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
 * Figure out how to perform the _how_. There are enough resources available on the World Wide Web.
  
- 
+## API
+
+The following endpoints are expected
+
+### Login
+
+To login, the client will perform a POST to 
+
+> /login 
+
+with an object in the body of the form
+
+> `{user: "meron", password: "password"}`
+
+It will receive a response containing an object of the form
+
+> `{token:"1234-1234-1234", user:"Meron Brouwer"}`
+
+This token is then stored in LocalStorage and used for each following
+request.
+
+### Playlists
+
+To acquire a list of playlists, the client will perform a GET to
+
+> /playlists
+
+with an object in de body of the form
+
+> `{token: "1234-1234-1234"}`
+
+It will receive a response containing an object of the form
+
 ## For local installation
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).

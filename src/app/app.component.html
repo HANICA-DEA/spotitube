@@ -35,12 +35,18 @@
   </div>
 
 </md-toolbar>
-<div class="content flex-container"
+
+<app-playlists-overview
+  class="content"
+  *ngIf="user && serverUrl">
+</app-playlists-overview>
+<div *ngIf="!user || !serverUrl"
+     class="content flex-container"
      fxLayout="row"
      fxLayoutAlign="center">
-  <app-login *ngIf="!user || !serverUrl"
-             class="flex-item"
-             fxFlexAlign="center">
+  <app-login
+    class="flex-item"
+    fxFlexAlign="center">
   </app-login>
 </div>
 
