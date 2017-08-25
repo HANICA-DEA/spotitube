@@ -2,10 +2,13 @@
      fxLayout="row"
      fxLayoutAlign="start stretch">
   <app-playlists
-    class="flex-item playlists">
+    class="flex-item playlists"
+    fxFlex="25%"
+    (selectedPlaylistChange)="playlist.playlist = $event">
   </app-playlists>
   <app-playlist
+    #playlist
     class="flex-item"
-    fxFlex="100%">
+    fxFlex="75%">
   </app-playlist>
 </div>

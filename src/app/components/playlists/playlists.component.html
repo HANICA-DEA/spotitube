@@ -9,7 +9,9 @@
          fxLayoutWrap="nowrap">
       <div
         class="name flex-item"
-        fxFlex="100%">
+        fxFlex="100%"
+        (click)="onPlaylistSelected(playlist)"
+        md-tooltip="{{playlist.name}}">
         {{playlist.name}}
       </div>
       <button md-button class="flex-item">

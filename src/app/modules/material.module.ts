@@ -3,14 +3,8 @@ import {NgModule} from '@angular/core';
 import {
   MdButtonModule,
   MdCardModule,
-  MdCheckboxModule,
-  MdDialogModule,
   MdIconModule,
   MdInputModule,
-  MdMenuModule,
-  MdSelectModule,
-  MdSidenavModule,
-  MdSlideToggleModule,
   MdSnackBarModule,
   MdToolbarModule,
   MdTooltipModule
@@ -23,7 +17,8 @@ import {
     MdIconModule,
     MdInputModule,
     MdSnackBarModule,
-    MdToolbarModule
+    MdToolbarModule,
+    MdTooltipModule
   ],
   exports: [
     MdButtonModule,
@@ -31,7 +26,8 @@ import {
     MdIconModule,
     MdInputModule,
     MdSnackBarModule,
-    MdToolbarModule
+    MdToolbarModule,
+    MdTooltipModule
   ]
 })
 export class SpotitubeMaterialModule {

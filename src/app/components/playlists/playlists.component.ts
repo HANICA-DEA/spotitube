@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Playlists} from '../../models/playlists/playlists.interface.model';
 import {PlaylistService} from '../../services/playlist/playlist.service';
+import {Playlist} from '../../models/playlist/playlist.model';
 
 @Component({
   selector: 'app-playlists',
@@ -11,6 +12,8 @@ export class PlaylistsComponent implements OnInit {
 
   public playlists: Playlists;
 
+  @Output() selectedPlaylistChange = new EventEmitter<Playlist>();
+
   constructor(private playlistService: PlaylistService) {
     this.playlists = {
       playlists: [],
@@ -19,7 +22,29 @@ export class PlaylistsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.playlistService.getPlaylists().then(playlists => this.playlists = playlists);
+    this.playlistService.getPlaylists().then(playlists => this.setPlaylists(playlists));
   }
+
+  private setPlaylists(playlists: Playlists): void {
+    this.playlists = playlists;
+
+    if (playlists.playlists.length > 0) {
+      const firstPlaylist  = playlists.playlists;
+      const testy: Playlist = firstPlaylist[0];
+      console.log('First playlist is: ', testy);
+
+      this.onPlaylistSelected(testy)
+    }
+  }
+
+  /**
+   *
+   * @param {Playlist} playlist
+   */
+  public onPlaylistSelected(playlist: Playlist): void {
+    console.log('Selected the following playlist: ', playlist);
+    this.selectedPlaylistChange.emit(playlist);
+  }
+
 
 }
