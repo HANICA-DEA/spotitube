@@ -11,6 +11,7 @@ import {PlaylistOverviewComponent} from './components/playlists-overview/playlis
 import {PlaylistComponent} from './components/playlist/playlist.component';
 import {PlaylistsComponent} from './components/playlists/playlists.component';
 import {PlaylistService} from './services/playlist/playlist.service';
+import {MinutesPipe} from './pipes/minutes.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {PlaylistService} from './services/playlist/playlist.service';
     LoginComponent,
     PlaylistOverviewComponent,
     PlaylistComponent,
-    PlaylistsComponent
+    PlaylistsComponent,
+    MinutesPipe
   ],
   imports: [
     SpotitubeAngularModule,

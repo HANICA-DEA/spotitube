@@ -9,16 +9,18 @@ import {LoggingService} from './services/logging/logging.service';
 import {PlaylistOverviewComponent} from './components/playlists-overview/playlists-overview.component';
 import {PlaylistsComponent} from './components/playlists/playlists.component';
 import {PlaylistComponent} from './components/playlist/playlist.component';
+import {MinutesPipe} from './pipes/minutes.pipe';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
+        LoginComponent,
+        MinutesPipe,
         PlaylistOverviewComponent,
         PlaylistsComponent,
-        PlaylistComponent,
-        LoginComponent
+        PlaylistComponent
       ],
       imports: [
         SpotitubeAngularModule,

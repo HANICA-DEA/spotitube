@@ -8,6 +8,7 @@ import {PlaylistsComponent} from '../playlists/playlists.component';
 import {PlaylistService} from '../../services/playlist/playlist.service';
 import {LoginService} from '../../services/login/login.service';
 import {LoggingService} from '../../services/logging/logging.service';
+import {MinutesPipe} from '../../pipes/minutes.pipe';
 
 describe('PlaylistOverviewComponent', () => {
   let component: PlaylistOverviewComponent;
@@ -17,6 +18,7 @@ describe('PlaylistOverviewComponent', () => {
     TestBed.configureTestingModule({
 
       declarations: [
+        MinutesPipe,
         PlaylistOverviewComponent,
         PlaylistComponent,
         PlaylistsComponent

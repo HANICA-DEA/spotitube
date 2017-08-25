@@ -45,7 +45,7 @@ export class PlaylistService extends RestfulSpotitubeClientService {
     };
     const playlists = {
       playlists: [],
-      length: 37
+      length: 371234
     }
 
     playlists.playlists.push(playlist1);

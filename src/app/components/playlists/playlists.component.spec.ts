@@ -6,6 +6,7 @@ import {PlaylistService} from '../../services/playlist/playlist.service';
 import {SpotitubeAngularModule} from '../../modules/angular.module';
 import {LoginService} from '../../services/login/login.service';
 import {LoggingService} from '../../services/logging/logging.service';
+import {MinutesPipe} from '../../pipes/minutes.pipe';
 
 describe('PlaylistsComponent', () => {
   let component: PlaylistsComponent;
@@ -18,6 +19,7 @@ describe('PlaylistsComponent', () => {
         SpotitubeMaterialModule
       ],
       declarations: [
+        MinutesPipe,
         PlaylistsComponent
       ],
       providers: [
