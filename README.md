@@ -3,7 +3,17 @@
 This repository contains a front-end for the final programming assignment 
 of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.han.nl/).
 
+## Enabling CORS headers in your JavaEE container
 
+To use this Spotitube Client with your own Spotitube Server, you will need to enable CORS headers
+in your JavaEE container. 
+
+This is required because the Client is served from a different domain than the Server. Your browser will only allow this if the Server has the CORS Headers set in its HTTP response.
+
+To enable this, follow the steps below.
+
+* Ensure that you understand the _why_. For instance, read: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+* Figure out how to perform the _how_. There are enough resources available on the World Wide Web.
  
  
 ## For local installation
