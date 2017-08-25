@@ -2,38 +2,18 @@
   <span class="title">
       <md-icon>queue_music</md-icon> Spotitube
   </span>
-  <div class="flex-container"
-       fxLayout="row">
-    <div class="flex-container flex-item"
-         fxLayout="column">
-      <div *ngIf="user"
-           class="label flex-item">
-        User
-      </div>
-      <div class="value flex-item"
-           *ngIf="user">
-        {{user}}
-      </div>
-      <div *ngIf="serverUrl"
-           class="label flex-item">
-        Server url
-      </div>
-      <div class="value flex-item"
-           *ngIf="serverUrl">
-        {{serverUrl}}
-      </div>
-
-    </div>
-    <button *ngIf="serverUrl || user"
-            class="logoutButton flex-item"
-            fxFlexAlign="center"
-            md-mini-fab
-            md-tooltip="Logout"
-            (click)="logout()">
-      <md-icon>delete_forever</md-icon>
-    </button>
+  <div *ngIf="user && serverUrl"
+       class="mat-body-2">
+    {{user}}@{{serverUrl}}
   </div>
-
+  <button md-icon-button [md-menu-trigger-for]="settings">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu x-position="before" y-position="below" #settings="mdMenu">
+    <button [disabled]="!serverUrl && !user" md-menu-item (click)="logout()">
+      <span>Logout</span>
+    </button>
+  </md-menu>
 </md-toolbar>
 
 <app-playlists-overview

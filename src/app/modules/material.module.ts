@@ -5,6 +5,7 @@ import {
   MdCardModule,
   MdIconModule,
   MdInputModule,
+  MdMenuModule,
   MdSnackBarModule,
   MdToolbarModule,
   MdTooltipModule
@@ -16,6 +17,7 @@ import {
     MdCardModule,
     MdIconModule,
     MdInputModule,
+    MdMenuModule,
     MdSnackBarModule,
     MdToolbarModule,
     MdTooltipModule
@@ -25,6 +27,7 @@ import {
     MdCardModule,
     MdIconModule,
     MdInputModule,
+    MdMenuModule,
     MdSnackBarModule,
     MdToolbarModule,
     MdTooltipModule
