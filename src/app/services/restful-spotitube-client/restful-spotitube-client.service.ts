@@ -58,12 +58,6 @@ export class RestfulSpotitubeClientService {
     return this.retrieve().server + path;
   }
 
-
-  protected retrieveServerUrl(): string {
-    return this.retrieve().server;
-  }
-
-
   /**
    * Call this method to clear LocalStorage. Consequently, all observers will be notified.
    */
@@ -72,10 +66,17 @@ export class RestfulSpotitubeClientService {
     this.settingsChanged.next(undefined);
   }
 
-  protected createRequestBody(): RequestBody {
+  /**
+   * Create a default RequestBody that only contains a token that should be used for
+   * authentication.
+   *
+   * @return {string} a Stringyfied JSON representation of the RequestBody
+   */
+  protected createRequestBody(): string {
     const token = this.retrieve().token
-    const apiCall = new RequestBody(token);
-    return apiCall;
+    const requestBody = new RequestBody(token);
+    const requestBodyJson = JSON.stringify(requestBody);
+    return requestBodyJson;
   }
 
   protected setNewSettings(serverUrl: string): void {

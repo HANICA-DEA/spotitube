@@ -4,6 +4,9 @@ import {RestfulSpotitubeClientService} from '../restful-spotitube-client/restful
 import {HttpClient} from '@angular/common/http';
 import {LoggingService} from '../logging/logging.service';
 import {LoginService} from '../login/login.service';
+import {AppConstants} from '../../app.constants';
+
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class PlaylistService extends RestfulSpotitubeClientService {
@@ -27,32 +30,16 @@ export class PlaylistService extends RestfulSpotitubeClientService {
     return response
   }
 
-  private handlePlaylistsRequest(): Promise<Playlists> {
-    const apiCall = this.createRequestBody();
+  private async handlePlaylistsRequest(): Promise<Playlists> {
+    const requestbody = this.createRequestBody();
+    const endpointUrl = this.createEndpointUrl(AppConstants.API_PLAYLISTS);
 
-    // this.httpClient.post<Playlists>(
-    //   this.retrieveServerUrl() + AppConstants.API_LOGIN,
-    //   JSON.stringify(loginRequest),
-    //   {headers: this.headers})
-    //   .subscribe(data => this.handleLoginResponse(data), err => this.handleLoginErrors(err));
-
-
-    const playlist1 = {
-      name: 'Death metal',
-      tracks: []
-    };
-    const playlist2 = {
-      name: 'Singer/Songwriters from Ireland',
-      tracks: []
-    };
-    const playlists = {
-      playlists: [],
-      length: 371234
+    try {
+      const data: Playlists = await  this.httpClient.post<Playlists>(endpointUrl, requestbody,
+        {headers: this.headers}).toPromise();
+      return data;
+    } catch (err) {
+      this.handleErrors(err)
     }
-
-    playlists.playlists.push(playlist1);
-    playlists.playlists.push(playlist2);
-
-    return Promise.resolve(playlists);
   }
 }
