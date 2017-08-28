@@ -3,7 +3,6 @@ import {Playlists} from '../../models/playlists/playlists.interface.model';
 import {RestfulSpotitubeClientService} from '../restful-spotitube-client/restful-spotitube-client.service';
 import {HttpClient} from '@angular/common/http';
 import {LoggingService} from '../logging/logging.service';
-import {ApiCall} from '../../models/api-call/api-call.model';
 import {LoginService} from '../login/login.service';
 
 @Injectable()
@@ -17,23 +16,26 @@ export class PlaylistService extends RestfulSpotitubeClientService {
    * @param {LoggingService} loggingService
    */
   constructor(private httpClient: HttpClient,
-              private loginService: LoginService,
               loggingService: LoggingService) {
 
     super(loggingService);
-
   }
 
   public async getPlaylists(): Promise<Playlists> {
-
-    const settings = await this.loginService.getSettings();
-    const response = await this.handlePlaylistsRequest(settings.token);
+    const response = await this.handlePlaylistsRequest();
 
     return response
   }
 
-  private handlePlaylistsRequest(token: string): Promise<Playlists> {
-    const apiCall = new ApiCall(token);
+  private handlePlaylistsRequest(): Promise<Playlists> {
+    const apiCall = this.createRequestBody();
+
+    // this.httpClient.post<Playlists>(
+    //   this.retrieveServerUrl() + AppConstants.API_LOGIN,
+    //   JSON.stringify(loginRequest),
+    //   {headers: this.headers})
+    //   .subscribe(data => this.handleLoginResponse(data), err => this.handleLoginErrors(err));
+
 
     const playlist1 = {
       name: 'Death metal',

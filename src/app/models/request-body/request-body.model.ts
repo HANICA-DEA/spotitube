@@ -1,4 +1,4 @@
-export class ApiCall {
+export class RequestBody {
 
   public token: string;
 
