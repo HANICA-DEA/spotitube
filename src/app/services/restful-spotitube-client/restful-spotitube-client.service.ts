@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
-import {HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {LoggingService} from '../logging/logging.service';
 import {Settings} from '../../models/settings/settings.interface.model';
 import {AppConstants} from '../../app.constants';
@@ -67,16 +67,13 @@ export class RestfulSpotitubeClientService {
   }
 
   /**
-   * Create a default RequestBody that only contains a token that should be used for
-   * authentication.
-   *
-   * @return {string} a Stringyfied JSON representation of the RequestBody
+   * Create HttpParams that contain the token used for authentication.
+   * @return {HttpParams}
    */
-  protected createRequestBody(): string {
+  protected createtokenParam(): HttpParams {
     const token = this.retrieve().token
-    const requestBody = new RequestBody(token);
-    const requestBodyJson = JSON.stringify(requestBody);
-    return requestBodyJson;
+    const params = new HttpParams().set('token', token);
+    return params;
   }
 
   protected setNewSettings(serverUrl: string): void {
