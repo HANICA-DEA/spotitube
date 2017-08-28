@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {
   MdButtonModule,
   MdCardModule,
+  MdDialogModule,
   MdIconModule,
   MdInputModule,
   MdMenuModule,
@@ -15,6 +16,7 @@ import {
   imports: [
     MdButtonModule,
     MdCardModule,
+    MdDialogModule,
     MdIconModule,
     MdInputModule,
     MdMenuModule,
@@ -25,6 +27,7 @@ import {
   exports: [
     MdButtonModule,
     MdCardModule,
+    MdDialogModule,
     MdIconModule,
     MdInputModule,
     MdMenuModule,

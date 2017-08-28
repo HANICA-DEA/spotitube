@@ -1,0 +1,33 @@
+md-dialog-content {
+  md-card {
+    gurpsy-file-input {
+      padding-left: 12px;
+      margin-top: 4px;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 6px 0px 0px 0px;
+
+    .avatar {
+      img {
+        height: 40px;
+        width: 40px;
+      }
+    }
+
+    .sheetRow {
+      height: 40px;
+    }
+
+    .sheetInfo {
+
+      padding-left: 8px;
+
+      .sheetPoints {
+        font-size: small;
+      }
+    }
+  }
+}

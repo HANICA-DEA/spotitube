@@ -43,6 +43,30 @@ export class PlaylistService extends RestfulSpotitubeClientService {
   }
 
   /**
+   * Update the given playlist
+   *
+   * @param {Playlist} playlist
+   * @return {Promise<Playlists>} The complete list of playlists
+   */
+  public async updatePlaylist(playlist: Playlist): Promise<Playlists> {
+    const endpointUrl = this.getPlaylistEndpoint(playlist);
+    const params = this.createtokenParam();
+
+    try {
+      const data: Playlists = await this.httpClient.post<Playlists>(endpointUrl,
+        JSON.stringify(playlist),
+        {
+          headers: this.headers,
+          params: params
+        }
+      ).toPromise();
+      return data;
+    } catch (err) {
+      this.handleErrors(err)
+    }
+  }
+
+  /**
    * Delete the given playlist
    *
    * @param {Playlist} playlist
@@ -53,7 +77,8 @@ export class PlaylistService extends RestfulSpotitubeClientService {
     const params = this.createtokenParam();
 
     try {
-      const data: Playlists = await this.httpClient.delete<Playlists>(endpointUrl, {params: params}).toPromise();
+      const data: Playlists = await this.httpClient.delete<Playlists>(endpointUrl,
+        {params: params}).toPromise();
       return data;
     } catch (err) {
       this.handleErrors(err)

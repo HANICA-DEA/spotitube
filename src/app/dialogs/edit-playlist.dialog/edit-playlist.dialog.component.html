@@ -1,0 +1,18 @@
+<h1 md-dialog-title>
+  Edit Playlist
+</h1>
+
+<md-dialog-content>
+  <md-input-container>
+    <input mdInput
+           placeholder="Name"
+           required
+           [(ngModel)]="name">
+    <md-error>Please provide a name for the playlist</md-error>
+  </md-input-container>
+</md-dialog-content>
+
+<md-dialog-actions align="end">
+  <button md-button color="primary" [disabled]="!name || name.trim() === ''" (click)="onOk()"> Ok</button>
+  <button md-button color="primary" md-dialog-close> Cancel</button>
+</md-dialog-actions>
