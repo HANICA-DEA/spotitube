@@ -10,6 +10,7 @@ import {PlaylistOverviewComponent} from './components/playlists-overview/playlis
 import {PlaylistsComponent} from './components/playlists/playlists.component';
 import {PlaylistComponent} from './components/playlist/playlist.component';
 import {MinutesPipe} from './pipes/minutes.pipe';
+import {PlaylistService} from './services/playlist/playlist.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -28,7 +29,8 @@ describe('AppComponent', () => {
       ],
       providers: [
         LoginService,
-        LoggingService
+        LoggingService,
+        PlaylistService
       ]
     }).compileComponents();
   }));

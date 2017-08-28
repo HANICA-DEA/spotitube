@@ -14,20 +14,26 @@
         md-tooltip="{{playlist.name}}">
         {{playlist.name}}
       </div>
-      <button md-button class="flex-item">
+      <button md-button class="flex-item" (click)="onEditName(playlist)">
         <md-icon>edit</md-icon>
       </button>
-      <button md-button class="flex-item">
-        <md-icon>playlist_add</md-icon>
-      </button>
-      <button md-button class="flex-item">
+      <button md-button class="flex-item" (click)="onDelete(playlist)">
         <md-icon>delete</md-icon>
       </button>
     </div>
   </md-card>
+
   <md-card class="flex-item">
-    <md-card-content>
-      Total length: {{playlists.length | minutes}}
+    <md-card-content class="flex-container"
+                     fxLayout="row"
+                     fxLayoutAlign="space-between stretch">
+      <span class="flex-item" fxFlexAlign="center">
+        Total length: {{playlists.length | minutes}}
+      </span>
+      <button md-button
+              class="flex-item" (click)="onNewPlaylist()">
+        <md-icon>playlist_add</md-icon>
+      </button>
     </md-card-content>
   </md-card>
 </div>

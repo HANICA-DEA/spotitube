@@ -23,15 +23,27 @@ export class PlaylistsComponent implements OnInit {
       .catch(any => this.setEmptyPlaylists());
   }
 
+  onEditName(playlist: Playlist): void {
+    console.log('Editing name of playlist: ', playlist);
+  }
+
+  onDelete(playlist: Playlist): void {
+    this.playlistService.deletePlaylist(playlist).then(playlists => this.setPlaylists(this.playlists))
+      .catch(any => console.log('ERROR ERROR'));
+    console.log('Deleting playlist: ', playlist);
+  }
+
+  onNewPlaylist(): void {
+
+  }
+
   private setPlaylists(playlists: Playlists): void {
     this.playlists = playlists;
 
     if (playlists.playlists.length > 0) {
-      const firstPlaylist = playlists.playlists;
-      const testy: Playlist = firstPlaylist[0];
-      console.log('First playlist is: ', testy);
+      const firstPlaylist = playlists.playlists[0];
 
-      this.onPlaylistSelected(testy)
+      this.onPlaylistSelected(firstPlaylist)
     }
   }
 
@@ -47,9 +59,6 @@ export class PlaylistsComponent implements OnInit {
    * @param {Playlist} playlist
    */
   public onPlaylistSelected(playlist: Playlist): void {
-    console.log('Selected the following playlist: ', playlist);
     this.selectedPlaylistChange.emit(playlist);
   }
-
-
 }
