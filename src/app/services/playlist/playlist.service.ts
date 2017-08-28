@@ -28,7 +28,7 @@ export class PlaylistService extends RestfulSpotitubeClientService {
   /**
    * Return a complete list of playlists.
    *
-   * @return {Promise<Playlists>}
+   * @return {Promise<Playlists>} The complete list of playlists
    */
   public async getPlaylists(): Promise<Playlists> {
     const endpointUrl = this.createEndpointUrl(AppConstants.API_PLAYLISTS);
@@ -46,7 +46,7 @@ export class PlaylistService extends RestfulSpotitubeClientService {
    * Delete the given playlist
    *
    * @param {Playlist} playlist
-   * @return {Promise<Playlists>}
+   * @return {Promise<Playlists>} The complete list of playlists
    */
   public async deletePlaylist(playlist: Playlist): Promise<Playlists> {
     const endpointUrl = this.getPlaylistEndpoint(playlist);

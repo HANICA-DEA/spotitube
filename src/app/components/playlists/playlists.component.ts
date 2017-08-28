@@ -23,27 +23,53 @@ export class PlaylistsComponent implements OnInit {
       .catch(any => this.setEmptyPlaylists());
   }
 
-  onEditName(playlist: Playlist): void {
+  /**
+   * Change the name of a playlist.
+   *
+   * @param {Playlist} playlist
+   */
+  public onEditName(playlist: Playlist): void {
     console.log('Editing name of playlist: ', playlist);
   }
 
+  /**
+   * Delete a playlist.
+   *
+   * @param {Playlist} playlist
+   */
   onDelete(playlist: Playlist): void {
-    this.playlistService.deletePlaylist(playlist).then(playlists => this.setPlaylists(this.playlists))
-      .catch(any => console.log('ERROR ERROR'));
-    console.log('Deleting playlist: ', playlist);
+    this.playlistService.deletePlaylist(playlist).then(playlists => this.setPlaylists(playlists))
+      .catch(any => {
+      });
   }
 
-  onNewPlaylist(): void {
+  /**
+   * Create a new playlist.
+   */
+  public onNewPlaylist(): void {
 
+  }
+
+  /**
+   * Select a playlist from the list.
+   *
+   * @param {Playlist} playlist
+   */
+  public onPlaylistSelected(playlist: Playlist): void {
+    this.selectedPlaylistChange.emit(playlist);
   }
 
   private setPlaylists(playlists: Playlists): void {
     this.playlists = playlists;
 
+    console.log('Setting new playlists: ', playlists);
+
     if (playlists.playlists.length > 0) {
       const firstPlaylist = playlists.playlists[0];
 
       this.onPlaylistSelected(firstPlaylist)
+    } else {
+      this.onPlaylistSelected(undefined);
     }
   }
 
@@ -54,11 +80,5 @@ export class PlaylistsComponent implements OnInit {
     }
   }
 
-  /**
-   *
-   * @param {Playlist} playlist
-   */
-  public onPlaylistSelected(playlist: Playlist): void {
-    this.selectedPlaylistChange.emit(playlist);
-  }
+
 }
