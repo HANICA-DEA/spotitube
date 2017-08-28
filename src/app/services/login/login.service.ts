@@ -40,12 +40,11 @@ export class LoginService extends RestfulSpotitubeClientService {
   }
 
   private handleLoginRequest(user: string, password: string): void {
-    const loginRequest = new LoginRequest(user, password);
+    const loginRequestBody = JSON.stringify(new LoginRequest(user, password));
     const endpointUrl = this.createEndpointUrl(AppConstants.API_LOGIN);
-    const requestBody = JSON.stringify(loginRequest);
 
     this.httpClient.post<LoginResponse>(endpointUrl,
-      requestBody,
+      loginRequestBody,
       {headers: this.headers})
       .subscribe(data => this.handleLoginResponse(data), err => this.handleLoginErrors(err));
   }

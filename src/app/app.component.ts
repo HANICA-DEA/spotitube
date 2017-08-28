@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from './services/login/login.service';
 import {MdSnackBar} from '@angular/material';
 import {Settings} from './models/settings/settings.interface.model';
+import {PlaylistService} from './services/playlist/playlist.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
   public serverUrl: string;
   public user: string;
 
-  constructor(private loginService: LoginService, public snackBar: MdSnackBar) {
+  constructor(private loginService: LoginService, private playlistService: PlaylistService, public snackBar: MdSnackBar) {
   }
 
   ngOnInit(): void {
@@ -29,7 +30,8 @@ export class AppComponent implements OnInit {
   }
 
   private initErrorSnackbar(): void {
-    this.loginService.restError$.subscribe(error => this.snackBar.open('Http status code ' + error, 'close'));
+    this.loginService.restError$.subscribe(error => this.showError(error));
+    this.playlistService.restError$.subscribe(error => this.showError(error));
   }
 
   private initSettings(): void {
@@ -47,6 +49,9 @@ export class AppComponent implements OnInit {
       this.serverUrl = undefined;
       this.user = undefined;
     }
+  }
 
+  private showError(error: number): void {
+    this.snackBar.open('Http status code ' + error, 'close')
   }
 }

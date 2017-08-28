@@ -15,25 +15,30 @@ export class PlaylistsComponent implements OnInit {
   @Output() selectedPlaylistChange = new EventEmitter<Playlist>();
 
   constructor(private playlistService: PlaylistService) {
-    this.playlists = {
-      playlists: [],
-      length: 0
-    }
+    this.setEmptyPlaylists();
   }
 
   ngOnInit() {
-    this.playlistService.getPlaylists().then(playlists => this.setPlaylists(playlists));
+    this.playlistService.getPlaylists().then(playlists => this.setPlaylists(playlists))
+      .catch(any => this.setEmptyPlaylists());
   }
 
   private setPlaylists(playlists: Playlists): void {
     this.playlists = playlists;
 
     if (playlists.playlists.length > 0) {
-      const firstPlaylist  = playlists.playlists;
+      const firstPlaylist = playlists.playlists;
       const testy: Playlist = firstPlaylist[0];
       console.log('First playlist is: ', testy);
 
       this.onPlaylistSelected(testy)
+    }
+  }
+
+  private setEmptyPlaylists(): void {
+    this.playlists = {
+      playlists: [],
+      length: 0
     }
   }
 
