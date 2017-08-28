@@ -21,32 +21,58 @@ The following endpoints are expected
 
 ### Login
 
-To login, the client will perform a POST to 
+```
+url:    /login 
+method: POST
+```
 
-> /login 
+It will perform a request with an object in the body of the form
 
-with an object in the body of the form
+```
+{
+  user:     "meron", 
+  password: "MySuperSecretPassword12341"
+}
+```
 
-> `{user: "meron", password: "password"}`
+It will expect a response containing an object of the form
 
-It will receive a response containing an object of the form
-
-> `{token:"1234-1234-1234", user:"Meron Brouwer"}`
+```
+{
+  token:  "1234-1234-1234", 
+  user:   "Meron Brouwer"
+}
+```
 
 This token is then stored in LocalStorage and used for each following
 request.
 
 ### Playlists
 
-To acquire a list of playlists, the client will perform a GET to
+To acquire a list of all playlists.
 
-> /playlists
+```
+url:              /playlists 
+method:           GET
+query parameter:  token
+```
 
-with an object in de body of the form
+It will expect a response containing an object of the form
 
-> `{token: "1234-1234-1234"}`
-
-It will receive a response containing an object of the form
+```
+{
+  playlists :[
+               {
+                  "name": "Death metal",
+                  "tracks":[]
+               },
+               {
+                  "name"  :"Pop",
+                  "tracks":[]
+               }
+              ],
+  "length"  :123445}
+```
 
 ## For local installation
 
