@@ -2,13 +2,13 @@ import {Component} from '@angular/core';
 import {MdDialogRef} from '@angular/material';
 
 @Component({
-  templateUrl: './edit-playlist.dialog.component.html'
+  templateUrl: './new-playlist.dialog.component.html'
 })
-export class EditPlaylistDialogComponent {
+export class NewPlaylistDialogComponent {
 
   public name: string;
 
-  constructor(private dialogRef: MdDialogRef<EditPlaylistDialogComponent>) {
+  constructor(private dialogRef: MdDialogRef<NewPlaylistDialogComponent>) {
   }
 
   public onOk(): void {

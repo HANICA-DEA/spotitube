@@ -13,19 +13,22 @@ import {PlaylistsComponent} from './components/playlists/playlists.component';
 import {PlaylistService} from './services/playlist/playlist.service';
 import {MinutesPipe} from './pipes/minutes.pipe';
 import {EditPlaylistDialogComponent} from './dialogs/edit-playlist.dialog/edit-playlist.dialog.component';
+import {NewPlaylistDialogComponent} from './dialogs/new-playlist.dialog/new-playlist.dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditPlaylistDialogComponent,
     LoginComponent,
+    MinutesPipe,
+    NewPlaylistDialogComponent,
     PlaylistOverviewComponent,
     PlaylistComponent,
-    PlaylistsComponent,
-    MinutesPipe
+    PlaylistsComponent
   ],
   entryComponents: [
-    EditPlaylistDialogComponent
+    EditPlaylistDialogComponent,
+    NewPlaylistDialogComponent
   ],
   imports: [
     SpotitubeAngularModule,

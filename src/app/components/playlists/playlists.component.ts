@@ -5,6 +5,7 @@ import {Playlist} from '../../models/playlist/playlist.model';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {EditPlaylistDialogComponent} from '../../dialogs/edit-playlist.dialog/edit-playlist.dialog.component';
 import {AppConstants} from '../../app.constants';
+import {NewPlaylistDialogComponent} from '../../dialogs/new-playlist.dialog/new-playlist.dialog.component';
 
 @Component({
   selector: 'app-playlists',
@@ -16,6 +17,7 @@ export class PlaylistsComponent implements OnInit {
   public playlists: Playlists;
 
   private editPlaylistDialogRef: MdDialogRef<EditPlaylistDialogComponent>;
+  private newPlaylistDialogRef: MdDialogRef<NewPlaylistDialogComponent>;
 
   @Output() selectedPlaylistChange = new EventEmitter<Playlist>();
 
@@ -34,8 +36,6 @@ export class PlaylistsComponent implements OnInit {
    * @param {Playlist} playlist
    */
   public onEditName(playlist: Playlist): void {
-    console.log('Editing name of playlist: ', playlist);
-
     this.editPlaylistDialogRef = this.dialog.open(EditPlaylistDialogComponent, {
       disableClose: false,
       width: AppConstants.DIALOG_WIDTH
@@ -72,7 +72,24 @@ export class PlaylistsComponent implements OnInit {
    * Create a new playlist.
    */
   public onNewPlaylist(): void {
+    this.newPlaylistDialogRef = this.dialog.open(NewPlaylistDialogComponent, {
+      disableClose: false,
+      width: AppConstants.DIALOG_WIDTH
+    });
 
+    const playlist = {id: -1, name: '', tracks: []};
+    this.newPlaylistDialogRef.afterClosed().subscribe(name => {
+        if (name) {
+          playlist.name = name;
+          this.playlistService.newPlaylist(playlist)
+            .then(playlists => this.setPlaylists(playlists))
+            .catch(any => {
+              }
+            );
+        }
+        this.newPlaylistDialogRef = null
+      }
+    );
   }
 
   /**

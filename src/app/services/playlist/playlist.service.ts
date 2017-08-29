@@ -44,10 +44,35 @@ export class PlaylistService extends RestfulSpotitubeClientService {
   }
 
   /**
-   * Update the given playlist
+   * Create a new Playlist.
    *
    * @param {Playlist} playlist
-   * @return {Promise<Playlists>} The complete list of playlists
+   * @return {Promise<Playlists>} The complete and updated list of playlists
+   */
+  public async newPlaylist(playlist: Playlist): Promise<Playlists> {
+    const endpointUrl = this.getPlaylistEndpoint(undefined);
+    const params = this.createtokenParam();
+
+    try {
+      const data: Playlists = await this.httpClient.put<Playlists>(endpointUrl,
+        JSON.stringify(playlist),
+        {
+          headers: this.headers,
+          params: params
+        }
+      ).toPromise();
+      return data;
+    } catch (err) {
+      this.handleErrors(err)
+      return Promise.reject(err);
+    }
+  }
+
+  /**
+   * Update the given playlist.
+   *
+   * @param {Playlist} playlist
+   * @return {Promise<Playlists>} The complete and updated list of playlists
    */
   public async updatePlaylist(playlist: Playlist): Promise<Playlists> {
     const endpointUrl = this.getPlaylistEndpoint(playlist);
@@ -72,7 +97,7 @@ export class PlaylistService extends RestfulSpotitubeClientService {
    * Delete the given playlist
    *
    * @param {Playlist} playlist
-   * @return {Promise<Playlists>} The complete list of playlists
+   * @return {Promise<Playlists>} The complete and updated list of playlists
    */
   public async deletePlaylist(playlist: Playlist): Promise<Playlists> {
     const endpointUrl = this.getPlaylistEndpoint(playlist);
@@ -90,6 +115,11 @@ export class PlaylistService extends RestfulSpotitubeClientService {
 
   private getPlaylistEndpoint(playlist: Playlist): string {
     const baseEndpointUrl = this.createEndpointUrl(AppConstants.API_PLAYLISTS);
-    return (baseEndpointUrl.concat('/')).concat(playlist.id.toString());
+
+    if (playlist) {
+      return (baseEndpointUrl.concat('/')).concat(playlist.id.toString());
+    } else {
+      return baseEndpointUrl;
+    }
   }
 }
