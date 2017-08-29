@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PlaylistComponent } from './playlist.component';
+import {PlaylistComponent} from './playlist.component';
+import {SpotitubeAngularModule} from '../../modules/angular.module';
+import {SpotitubeMaterialModule} from '../../modules/material.module';
 
 describe('PlaylistComponent', () => {
   let component: PlaylistComponent;
@@ -8,9 +10,13 @@ describe('PlaylistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaylistComponent ]
+      declarations: [PlaylistComponent],
+      imports: [
+        SpotitubeAngularModule,
+        SpotitubeMaterialModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

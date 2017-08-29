@@ -16,4 +16,8 @@ export class PlaylistComponent implements OnInit {
   ngOnInit() {
   }
 
+  public onAddTrack(): void {
+    console.log('A new track shall be added.');
+  }
+
 }

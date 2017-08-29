@@ -1,7 +1,26 @@
 <div class="details"
      *ngIf="playlist">
-  <h1 class="mat-display-1"> {{playlist.name}}</h1>
+
+  <div class="flex-container header"
+       fxLayout="row"
+       fxLayoutAlign="space-between stretch"
+       fxLayoutWrap="nowrap">
+    <h1 class="flex-item playlistHeader mat-display-1" fxFlexAlign="center">
+      {{playlist.name}}
+    </h1>
+    <button md-button
+            (click)="onAddTrack()"
+            class="flex-item"
+            md-tooltip="Add tracks to this playlist">
+      <md-icon>playlist_add</md-icon>
+    </button>
+  </div>
+
+  <div *ngIf="playlist.tracks.length > 0">
+    Here cometh the table
+  </div>
+
+  <div class='mat-body' *ngIf="playlist.tracks.length == 0">
+    This playlist is still empty. Use the button on the top-right to add tracks.
+  </div>
 </div>
-
-
-
