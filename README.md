@@ -49,26 +49,137 @@ request.
 
 ### Playlists
 
-To acquire a list of all playlists.
-
+To acquire a list of all playlists:
 ```
 url:              /playlists 
 method:           GET
 query parameter:  token
 ```
 
-It will expect a response containing an object of the form
+It will expect a response containing the complete list of playlists:
 
 ```
 {
   playlists :[
                {
-                  "name": "Death metal",
-                  "tracks":[]
+                  "id"    : 1,
+                  "name"  : "Death metal",
+                  "owner" : true,
+                  "tracks": []
                },
                {
-                  "name"  :"Pop",
-                  "tracks":[]
+                  "id"    : 2,
+                  "name"  : "Pop",
+                  "owner" : false,
+                  "tracks": []
+               }
+              ],
+  "length"  :123445}
+```
+
+### Delete Playlist
+
+To delete a playlist:
+```
+url:              /playlists/id
+method:           DELETE
+query parameter:  token
+```
+It will expect a response containing the complete and modified list of playlists:
+
+```
+{
+  playlists :[
+               {
+                  "id"    : 1,
+                  "name"  : "Heavy Metal",
+                  "owner" : true,
+                  "tracks": []
+               }
+              ],
+  "length"  :6445}
+```
+
+### Add Playlist
+
+To add a playlist:
+```
+url:              /playlists
+method:           POST
+query parameter:  token
+```
+
+The body should contain the new playlist:
+```
+{
+  "id"    : -1,
+  "name"  : "Progressive Rock",
+  "owner" : true,
+  "tracks": []
+},
+```
+
+It will expect a response containing the complete and modified list of playlists:
+
+```
+{
+  playlists :[
+               {
+                  "id"    : 1,
+                  "name"  : "Heavy Metal",
+                  "owner" : true,
+                  "tracks": []
+               },
+               {
+                  "id"    : 2,
+                  "name"  : "Pop",
+                  "owner" : false,
+                  "tracks": []
+               },
+               {
+                 "id"    : 3,
+                 "name"  : "Progressive Rock",
+                 "owner" : true,
+                 "tracks": []
+               },
+              ],
+  "length"  :123445}
+```
+
+### Edit Playlist
+To edit the name of a playlist:
+```
+url:              /playlists/id
+method:           PUT
+query parameter:  token
+```
+
+The body should contain the modified playlist:
+```
+{
+  "id"    : 1,
+  "name"  : "Heavy Metal",
+  "owner" : true,
+  "tracks": []
+},
+```
+
+It will expect a response containing the complete and modified list of playlists:
+
+```
+{
+  playlists :[
+               {
+                  "id"    : 1,
+                  "name"  : "Heavy Metal",
+                  "owner" : true,
+                  "tracks": []
+               },
+               {
+                  "id"    : 2,
+                  "name"  : "Pop",
+                  "owner" : false,
+                  "tracks": []
                }
               ],
   "length"  :123445}
