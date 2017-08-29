@@ -77,6 +77,8 @@ It will expect a response containing the complete list of playlists:
   "length"  :123445}
 ```
 
+The property `length` should be in seconds. The client will convert this to hh:mm:ss.
+
 ### Delete Playlist
 
 To delete a playlist:
