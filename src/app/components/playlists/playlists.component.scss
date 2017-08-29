@@ -1,7 +1,9 @@
-md-card:first-child {
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-bottom: 0px;
+md-card {
+  padding: 0;
+
+  .length {
+    padding-left: 10px;
+  }
 }
 
 .playlists {
