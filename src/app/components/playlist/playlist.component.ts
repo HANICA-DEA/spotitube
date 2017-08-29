@@ -3,6 +3,9 @@ import {Playlist} from '../../models/playlist/playlist.interface.model';
 import {TrackService} from '../../services/track/track.service';
 import {Tracks} from '../../models/tracks/tracks.interface.model';
 import {TracksImpl} from '../../models/tracks/tracks.model';
+import {MdDialog, MdDialogRef} from '@angular/material';
+import {AddTrackDialogComponent} from '../../dialogs/add-track.dialog/add-track.dialog.component';
+import {AppConstants} from '../../app.constants';
 
 @Component({
   selector: 'app-playlist',
@@ -14,7 +17,9 @@ export class PlaylistComponent implements OnInit {
   public playlist: Playlist;
   public tracks: Tracks;
 
-  constructor(private trackService: TrackService) {
+  private addTrackDialogRef: MdDialogRef<AddTrackDialogComponent>;
+
+  constructor(public dialog: MdDialog, private trackService: TrackService) {
     this.setEmptyTracklists();
   }
 
@@ -23,7 +28,18 @@ export class PlaylistComponent implements OnInit {
   }
 
   public onAddTrack(): void {
-    console.log('A new track shall be added.');
+    this.addTrackDialogRef = this.dialog.open(AddTrackDialogComponent, {
+      disableClose: false,
+      width: AppConstants.DIALOG_WIDTH
+    });
+
+    this.addTrackDialogRef.afterClosed().subscribe(track => {
+        if (track) {
+          console.log('Adding this track: ', track);
+        }
+        this.addTrackDialogRef = null
+      }
+    );
   }
 
   public setPlaylist(playlist: Playlist): void {

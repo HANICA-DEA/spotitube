@@ -1,0 +1,14 @@
+<h1 md-dialog-title>
+  Add Track
+</h1>
+
+<md-dialog-content>
+  <md-checkbox [checked]="track.offlineAvailable" [(ngModel)]="track.offlineAvailable">
+    Offline available
+  </md-checkbox>
+</md-dialog-content>
+
+<md-dialog-actions align="end">
+  <button md-button color="primary" (click)="onOk()"> Ok</button>
+  <button md-button color="primary" md-dialog-close> Cancel</button>
+</md-dialog-actions>

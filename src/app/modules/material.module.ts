@@ -2,7 +2,7 @@ import 'hammerjs';
 import {NgModule} from '@angular/core';
 import {
   MdButtonModule,
-  MdCardModule,
+  MdCardModule, MdCheckboxModule,
   MdDialogModule,
   MdIconModule,
   MdInputModule,
@@ -16,6 +16,7 @@ import {
   imports: [
     MdButtonModule,
     MdCardModule,
+    MdCheckboxModule,
     MdDialogModule,
     MdIconModule,
     MdInputModule,
@@ -27,6 +28,7 @@ import {
   exports: [
     MdButtonModule,
     MdCardModule,
+    MdCheckboxModule,
     MdDialogModule,
     MdIconModule,
     MdInputModule,
