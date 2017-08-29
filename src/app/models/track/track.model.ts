@@ -6,5 +6,5 @@ export interface Track {
   playcount: number;
   publicationDate: string;
   description: string;
-  onlineAvailable: boolean;
+  offlineAvailable: boolean;
 }

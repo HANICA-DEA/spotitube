@@ -17,9 +17,28 @@
     </button>
   </div>
 
-  <div *ngIf="tracks.length > 0">
-    Here cometh the table
-  </div>
+  <table *ngIf="tracks.tracks.length > 0">
+    <tr>
+      <th class="mat-body-strong">Title</th>
+      <th class="mat-body-strong">Performer</th>
+      <th class="mat-body-strong">Duration</th>
+      <th class="mat-body-strong">Album</th>
+      <th class="mat-body-strong">Playcount</th>
+      <th class="mat-body-strong">Publication date</th>
+      <th class="mat-body-strong">Description</th>
+      <th class="mat-body-strong">Offline available</th>
+    </tr>
+    <tr *ngFor="let track of tracks.tracks;">
+      <td class="mat-body">{{track.title}}</td>
+      <td class="mat-body">{{track.performer}}</td>
+      <td class="mat-body">{{track.duration | minutes}}</td>
+      <td class="mat-body">{{track.album}}</td>
+      <td class="mat-body">{{track.playcount}}</td>
+      <td class="mat-body">{{track.publicationDate | date}}</td>
+      <td class="mat-body">{{track.description}}</td>
+      <td class="mat-body">{{track.offlineAvailable}}</td>
+    </tr>
+  </table>
 
   <div class='mat-body' *ngIf="tracks.length == 0">
     This playlist is still empty. <span *ngIf="playlist.owner">Use the button on the top-right to add tracks.</span>

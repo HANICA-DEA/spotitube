@@ -6,6 +6,7 @@ import {SpotitubeMaterialModule} from '../../modules/material.module';
 import {TrackService} from '../../services/track/track.service';
 import {LoggingService} from '../../services/logging/logging.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {MinutesPipe} from '../../pipes/minutes.pipe';
 
 describe('PlaylistComponent', () => {
   let component: PlaylistComponent;
@@ -14,7 +15,8 @@ describe('PlaylistComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        PlaylistComponent
+        PlaylistComponent,
+        MinutesPipe
       ],
       imports: [
         HttpClientTestingModule,

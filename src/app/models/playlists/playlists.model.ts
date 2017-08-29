@@ -7,6 +7,6 @@ export class PlaylistsImpl implements Playlists {
 
   constructor() {
     this.playlists = [];
-    this.length = undefined;
+    this.length = 0;
   }
 }

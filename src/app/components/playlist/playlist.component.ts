@@ -27,6 +27,8 @@ export class PlaylistComponent implements OnInit {
   }
 
   public setPlaylist(playlist: Playlist): void {
+    console.log('New Playlist is set: ', playlist);
+
     this.playlist = playlist;
     this.trackService.getTracksForPlaylist(this.playlist)
       .then(tracks => this.setTracks(tracks))
@@ -34,6 +36,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   private setTracks(tracks: Tracks): void {
+    console.log('New tracks are set: ', tracks);
     this.tracks = tracks;
   }
 
