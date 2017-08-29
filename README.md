@@ -49,6 +49,8 @@ request.
 
 ### Playlists
 
+#### Get all Playlists
+
 To acquire a list of all playlists:
 ```
 url:              /playlists 
@@ -79,7 +81,7 @@ It will expect a response containing the complete list of playlists:
 
 The property `length` should be in seconds. The client will convert this to hh:mm:ss.
 
-### Delete Playlist
+#### Delete a Playlist
 
 To delete a playlist:
 ```
@@ -102,7 +104,7 @@ It will expect a response containing the complete and modified list of playlists
   "length"  :6445}
 ```
 
-### Add Playlist
+#### Add a Playlist
 
 To add a playlist:
 ```
@@ -147,11 +149,13 @@ It will expect a response containing the complete and modified list of playlists
               ],
   "length"  :123445}
 ```
+The property `length` should be in seconds. The client will convert this to hh:mm:ss.
 
-### Edit Playlist
+#### Edit a Playlist
+
 To edit the name of a playlist:
 ```
-url:              /playlists/id
+url:              /playlists/:id
 method:           PUT
 query parameter:  token
 ```
@@ -184,8 +188,51 @@ It will expect a response containing the complete and modified list of playlists
                   "tracks": []
                }
               ],
-  "length"  :123445}
+  "length"  :123445
+}
 ```
+The property `length` should be in seconds. The client will convert this to hh:mm:ss.
+### Tracks
+
+#### Get all tracks that belong to a Playlist
+
+To receive all tracks from a given Playlist
+```
+url:              /playlists/:id/tracks
+method:           GET
+query parameter:  token
+```
+
+It will expect a response containing the complete list of tracks for the given:
+
+```
+{
+  tracks: [
+            {
+              title: 'Song for someone',
+              performer: 'The Frames',
+              duration: 350,
+              album: 'The cost',
+              playcount: undefined,
+              publicationDate: undefined,
+              description: undefined,
+              onlineAvailable: false
+            },
+            {
+              title: 'The cost',
+              performer: 'The Frames',
+              duration: 423,
+              album: undefined,
+              playcount: 37,
+              publicationDate: '10-01-2005',
+              description: 'Title song from the Album The Cost ',
+              offlineAvailable: true
+            }
+          ]
+}
+```
+The property `duration` should be in seconds. The client will convert this to hh:mm:ss.
+The property `publicationDate` should be a String representation of a Date, formatted as MM-dd-yyyy 
 
 ## For local installation
 
