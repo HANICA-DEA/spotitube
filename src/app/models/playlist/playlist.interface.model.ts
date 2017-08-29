@@ -4,5 +4,4 @@ export interface Playlist {
   id: number;
   name: string;
   owner: boolean;
-  tracks: Track[];
 }

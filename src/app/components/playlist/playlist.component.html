@@ -17,11 +17,11 @@
     </button>
   </div>
 
-  <div *ngIf="playlist.tracks.length > 0">
+  <div *ngIf="tracks.length > 0">
     Here cometh the table
   </div>
 
-  <div class='mat-body' *ngIf="playlist.tracks.length == 0">
+  <div class='mat-body' *ngIf="tracks.length == 0">
     This playlist is still empty. <span *ngIf="playlist.owner">Use the button on the top-right to add tracks.</span>
   </div>
 </div>

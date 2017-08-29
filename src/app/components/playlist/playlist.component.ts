@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Playlist} from '../../models/playlist/playlist.interface.model';
+import {Track} from '../../models/track/track.model';
 
 @Component({
   selector: 'app-playlist',
@@ -9,8 +10,10 @@ import {Playlist} from '../../models/playlist/playlist.interface.model';
 export class PlaylistComponent implements OnInit {
 
   public playlist: Playlist;
+  public tracks: Track[];
 
   constructor() {
+    this.tracks = [];
   }
 
   ngOnInit() {
