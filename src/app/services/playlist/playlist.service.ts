@@ -7,7 +7,7 @@ import {LoginService} from '../login/login.service';
 import {AppConstants} from '../../app.constants';
 
 import 'rxjs/add/operator/toPromise';
-import {Playlist} from '../../models/playlist/playlist.model';
+import {Playlist} from '../../models/playlist/playlist.interface.model';
 
 @Injectable()
 export class PlaylistService extends RestfulSpotitubeClientService {

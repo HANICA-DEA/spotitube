@@ -9,6 +9,7 @@
       {{playlist.name}}
     </h1>
     <button md-button
+            *ngIf="playlist.owner"
             (click)="onAddTrack()"
             class="flex-item"
             md-tooltip="Add tracks to this playlist">
@@ -21,6 +22,6 @@
   </div>
 
   <div class='mat-body' *ngIf="playlist.tracks.length == 0">
-    This playlist is still empty. Use the button on the top-right to add tracks.
+    This playlist is still empty. <span *ngIf="playlist.owner">Use the button on the top-right to add tracks.</span>
   </div>
 </div>

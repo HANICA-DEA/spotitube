@@ -1,11 +1,12 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Playlists} from '../../models/playlists/playlists.interface.model';
 import {PlaylistService} from '../../services/playlist/playlist.service';
-import {Playlist} from '../../models/playlist/playlist.model';
+import {Playlist} from '../../models/playlist/playlist.interface.model';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {EditPlaylistDialogComponent} from '../../dialogs/edit-playlist.dialog/edit-playlist.dialog.component';
 import {AppConstants} from '../../app.constants';
 import {NewPlaylistDialogComponent} from '../../dialogs/new-playlist.dialog/new-playlist.dialog.component';
+import {PlaylistImpl} from '../../models/playlist/playlist.model';
 
 @Component({
   selector: 'app-playlists',
@@ -77,10 +78,10 @@ export class PlaylistsComponent implements OnInit {
       width: AppConstants.DIALOG_WIDTH
     });
 
-    const playlist = {id: -1, name: '', tracks: []};
+
     this.newPlaylistDialogRef.afterClosed().subscribe(name => {
         if (name) {
-          playlist.name = name;
+          const playlist = new PlaylistImpl(name);
           this.playlistService.newPlaylist(playlist)
             .then(playlists => this.setPlaylists(playlists))
             .catch(any => {
