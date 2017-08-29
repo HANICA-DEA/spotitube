@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Playlist} from '../../models/playlist/playlist.interface.model';
-import {Track} from '../../models/track/track.model';
+import {TrackService} from '../../services/track/track.service';
+import {Tracks} from '../../models/tracks/tracks.interface.model';
+import {TracksImpl} from '../../models/tracks/tracks.model';
 
 @Component({
   selector: 'app-playlist',
@@ -10,17 +12,32 @@ import {Track} from '../../models/track/track.model';
 export class PlaylistComponent implements OnInit {
 
   public playlist: Playlist;
-  public tracks: Track[];
+  public tracks: Tracks;
 
-  constructor() {
-    this.tracks = [];
+  constructor(private trackService: TrackService) {
+    this.setEmptyTracklists();
   }
 
   ngOnInit() {
+
   }
 
   public onAddTrack(): void {
     console.log('A new track shall be added.');
   }
 
+  public setPlaylist(playlist: Playlist): void {
+    this.playlist = playlist;
+    this.trackService.getTracksForPlaylist(this.playlist)
+      .then(tracks => this.setTracks(tracks))
+      .catch(any => this.setEmptyTracklists());
+  }
+
+  private setTracks(tracks: Tracks): void {
+    this.tracks = tracks;
+  }
+
+  private setEmptyTracklists(): void {
+    this.tracks = new TracksImpl();
+  }
 }

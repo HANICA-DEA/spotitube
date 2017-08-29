@@ -14,6 +14,7 @@ import {PlaylistService} from './services/playlist/playlist.service';
 import {MinutesPipe} from './pipes/minutes.pipe';
 import {EditPlaylistDialogComponent} from './dialogs/edit-playlist.dialog/edit-playlist.dialog.component';
 import {NewPlaylistDialogComponent} from './dialogs/new-playlist.dialog/new-playlist.dialog.component';
+import {TrackService} from './services/track/track.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {NewPlaylistDialogComponent} from './dialogs/new-playlist.dialog/new-play
   providers: [
     LoggingService,
     LoginService,
-    PlaylistService
+    PlaylistService,
+    TrackService
   ],
   bootstrap: [AppComponent]
 })

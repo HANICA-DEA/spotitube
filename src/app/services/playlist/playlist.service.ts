@@ -3,7 +3,6 @@ import {Playlists} from '../../models/playlists/playlists.interface.model';
 import {RestfulSpotitubeClientService} from '../restful-spotitube-client/restful-spotitube-client.service';
 import {HttpClient} from '@angular/common/http';
 import {LoggingService} from '../logging/logging.service';
-import {LoginService} from '../login/login.service';
 import {AppConstants} from '../../app.constants';
 
 import 'rxjs/add/operator/toPromise';
@@ -16,7 +15,6 @@ export class PlaylistService extends RestfulSpotitubeClientService {
    * Create a new PlaylistService
    *
    * @param {HttpClient} httpClient
-   * @param {LoginService} loginService
    * @param {LoggingService} loggingService
    */
   constructor(private httpClient: HttpClient,
@@ -31,7 +29,7 @@ export class PlaylistService extends RestfulSpotitubeClientService {
    * @return {Promise<Playlists>} The complete list of playlists
    */
   public async getPlaylists(): Promise<Playlists> {
-    const endpointUrl = this.createEndpointUrl(AppConstants.API_PLAYLISTS);
+    const endpointUrl = this.getPlaylistEndpoint(undefined);
     const params = this.createtokenParam();
 
     try {

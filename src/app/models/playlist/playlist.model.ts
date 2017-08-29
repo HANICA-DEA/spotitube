@@ -1,6 +1,6 @@
-import {Track} from '../track/track.model';
+import {Playlist} from './playlist.interface.model';
 
-export class PlaylistImpl {
+export class PlaylistImpl implements Playlist {
   id: number;
   name: string;
   owner: boolean;

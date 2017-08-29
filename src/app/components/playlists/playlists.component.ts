@@ -7,6 +7,7 @@ import {EditPlaylistDialogComponent} from '../../dialogs/edit-playlist.dialog/ed
 import {AppConstants} from '../../app.constants';
 import {NewPlaylistDialogComponent} from '../../dialogs/new-playlist.dialog/new-playlist.dialog.component';
 import {PlaylistImpl} from '../../models/playlist/playlist.model';
+import {PlaylistsImpl} from '../../models/playlists/playlists.model';
 
 @Component({
   selector: 'app-playlists',
@@ -115,9 +116,6 @@ export class PlaylistsComponent implements OnInit {
   }
 
   private setEmptyPlaylists(): void {
-    this.playlists = {
-      playlists: [],
-      length: 0
-    }
+    this.playlists = new PlaylistsImpl();
   }
 }
