@@ -39,6 +39,7 @@ export class PlaylistService extends RestfulSpotitubeClientService {
       return data;
     } catch (err) {
       this.handleErrors(err)
+      return Promise.reject(err);
     }
   }
 
@@ -63,6 +64,7 @@ export class PlaylistService extends RestfulSpotitubeClientService {
       return data;
     } catch (err) {
       this.handleErrors(err)
+      return Promise.reject(err);
     }
   }
 
@@ -82,6 +84,7 @@ export class PlaylistService extends RestfulSpotitubeClientService {
       return data;
     } catch (err) {
       this.handleErrors(err)
+      return Promise.reject(err);
     }
   }
 

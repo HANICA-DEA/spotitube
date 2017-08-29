@@ -46,8 +46,11 @@ export class PlaylistsComponent implements OnInit {
     this.editPlaylistDialogRef.afterClosed().subscribe(name => {
         if (name) {
           playlist.name = name;
-          this.playlistService.updatePlaylist(playlist).then(playlists => this.setPlaylists(playlists)).catch(any => {
-          });
+          this.playlistService.updatePlaylist(playlist)
+            .then(playlists => this.setPlaylists(playlists))
+            .catch(any => {
+              }
+            );
         }
         this.editPlaylistDialogRef = null
       }
@@ -84,8 +87,6 @@ export class PlaylistsComponent implements OnInit {
   private setPlaylists(playlists: Playlists): void {
     this.playlists = playlists;
 
-    console.log('Setting new playlists: ', playlists);
-
     if (playlists.playlists.length > 0) {
       const firstPlaylist = playlists.playlists[0];
 
@@ -101,6 +102,4 @@ export class PlaylistsComponent implements OnInit {
       length: 0
     }
   }
-
-
 }

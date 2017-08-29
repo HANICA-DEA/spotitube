@@ -50,7 +50,6 @@ export class RestfulSpotitubeClientService {
   protected handleErrors(error: HttpErrorResponse): void {
 
     this.loggingService.info('A http error has occured: ', error);
-
     this.restError.next(error.status);
   }
 
