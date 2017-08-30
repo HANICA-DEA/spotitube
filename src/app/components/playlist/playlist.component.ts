@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Playlist} from '../../models/playlist/playlist.interface.model';
 import {TrackService} from '../../services/track/track.service';
 import {Tracks} from '../../models/tracks/tracks.interface.model';
@@ -12,7 +12,7 @@ import {AppConstants} from '../../app.constants';
   templateUrl: './playlist.component.html',
   styleUrls: ['./playlist.component.scss']
 })
-export class PlaylistComponent implements OnInit {
+export class PlaylistComponent {
 
   public playlist: Playlist;
   public tracks: Tracks;
@@ -21,10 +21,6 @@ export class PlaylistComponent implements OnInit {
 
   constructor(public dialog: MdDialog, private trackService: TrackService) {
     this.setEmptyTracklists();
-  }
-
-  ngOnInit() {
-
   }
 
   public onAddTrack(): void {
