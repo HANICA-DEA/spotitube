@@ -1,6 +1,7 @@
 import {Track} from './track.interface';
 
 export class TrackImpl implements Track {
+  id: number;
   title: string;
   performer: string;
   duration: number;
@@ -11,6 +12,7 @@ export class TrackImpl implements Track {
   offlineAvailable: boolean;
 
   constructor() {
+    this.id = -1;
     this.title = '';
     this.performer = '';
     this.duration = 0;

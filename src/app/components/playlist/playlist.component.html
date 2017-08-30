@@ -27,6 +27,7 @@
       <th class="mat-body-strong">Publication date</th>
       <th class="mat-body-strong">Description</th>
       <th class="mat-body-strong">Offline available</th>
+      <th></th>
     </tr>
     <tr *ngFor="let track of tracks.tracks;">
       <td class="mat-body">{{track.title}}</td>
@@ -37,6 +38,14 @@
       <td class="mat-body">{{track.publicationDate | date}}</td>
       <td class="mat-body">{{track.description}}</td>
       <td class="mat-body">{{track.offlineAvailable}}</td>
+      <td>
+        <button md-button
+                class="deleteButton"
+                (click)="onRemoveTrack(track)"
+                md-tooltip="Remove track from list">
+          <md-icon color="primary">delete</md-icon>
+        </button>
+      </td>
     </tr>
   </table>
 

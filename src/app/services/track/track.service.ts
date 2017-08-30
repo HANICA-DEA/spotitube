@@ -25,12 +25,30 @@ export class TrackService extends RestfulSpotitubeClientService {
   }
 
   /**
-   * Return a all Tracks for the given playlist.
+   * Remove a track from the playlist.
+   *
+   * @return {Promise<Track[]>} The complete and updated list of tracks belonging to the given playlist
+   */
+  public async removeTracksFromPlaylist(playlist: Playlist, track: Track): Promise<Tracks> {
+    const endpointUrl = this.getTrackEndpoint(playlist, track);
+    const params = this.createtokenParam();
+
+    try {
+      const data: Tracks = await this.httpClient.delete<Tracks>(endpointUrl, {params: params}).toPromise();
+      return data;
+    } catch (err) {
+      this.handleErrors(err)
+      return Promise.reject(err);
+    }
+  }
+
+  /**
+   * Return all Tracks for the given playlist.
    *
    * @return {Promise<Track[]>} An array of Tracks.
    */
   public async getTracksForPlaylist(playlist: Playlist): Promise<Tracks> {
-    const endpointUrl = this.getTrackEndpoint(playlist);
+    const endpointUrl = this.getTracksEndpoint(playlist);
     const params = this.createtokenParam();
 
     try {
@@ -42,7 +60,14 @@ export class TrackService extends RestfulSpotitubeClientService {
     }
   }
 
-  private getTrackEndpoint(playlist: Playlist): string {
+  private getTrackEndpoint(playlist: Playlist, track: Track): string {
+    const trackEndpoints = this.getTracksEndpoint(playlist)
+      .concat('/' + track.id);
+
+    return trackEndpoints;
+  }
+
+  private getTracksEndpoint(playlist: Playlist): string {
     const baseEndpointUrl = this.createEndpointUrl(AppConstants.API_PLAYLISTS);
 
     const tracksEndpoints = ((baseEndpointUrl.concat('/'))

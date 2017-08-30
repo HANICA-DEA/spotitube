@@ -16,6 +16,12 @@
       th {
         text-align: start;
       }
+      td {
+        .deleteButton {
+          min-width: inherit;
+          padding: 0 4px;
+        }
+      }
     }
   }
 }

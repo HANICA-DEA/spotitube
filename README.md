@@ -85,7 +85,7 @@ The property `length` should be in seconds. The client will convert this to hh:m
 
 To delete a playlist:
 ```
-url:              /playlists/id
+url:              /playlists/:id
 method:           DELETE
 query parameter:  token
 ```
@@ -122,6 +122,8 @@ The body should contain the new playlist:
   "tracks": []
 },
 ```
+
+Note that the client will set the id to -1. The server is responsible for generating a unique id, which must be set on the response object.
 
 It will expect a response containing the complete and modified list of playlists:
 
@@ -209,6 +211,7 @@ It will expect a response containing the complete list of tracks for the given:
 {
   tracks: [
             {
+              id: 1,
               title: 'Song for someone',
               performer: 'The Frames',
               duration: 350,
@@ -219,6 +222,7 @@ It will expect a response containing the complete list of tracks for the given:
               onlineAvailable: false
             },
             {
+              id: 2,
               title: 'The cost',
               performer: 'The Frames',
               duration: 423,
@@ -233,6 +237,33 @@ It will expect a response containing the complete list of tracks for the given:
 ```
 The property `duration` should be in seconds. The client will convert this to hh:mm:ss.
 The property `publicationDate` should be a String representation of a Date, formatted as MM-dd-yyyy 
+
+#### Remove a track from a Playlist
+
+```
+url:              /playlists/:id/tracks/:id
+method:           DELETE
+query parameter:  token
+```
+It will expect a response containing the complete and modified list of tracks:
+
+```
+{
+  tracks: [
+            {
+              id: 1,
+              title: 'Song for someone',
+              performer: 'The Frames',
+              duration: 350,
+              album: 'The cost',
+              playcount: undefined,
+              publicationDate: undefined,
+              description: undefined,
+              onlineAvailable: false
+            }
+          ]
+}
+```
 
 ## For local installation
 

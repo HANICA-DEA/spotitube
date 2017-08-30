@@ -6,6 +6,7 @@ import {TracksImpl} from '../../models/tracks/tracks.model';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {AddTrackDialogComponent} from '../../dialogs/add-track.dialog/add-track.dialog.component';
 import {AppConstants} from '../../app.constants';
+import {Track} from '../../models/track/track.interface';
 
 @Component({
   selector: 'app-playlist',
@@ -38,8 +39,14 @@ export class PlaylistComponent {
     );
   }
 
+  public onRemoveTrack(track: Track): void {
+    this.trackService.removeTracksFromPlaylist(this.playlist, track)
+      .then(tracks => this.setTracks(tracks))
+      .catch(any => {
+      });
+  }
+
   public setPlaylist(playlist: Playlist): void {
-    console.log('New Playlist is set: ', playlist);
 
     this.playlist = playlist;
     this.trackService.getTracksForPlaylist(this.playlist)
@@ -48,7 +55,6 @@ export class PlaylistComponent {
   }
 
   private setTracks(tracks: Tracks): void {
-    console.log('New tracks are set: ', tracks);
     this.tracks = tracks;
   }
 

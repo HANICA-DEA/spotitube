@@ -5,6 +5,8 @@ import {MdDialog} from '@angular/material';
 import {NgModule} from '@angular/core';
 import {SpotitubeMaterialModule} from '../../modules/material.module';
 import {SpotitubeAngularModule} from '../../modules/angular.module';
+import {TrackService} from '../../services/track/track.service';
+import {LoggingService} from '../../services/logging/logging.service';
 
 @NgModule({
   entryComponents: [
@@ -27,6 +29,10 @@ describe('AddTrackDialogComponent', () => {
         SpotitubeAngularModule,
         SpotitubeMaterialModule,
         TestModule
+      ],
+      providers: [
+        LoggingService,
+        TrackService
       ]
     })
       .compileComponents();

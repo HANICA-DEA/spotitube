@@ -3,6 +3,7 @@ import {LoginService} from './services/login/login.service';
 import {MdSnackBar} from '@angular/material';
 import {Settings} from './models/settings/settings.interface.model';
 import {PlaylistService} from './services/playlist/playlist.service';
+import {TrackService} from './services/track/track.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,10 @@ export class AppComponent implements OnInit {
   public serverUrl: string;
   public user: string;
 
-  constructor(private loginService: LoginService, private playlistService: PlaylistService, public snackBar: MdSnackBar) {
+  constructor(private loginService: LoginService,
+              private playlistService: PlaylistService,
+              private trackService: TrackService,
+              public snackBar: MdSnackBar) {
   }
 
   ngOnInit(): void {
@@ -32,6 +36,7 @@ export class AppComponent implements OnInit {
   private initErrorSnackbar(): void {
     this.loginService.restError$.subscribe(error => this.showError(error));
     this.playlistService.restError$.subscribe(error => this.showError(error));
+    this.trackService.restError$.subscribe(error => this.showError(error));
   }
 
   private initSettings(): void {
