@@ -27,9 +27,9 @@ export class PlaylistComponent {
   public onAddTrack(): void {
     this.addTrackDialogRef = this.dialog.open(AddTrackDialogComponent, {
       disableClose: false,
-      width: AppConstants.DIALOG_WIDTH
     });
 
+    this.addTrackDialogRef.componentInstance.setPlaylist(this.playlist);
     this.addTrackDialogRef.afterClosed().subscribe(track => {
         if (track) {
           console.log('Adding this track: ', track);

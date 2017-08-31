@@ -43,6 +43,29 @@ export class TrackService extends RestfulSpotitubeClientService {
   }
 
   /**
+   * Return all Tracks
+   *
+   * @return {Promise<Track[]>} An array of Tracks.
+   */
+  public async getAllTracks(playlist?: Playlist): Promise<Tracks> {
+    const endpointUrl = this.getTracksEndpoint(playlist);
+    const params = this.createtokenParam();
+
+    if (playlist) {
+      params.set('forPlaylist', playlist.id.toString());
+    }
+
+    try {
+      const data: Tracks = await this.httpClient.get<Tracks>(this.createEndpointUrl(AppConstants.API_TRACKS),
+        {params: params}).toPromise();
+      return data;
+    } catch (err) {
+      this.handleErrors(err)
+      return Promise.reject(err);
+    }
+  }
+
+  /**
    * Return all Tracks for the given playlist.
    *
    * @return {Promise<Track[]>} An array of Tracks.
@@ -59,6 +82,7 @@ export class TrackService extends RestfulSpotitubeClientService {
       return Promise.reject(err);
     }
   }
+
 
   private getTrackEndpoint(playlist: Playlist, track: Track): string {
     const trackEndpoints = this.getTracksEndpoint(playlist)

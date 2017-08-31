@@ -6,6 +6,27 @@
   <md-checkbox [checked]="track.offlineAvailable" [(ngModel)]="track.offlineAvailable">
     Offline available
   </md-checkbox>
+
+  <table *ngIf="tracks.tracks.length > 0">
+    <tr>
+      <th class="mat-body-strong">Title</th>
+      <th class="mat-body-strong">Performer</th>
+      <th class="mat-body-strong">Duration</th>
+      <th class="mat-body-strong">Album</th>
+      <th class="mat-body-strong">Playcount</th>
+      <th class="mat-body-strong">Publication date</th>
+      <th class="mat-body-strong">Description</th>
+    </tr>
+    <tr *ngFor="let track of tracks.tracks;" (click)="onSelectTrack(track)">
+      <td class="mat-body">{{track.title}}</td>
+      <td class="mat-body">{{track.performer}}</td>
+      <td class="mat-body">{{track.duration | minutes}}</td>
+      <td class="mat-body">{{track.album}}</td>
+      <td class="mat-body">{{track.playcount}}</td>
+      <td class="mat-body">{{track.publicationDate | date}}</td>
+      <td class="mat-body">{{track.description}}</td>
+    </tr>
+  </table>
 </md-dialog-content>
 
 <md-dialog-actions align="end">

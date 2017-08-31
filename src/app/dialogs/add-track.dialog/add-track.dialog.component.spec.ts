@@ -7,6 +7,7 @@ import {SpotitubeMaterialModule} from '../../modules/material.module';
 import {SpotitubeAngularModule} from '../../modules/angular.module';
 import {TrackService} from '../../services/track/track.service';
 import {LoggingService} from '../../services/logging/logging.service';
+import {MinutesPipe} from '../../pipes/minutes.pipe';
 
 @NgModule({
   entryComponents: [
@@ -23,7 +24,8 @@ describe('AddTrackDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AddTrackDialogComponent
+        AddTrackDialogComponent,
+        MinutesPipe
       ],
       imports: [
         SpotitubeAngularModule,
