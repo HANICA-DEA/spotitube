@@ -7,26 +7,45 @@
     Offline available
   </md-checkbox>
 
-  <table *ngIf="tracks.tracks.length > 0">
-    <tr>
-      <th class="mat-body-strong">Title</th>
-      <th class="mat-body-strong">Performer</th>
-      <th class="mat-body-strong">Duration</th>
-      <th class="mat-body-strong">Album</th>
-      <th class="mat-body-strong">Playcount</th>
-      <th class="mat-body-strong">Publication date</th>
-      <th class="mat-body-strong">Description</th>
-    </tr>
-    <tr *ngFor="let track of tracks.tracks;" (click)="onSelectTrack(track)">
-      <td class="mat-body">{{track.title}}</td>
-      <td class="mat-body">{{track.performer}}</td>
-      <td class="mat-body">{{track.duration | minutes}}</td>
-      <td class="mat-body">{{track.album}}</td>
-      <td class="mat-body">{{track.playcount}}</td>
-      <td class="mat-body">{{track.publicationDate | date}}</td>
-      <td class="mat-body">{{track.description}}</td>
-    </tr>
-  </table>
+  <md-table #table [dataSource]="dataSource">
+    <ng-container mdColumnDef="title">
+      <md-header-cell *mdHeaderCellDef> Title</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.title}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="performer">
+      <md-header-cell *mdHeaderCellDef> Performer</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.performer}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="duration">
+      <md-header-cell *mdHeaderCellDef> Duration</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.duration}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="album">
+      <md-header-cell *mdHeaderCellDef> Album</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.album}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="playcount">
+      <md-header-cell *mdHeaderCellDef> Play count</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.playcount}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="publicationDate">
+      <md-header-cell *mdHeaderCellDef> Publication date</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.publicationDate}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="description">
+      <md-header-cell *mdHeaderCellDef> Description</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.description}}</md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
 </md-dialog-content>
 
 <md-dialog-actions align="end">
