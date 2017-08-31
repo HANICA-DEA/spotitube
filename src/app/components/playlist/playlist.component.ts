@@ -5,8 +5,8 @@ import {Tracks} from '../../models/tracks/tracks.interface.model';
 import {TracksImpl} from '../../models/tracks/tracks.model';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {AddTrackDialogComponent} from '../../dialogs/add-track.dialog/add-track.dialog.component';
-import {AppConstants} from '../../app.constants';
 import {Track} from '../../models/track/track.interface';
+import {TracksDataSource} from '../../data-sources/tracks/tracks.datasource';
 
 @Component({
   selector: 'app-playlist',
@@ -17,6 +17,11 @@ export class PlaylistComponent {
 
   public playlist: Playlist;
   public tracks: Tracks;
+
+
+  displayedColumns = ['title', 'performer', 'duration', 'album', 'playcount',
+    'publicationDate', 'description', 'offlineAvailable', 'delete'];
+  dataSource = undefined;
 
   private addTrackDialogRef: MdDialogRef<AddTrackDialogComponent>;
 
@@ -55,6 +60,7 @@ export class PlaylistComponent {
   }
 
   private setTracks(tracks: Tracks): void {
+    this.dataSource = new TracksDataSource(tracks);
     this.tracks = tracks;
   }
 

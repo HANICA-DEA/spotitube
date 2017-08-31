@@ -10,19 +10,13 @@
     }
   }
 
-  table {
-    width: 100%;
-    tr {
-      th {
-        text-align: start;
-      }
-      td {
-        .deleteButton {
-          min-width: inherit;
-          padding: 0 4px;
-        }
-      }
-    }
+  .mat-table {
+    overflow: auto;
+  }
+
+  .deleteButton {
+    min-width: inherit;
+    padding: 0 4px;
   }
 }
 

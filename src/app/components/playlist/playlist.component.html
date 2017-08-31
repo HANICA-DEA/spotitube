@@ -17,39 +17,69 @@
     </button>
   </div>
 
-  <table *ngIf="tracks.tracks.length > 0">
-    <tr>
-      <th class="mat-body-strong">Title</th>
-      <th class="mat-body-strong">Performer</th>
-      <th class="mat-body-strong">Duration</th>
-      <th class="mat-body-strong">Album</th>
-      <th class="mat-body-strong">Playcount</th>
-      <th class="mat-body-strong">Publication date</th>
-      <th class="mat-body-strong">Description</th>
-      <th class="mat-body-strong">Offline available</th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let track of tracks.tracks;">
-      <td class="mat-body">{{track.title}}</td>
-      <td class="mat-body">{{track.performer}}</td>
-      <td class="mat-body">{{track.duration | minutes}}</td>
-      <td class="mat-body">{{track.album}}</td>
-      <td class="mat-body">{{track.playcount}}</td>
-      <td class="mat-body">{{track.publicationDate | date}}</td>
-      <td class="mat-body">{{track.description}}</td>
-      <td class="mat-body">{{track.offlineAvailable}}</td>
-      <td>
-        <button md-button
-                class="deleteButton"
-                (click)="onRemoveTrack(track)"
-                md-tooltip="Remove track from list">
-          <md-icon color="primary">delete</md-icon>
-        </button>
-      </td>
-    </tr>
-  </table>
+  <md-table #table
+            *ngIf="tracks.tracks.length > 0"
+            [dataSource]="dataSource">
+    <ng-container mdColumnDef="title">
+      <md-header-cell *mdHeaderCellDef> Title</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.title}}</md-cell>
+    </ng-container>
 
-  <div class='mat-body' *ngIf="tracks.length == 0">
+    <ng-container mdColumnDef="performer">
+      <md-header-cell *mdHeaderCellDef> Performer</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.performer}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="duration">
+      <md-header-cell *mdHeaderCellDef fxFlex="70px"> Duration</md-header-cell>
+      <md-cell *mdCellDef="let track" fxFlex="70px"> {{track.duration | minutes}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="album">
+      <md-header-cell *mdHeaderCellDef> Album</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.album}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="playcount">
+      <md-header-cell *mdHeaderCellDef fxFlex="70px"> Play count</md-header-cell>
+      <md-cell *mdCellDef="let track" fxFlex="70px"> {{track.playcount}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="publicationDate">
+      <md-header-cell *mdHeaderCellDef> Publication date</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.publicationDate}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="description">
+      <md-header-cell *mdHeaderCellDef> Description</md-header-cell>
+      <md-cell *mdCellDef="let track"> {{track.description}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="offlineAvailable">
+      <md-header-cell *mdHeaderCellDef fxFlex="50px"> Offline</md-header-cell>
+      <md-cell *mdCellDef="let track" fxFlex="50px">
+        <md-icon *ngIf="track.offlineAvailable">done</md-icon>
+      </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="delete">
+      <md-header-cell *mdHeaderCellDef fxFlex="40px"></md-header-cell>
+      <md-cell *mdCellDef="let track" fxFlex="40px">
+        <button md-icon-button
+          [disabled]="!playlist.owner"
+          class="deleteButton"
+          (click)="onRemoveTrack(track)"
+          md-tooltip="Remove track from list">
+          <md-icon>delete</md-icon>
+        </button>
+      </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+
+  <div class='mat-body' *ngIf="tracks.tracks.length == 0">
     This playlist is still empty. <span *ngIf="playlist.owner">Use the button on the top-right to add tracks.</span>
   </div>
 </div>
