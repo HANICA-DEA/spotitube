@@ -1,15 +1,16 @@
 import {Component} from '@angular/core';
 import {MdDialogRef} from '@angular/material';
 import {Track} from '../../models/track/track.interface';
-import {TrackImpl} from '../../models/track/track.model';
 import {TrackService} from '../../services/track/track.service';
 import {Playlist} from '../../models/playlist/playlist.interface.model';
 import {Tracks} from '../../models/tracks/tracks.interface.model';
 import {TracksImpl} from '../../models/tracks/tracks.model';
 import {TracksDataSource} from '../../data-sources/tracks/tracks.datasource';
+import {TrackImpl} from '../../models/track/track.model';
 
 @Component({
-  templateUrl: './add-track.dialog.component.html'
+  templateUrl: './add-track.dialog.component.html',
+  styleUrls: ['./add-track.dialog.component.scss']
 })
 export class AddTrackDialogComponent {
 
@@ -17,12 +18,11 @@ export class AddTrackDialogComponent {
   public tracks: Tracks;
   public playlist: Playlist;
 
-  displayedColumns = ['title', 'performer', 'duration', 'album', 'playcount', 'publicationDate', 'description'];
+  displayedColumns = ['title', 'performer', 'album', 'description'];
   dataSource = undefined;
 
   constructor(private dialogRef: MdDialogRef<AddTrackDialogComponent>,
               private trackService: TrackService) {
-    this.track = new TrackImpl();
     this.setEmptyTracklists();
   }
 
@@ -37,12 +37,14 @@ export class AddTrackDialogComponent {
   }
 
   public onSelectTrack(track: Track): void {
-    console.log('Selected track: ', track);
-    this.track = track;
+    const selectedTrack = new TrackImpl();
+    selectedTrack.id = track.id;
+    selectedTrack.title = track.title;
+    selectedTrack.performer = track.performer;
+    this.track = selectedTrack;
   }
 
   private setTracks(tracks: Tracks): void {
-    console.log('Settings tracks on dialog: ', tracks);
     this.dataSource = new TracksDataSource(tracks);
     this.tracks = tracks;
   }

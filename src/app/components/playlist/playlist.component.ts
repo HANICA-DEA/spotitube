@@ -38,6 +38,10 @@ export class PlaylistComponent {
     this.addTrackDialogRef.afterClosed().subscribe(track => {
         if (track) {
           console.log('Adding this track: ', track);
+          this.trackService.addTrackToPlaylist(this.playlist, track)
+            .then(tracks => this.setTracks(tracks))
+            .catch(any => {
+            });
         }
         this.addTrackDialogRef = null
       }

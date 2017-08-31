@@ -3,9 +3,14 @@
 </h1>
 
 <md-dialog-content>
-  <md-checkbox [checked]="track.offlineAvailable" [(ngModel)]="track.offlineAvailable">
-    Offline available
-  </md-checkbox>
+  <md-card *ngIf="track">
+    <span class="mat-body">
+      {{track.performer}} - {{track.title}}
+    </span> <br>
+    <md-checkbox [checked]="track.offlineAvailable" [(ngModel)]="track.offlineAvailable">
+      Make this track offline available
+    </md-checkbox>
+  </md-card>
 
   <md-table #table [dataSource]="dataSource">
     <ng-container mdColumnDef="title">
@@ -18,24 +23,9 @@
       <md-cell *mdCellDef="let track"> {{track.performer}}</md-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="duration">
-      <md-header-cell *mdHeaderCellDef> Duration</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.duration}}</md-cell>
-    </ng-container>
-
     <ng-container mdColumnDef="album">
       <md-header-cell *mdHeaderCellDef> Album</md-header-cell>
       <md-cell *mdCellDef="let track"> {{track.album}}</md-cell>
-    </ng-container>
-
-    <ng-container mdColumnDef="playcount">
-      <md-header-cell *mdHeaderCellDef> Play count</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.playcount}}</md-cell>
-    </ng-container>
-
-    <ng-container mdColumnDef="publicationDate">
-      <md-header-cell *mdHeaderCellDef> Publication date</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.publicationDate}}</md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="description">
@@ -44,11 +34,11 @@
     </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;" (click)="onSelectTrack(row)"></md-row>
   </md-table>
 </md-dialog-content>
 
 <md-dialog-actions align="end">
-  <button md-button color="primary" (click)="onOk()"> Ok</button>
+  <button md-button color="primary" [disabled]="!track" (click)="onOk()"> Ok</button>
   <button md-button color="primary" md-dialog-close> Cancel</button>
 </md-dialog-actions>

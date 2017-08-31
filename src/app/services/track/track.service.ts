@@ -25,8 +25,37 @@ export class TrackService extends RestfulSpotitubeClientService {
   }
 
   /**
+   * Add a Track to a Playlist
+   *
+   * @param {Playlist} playlist
+   * @param {Track} track
+   * @return {Promise<Playlists>} The complete and updated list of playlists
+   */
+  public async addTrackToPlaylist(playlist: Playlist, track: Track): Promise<Tracks> {
+    const endpointUrl = this.getTracksEndpoint(playlist);
+    const params = this.createtokenParam();
+
+
+    try {
+      const data: Tracks = await this.httpClient.put<Tracks>(endpointUrl,
+        JSON.stringify(track),
+        {
+          headers: this.headers,
+          params: params
+        }
+      ).toPromise();
+      return data;
+    } catch (err) {
+      this.handleErrors(err)
+      return Promise.reject(err);
+    }
+  }
+
+  /**
    * Remove a track from the playlist.
    *
+   * @param {Playlist} playlist
+   * @param {Track} track
    * @return {Promise<Track[]>} The complete and updated list of tracks belonging to the given playlist
    */
   public async removeTracksFromPlaylist(playlist: Playlist, track: Track): Promise<Tracks> {
