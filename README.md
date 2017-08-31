@@ -205,7 +205,7 @@ method:           GET
 query parameter:  token
 ```
 
-It will expect a response containing the complete list of tracks for the given:
+It will expect a response containing the complete list of tracks for the given Playlist:
 
 ```
 {
@@ -260,6 +260,74 @@ It will expect a response containing the complete and modified list of tracks:
               publicationDate: undefined,
               description: undefined,
               onlineAvailable: false
+            }
+          ]
+}
+```
+
+#### Add a track to a Playlist
+
+```
+url:              /playlists/:id/tracks
+method:           PUT
+query parameter:  token
+```
+
+The body should contain the track to be added:
+```
+{
+  id: 4,
+  title: 'So Long, Marianne',
+  performer: 'Leonard Cohen',
+  uration: 546,
+  album: 'Songs of Leonard Cohen',
+  playcount: undefined,
+  publicationDate: undefined,
+  description: undefined,
+  offlineAvailable: false
+}
+```
+
+Note that the relevant parts are the `id` and `onlineAvailable`. The `id` should be used by the server to lookup the
+Track, before adding it to the Playlist. The online availability should correctly be set.
+
+It will expect a response containing the complete list of tracks for the given:
+
+```
+{
+  tracks: [
+            {
+              id: 1,
+              title: 'Song for someone',
+              performer: 'The Frames',
+              duration: 350,
+              album: 'The cost',
+              playcount: undefined,
+              publicationDate: undefined,
+              description: undefined,
+              onlineAvailable: false
+            },
+            {
+              id: 2,
+              title: 'The cost',
+              performer: 'The Frames',
+              duration: 423,
+              album: undefined,
+              playcount: 37,
+              publicationDate: '10-01-2005',
+              description: 'Title song from the Album The Cost ',
+              offlineAvailable: true
+            },
+            {
+              id: 4,
+              title: 'So Long, Marianne',
+              performer: 'Leonard Cohen',
+              uration: 546,
+              album: 'Songs of Leonard Cohen',
+              playcount: undefined,
+              publicationDate: undefined,
+              description: undefined,
+              offlineAvailable: false
             }
           ]
 }
