@@ -2,12 +2,14 @@ import 'hammerjs';
 import {NgModule} from '@angular/core';
 import {
   MdButtonModule,
-  MdCardModule, MdCheckboxModule,
+  MdCardModule,
+  MdCheckboxModule,
   MdDialogModule,
   MdIconModule,
   MdInputModule,
   MdMenuModule,
   MdSnackBarModule,
+  MdTableModule,
   MdToolbarModule,
   MdTooltipModule
 } from '@angular/material';
@@ -22,6 +24,7 @@ import {
     MdInputModule,
     MdMenuModule,
     MdSnackBarModule,
+    MdTableModule,
     MdToolbarModule,
     MdTooltipModule
   ],
@@ -34,6 +37,7 @@ import {
     MdInputModule,
     MdMenuModule,
     MdSnackBarModule,
+    MdTableModule,
     MdToolbarModule,
     MdTooltipModule
   ]
