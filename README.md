@@ -322,7 +322,7 @@ It will expect a response containing the complete list of tracks for the given:
               id: 4,
               title: 'So Long, Marianne',
               performer: 'Leonard Cohen',
-              uration: 546,
+              duration: 546,
               album: 'Songs of Leonard Cohen',
               playcount: undefined,
               publicationDate: undefined,
