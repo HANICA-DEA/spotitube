@@ -17,9 +17,31 @@ To enable this, follow the steps below.
  
 ## API
 
+In general the API must conform the standards of a RESTFull API. It will use HTTP methods and expects HTTP statuscodes in its response.
+
+### Methods used 
+
+* GET : In case of acquiring one, or multiple resources.
+* POST: In case of creating a resource.
+* PUT: In case of modifying  a resource.
+* DELETE: In case of deleting a resource.
+
+### Response codes
+
+The client will expect the following respond codes to be used
+
+* 200: OK. A response to a successful GET, PUT or DELETE.
+* 201: Resource has been created. A response to a successful POST.
+* 401: Unauthorized. Authorization has failed. This can happen if the user tried to log in, but supplied an invalid username/password.
+* 403: Forbidden. The request was valid, but you have requested a reource for which are not authorized. This will probably mean you have provided a token that has been invalidated by the server, or your token is missing.
+* 404: Not found. You have requested an endpoint that is not available.
+
+### HATEOS
+
+### Endpoints
 The following endpoints are expected
 
-### Login
+#### Login
 
 ```
 url:    /login 
@@ -47,9 +69,9 @@ It will expect a response containing an object of the form
 This token is then stored in LocalStorage and used for each following
 request.
 
-### Playlists
+#### Playlists
 
-#### Get all Playlists
+##### Get all Playlists
 
 To acquire a list of all playlists:
 ```
@@ -81,7 +103,7 @@ It will expect a response containing the complete list of playlists:
 
 The property `length` should be in seconds. The client will convert this to hh:mm:ss.
 
-#### Delete a Playlist
+##### Delete a Playlist
 
 To delete a playlist:
 ```
@@ -104,7 +126,7 @@ It will expect a response containing the complete and modified list of playlists
   "length"  :6445}
 ```
 
-#### Add a Playlist
+##### Add a Playlist
 
 To add a playlist:
 ```
@@ -153,7 +175,7 @@ It will expect a response containing the complete and modified list of playlists
 ```
 The property `length` should be in seconds. The client will convert this to hh:mm:ss.
 
-#### Edit a Playlist
+##### Edit a Playlist
 
 To edit the name of a playlist:
 ```
@@ -194,9 +216,9 @@ It will expect a response containing the complete and modified list of playlists
 }
 ```
 The property `length` should be in seconds. The client will convert this to hh:mm:ss.
-### Tracks
+#### Tracks
 
-#### Get all tracks that belong to a Playlist
+##### Get all tracks that belong to a Playlist
 
 To receive all tracks from a given Playlist
 ```
@@ -238,7 +260,7 @@ It will expect a response containing the complete list of tracks for the given P
 The property `duration` should be in seconds. The client will convert this to hh:mm:ss.
 The property `publicationDate` should be a String representation of a Date, formatted as MM-dd-yyyy 
 
-#### Remove a track from a Playlist
+##### Remove a track from a Playlist
 
 ```
 url:              /playlists/:id/tracks/:id
@@ -265,7 +287,7 @@ It will expect a response containing the complete and modified list of tracks:
 }
 ```
 
-#### Add a track to a Playlist
+##### Add a track to a Playlist
 
 ```
 url:              /playlists/:id/tracks
@@ -279,7 +301,7 @@ The body should contain the track to be added:
   id: 4,
   title: 'So Long, Marianne',
   performer: 'Leonard Cohen',
-  uration: 546,
+  duration: 546,
   album: 'Songs of Leonard Cohen',
   playcount: undefined,
   publicationDate: undefined,
@@ -335,29 +357,31 @@ It will expect a response containing the complete list of tracks for the given:
 
 ## For local installation
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
+To install the client locally you will need Node.js and angular-cli.
 
-### Development server
+### Install Node.js
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Download and install [Node.js](https://nodejs.org/en/).
 
-### Code scaffolding
+### Install angular-cli
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+To install [Angular CLI](https://github.com/angular/angular-cli), run the following command in admin/superuser mode:
+```
+  npm install -g @angular/cli
+```
 
-### Build
+### Run the Client
+ 
+You can now use Angular CLI to run a local server that hosts the Client. To do this, run the following command:
+```
+ng serve
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+This will run a server on http://localhost:4200.
 
-### Running unit tests
+So navigate your browser to
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+http://localhost:4200/
+```
 
-### Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-### Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
