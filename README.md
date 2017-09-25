@@ -36,9 +36,9 @@ The client will expect the following respond codes to be used
 * 403: Forbidden. The request was valid, but you have requested a reource for which are not authorized. This will probably mean you have provided a token that has been invalidated by the server, or your token is missing.
 * 404: Not found. You have requested an endpoint that is not available.
 
-### HATEOS
+### HATEOAS
 
-Those that are aware of the concept HATEOS might notice that this API is not HATEOS. That is not a problem, HATEOS is not within the scope of this excercise.
+Those that are aware of the concept HATEOAS might notice that this API is not HATEOAS. That is not a problem, HATEOAS is not within the scope of this excercise.
 
 ### Endpoints
 The following endpoints are expected
