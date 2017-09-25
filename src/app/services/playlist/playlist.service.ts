@@ -52,7 +52,7 @@ export class PlaylistService extends RestfulSpotitubeClientService {
     const params = this.createtokenParam();
 
     try {
-      const data: Playlists = await this.httpClient.put<Playlists>(endpointUrl,
+      const data: Playlists = await this.httpClient.post<Playlists>(endpointUrl,
         JSON.stringify(playlist),
         {
           headers: this.headers,
@@ -77,7 +77,7 @@ export class PlaylistService extends RestfulSpotitubeClientService {
     const params = this.createtokenParam();
 
     try {
-      const data: Playlists = await this.httpClient.post<Playlists>(endpointUrl,
+      const data: Playlists = await this.httpClient.put<Playlists>(endpointUrl,
         JSON.stringify(playlist),
         {
           headers: this.headers,
