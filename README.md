@@ -38,6 +38,8 @@ The client will expect the following respond codes to be used
 
 ### HATEOS
 
+Those that are aware of the concept HATEOS might notice that this API is not HATEOS. That is not a problem, HATEOS is not within the scope of this excercise.
+
 ### Endpoints
 The following endpoints are expected
 
