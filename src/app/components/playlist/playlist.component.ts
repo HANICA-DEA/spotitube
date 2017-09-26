@@ -64,8 +64,12 @@ export class PlaylistComponent {
   }
 
   private setTracks(tracks: Tracks): void {
-    this.dataSource = new TracksDataSource(tracks);
-    this.tracks = tracks;
+    if (tracks) {
+      this.dataSource = new TracksDataSource(tracks);
+      this.tracks = tracks;
+    } else {
+
+    }
   }
 
   private setEmptyTracklists(): void {

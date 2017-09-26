@@ -57,7 +57,13 @@ export class LoginService extends RestfulSpotitubeClientService {
   }
 
   private handleLoginResponse(response: LoginResponse): void {
-    this.updateSettings(response.user, response.token);
+    if (response) {
+      this.updateSettings(response.user, response.token);
+    } else {
+      this.loggingService.error('Something wrong happened with the server response. ' +
+        'Did your server respond with valid json?');
+      this.clearStorage();
+    }
   }
 
   private handleLoginErrors(error: HttpErrorResponse): void {
