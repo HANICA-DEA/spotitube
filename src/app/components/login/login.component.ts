@@ -30,8 +30,6 @@ export class LoginComponent implements OnInit {
   private setServer(settings: Settings): void {
     if (settings) {
       this.serverUrl = settings.server;
-    } else {
-      this.serverUrl = undefined;
     }
   }
 }

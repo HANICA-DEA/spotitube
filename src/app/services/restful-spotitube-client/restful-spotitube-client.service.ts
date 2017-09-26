@@ -29,7 +29,7 @@ export class RestfulSpotitubeClientService {
    */
   public restError$ = this.restError.asObservable();
 
-  constructor(private loggingService: LoggingService) {
+  constructor(public loggingService: LoggingService) {
     this.initLocalStorageListeners();
   }
 

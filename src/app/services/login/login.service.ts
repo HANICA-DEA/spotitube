@@ -5,6 +5,8 @@ import {LoginRequest} from '../../models/login-request/login-request.model';
 import {LoginResponse} from '../../models/login-response/login-response.model';
 import {RestfulSpotitubeClientService} from '../restful-spotitube-client/restful-spotitube-client.service';
 import {LoggingService} from '../logging/logging.service';
+import {PlaylistService} from '../playlist/playlist.service';
+import {TrackService} from '../track/track.service';
 
 @Injectable()
 export class LoginService extends RestfulSpotitubeClientService {
@@ -15,8 +17,13 @@ export class LoginService extends RestfulSpotitubeClientService {
    * @param {HttpClient} httpClient
    * @param {LoggingService} loggingService
    */
-  constructor(private httpClient: HttpClient, loggingService: LoggingService) {
+  constructor(private httpClient: HttpClient,
+              private playlistService: PlaylistService,
+              private trackService: TrackService,
+              loggingService: LoggingService) {
     super(loggingService);
+
+    this.initAuthorizationErrorHandling();
   }
 
   /**
@@ -57,5 +64,18 @@ export class LoginService extends RestfulSpotitubeClientService {
     this.handleErrors(error);
 
     this.clearStorage();
+  }
+
+  private initAuthorizationErrorHandling() {
+    this.trackService.restError$.subscribe(error => this.handleAuthorizationError(error));
+    this.playlistService.restError$.subscribe(error => this.handleAuthorizationError(error));
+    this.restError$.subscribe(error => this.handleAuthorizationError(error));
+  }
+
+  private handleAuthorizationError(error: number) {
+    if (error === 403 || error === 401) {
+      this.loggingService.info('An authorization or Authentication error has occured. User is logged out.');
+      this.logout();
+    }
   }
 }

@@ -5,6 +5,8 @@ import {LoginService} from '../../services/login/login.service';
 import {SpotitubeMaterialModule} from '../../modules/material.module';
 import {SpotitubeAngularModule} from '../../modules/angular.module';
 import {LoggingService} from '../../services/logging/logging.service';
+import {PlaylistService} from '../../services/playlist/playlist.service';
+import {TrackService} from '../../services/track/track.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -21,7 +23,9 @@ describe('LoginComponent', () => {
       ],
       providers: [
         LoginService,
-        LoggingService
+        LoggingService,
+        PlaylistService,
+        TrackService
       ]
     })
       .compileComponents();
