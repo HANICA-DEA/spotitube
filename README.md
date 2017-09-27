@@ -32,8 +32,10 @@ The client will expect the following respond codes to be used
 
 * 200: OK. A response to a successful GET, PUT or DELETE.
 * 201: Resource has been created. A response to a successful POST.
+* 400: Bad Request. Something is wrong with the request. This could be due to
+a missing query-parameter for the token.
 * 401: Unauthorized. Authorization has failed. This can happen if the user tried to log in, but supplied an invalid username/password.
-* 403: Forbidden. The request was valid, but you have requested a reource for which are not authorized. This will probably mean you have provided a token that has been invalidated by the server, or your token is missing.
+* 403: Forbidden. The request was valid, but you have requested a resource for which are not authorized. This will probably mean you have provided a token that is invalid.
 * 404: Not found. You have requested an endpoint that is not available.
 
 ### HATEOAS
