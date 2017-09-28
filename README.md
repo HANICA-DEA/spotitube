@@ -3,6 +3,12 @@
 This repository contains a front-end for the final programming assignment 
 of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.han.nl/).
 
+## Hosted version
+
+Use this version if you do not want to install it locally:
+
+[Spotitube over HTTP](http://ci.icaprojecten.nl/spotitube)
+
 ## Enabling CORS headers in your JavaEE container
 
 To use this Spotitube Client with your own Spotitube Server, you will need to enable CORS headers
@@ -56,8 +62,8 @@ It will perform a request with an object in the body of the form
 
 ```
 {
-  user:     "meron", 
-  password: "MySuperSecretPassword12341"
+  "user":     "meron", 
+  "password": "MySuperSecretPassword12341"
 }
 ```
 
@@ -65,8 +71,8 @@ It will expect a response containing an object of the form
 
 ```
 {
-  token:  "1234-1234-1234", 
-  user:   "Meron Brouwer"
+  "token":  "1234-1234-1234", 
+  "user":   "Meron Brouwer"
 }
 ```
 
@@ -88,7 +94,7 @@ It will expect a response containing the complete list of playlists:
 
 ```
 {
-  playlists :[
+  "playlists" :[
                {
                   "id"    : 1,
                   "name"  : "Death metal",
@@ -119,7 +125,7 @@ It will expect a response containing the complete and modified list of playlists
 
 ```
 {
-  playlists :[
+  "playlists" :[
                {
                   "id"    : 1,
                   "name"  : "Heavy Metal",
@@ -155,7 +161,7 @@ It will expect a response containing the complete and modified list of playlists
 
 ```
 {
-  playlists :[
+  "playlists" :[
                {
                   "id"    : 1,
                   "name"  : "Heavy Metal",
@@ -202,7 +208,7 @@ It will expect a response containing the complete and modified list of playlists
 
 ```
 {
-  playlists :[
+  "playlists" :[
                {
                   "id"    : 1,
                   "name"  : "Heavy Metal",
@@ -235,28 +241,28 @@ It will expect a response containing the complete list of tracks for the given P
 
 ```
 {
-  tracks: [
+  "tracks": [
             {
-              id: 1,
-              title: 'Song for someone',
-              performer: 'The Frames',
-              duration: 350,
-              album: 'The cost',
-              playcount: undefined,
-              publicationDate: undefined,
-              description: undefined,
-              onlineAvailable: false
+              "id": 1,
+              "title": '"Song for someone",
+              "performer": "The Frames",
+              "duration": 350,
+              "album": "The cost",
+              "playcount": undefined,
+              "publicationDate": undefined,
+              "description": undefined,
+              "onlineAvailable": false
             },
             {
-              id: 2,
-              title: 'The cost',
-              performer: 'The Frames',
-              duration: 423,
-              album: undefined,
-              playcount: 37,
-              publicationDate: '10-01-2005',
-              description: 'Title song from the Album The Cost ',
-              offlineAvailable: true
+              "id": 2,
+              "title": "The cost",
+              "performer": "The Frames",
+              "duration": 423,
+              "album": undefined,
+              "playcount": 37,
+              "publicationDate": "10-01-2005",
+              "description": "Title song from the Album The Cost",
+              "offlineAvailable": true
             }
           ]
 }
@@ -275,17 +281,17 @@ It will expect a response containing the complete and modified list of tracks:
 
 ```
 {
-  tracks: [
+  "tracks": [
             {
-              id: 1,
-              title: 'Song for someone',
-              performer: 'The Frames',
-              duration: 350,
-              album: 'The cost',
-              playcount: undefined,
-              publicationDate: undefined,
-              description: undefined,
-              onlineAvailable: false
+              "id": 1,
+              "title": "Song for someone",
+              "performer": "The Frames",
+              "duration": 350,
+              "album": "The cost",
+              "playcount": undefined,
+              "publicationDate": undefined,
+              "description": undefined,
+              "onlineAvailable": false
             }
           ]
 }
@@ -302,15 +308,15 @@ query parameter:  token
 The body should contain the track to be added:
 ```
 {
-  id: 4,
-  title: 'So Long, Marianne',
-  performer: 'Leonard Cohen',
-  duration: 546,
-  album: 'Songs of Leonard Cohen',
-  playcount: undefined,
-  publicationDate: undefined,
-  description: undefined,
-  offlineAvailable: false
+  "id": 4,
+  "title": "So Long, Marianne",
+  "performer": "Leonard Cohen",
+  "duration": 546,
+  "album": "Songs of Leonard Cohen",
+  "playcount": undefined,
+  "publicationDate": undefined,
+  "description": undefined,
+  "offlineAvailable": false
 }
 ```
 
@@ -321,39 +327,39 @@ It will expect a response containing the complete list of tracks for the given:
 
 ```
 {
-  tracks: [
+  "tracks": [
             {
-              id: 1,
-              title: 'Song for someone',
-              performer: 'The Frames',
-              duration: 350,
-              album: 'The cost',
-              playcount: undefined,
-              publicationDate: undefined,
-              description: undefined,
-              onlineAvailable: false
+              "id": 1,
+              "title": "Song for someone",
+              "performer": "The Frames",
+              "duration": 350,
+              "album": "The cost",
+              "playcount": undefined,
+              "publicationDate": undefined,
+              "description": undefined,
+              "onlineAvailable": false
             },
             {
-              id: 2,
-              title: 'The cost',
-              performer: 'The Frames',
-              duration: 423,
-              album: undefined,
-              playcount: 37,
-              publicationDate: '10-01-2005',
-              description: 'Title song from the Album The Cost ',
-              offlineAvailable: true
+              "id": 2,
+              "title": "The cost",
+              "performer": "The Frames",
+              "duration": 423,
+              "album": undefined,
+              "playcount": 37,
+              "publicationDate": "10-01-2005",
+              "description": "Title song from the Album The Cost",
+              "offlineAvailable": true
             },
             {
-              id: 4,
-              title: 'So Long, Marianne',
-              performer: 'Leonard Cohen',
-              duration: 546,
-              album: 'Songs of Leonard Cohen',
-              playcount: undefined,
-              publicationDate: undefined,
-              description: undefined,
-              offlineAvailable: false
+              "id": 4,
+              "title": "So Long, Marianne",
+              "performer": "Leonard Cohen",
+              "duration": 546,
+              "album": "Songs of Leonard Cohenv,
+              "playcount": undefined,
+              "publicationDate": undefined,
+              "description": undefined,
+              "offlineAvailable": false
             }
           ]
 }
