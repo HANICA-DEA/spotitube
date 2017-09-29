@@ -25,4 +25,4 @@ script:
 
 after_success:
    npm run coveralls
-   [ $TRAVIS_BRANCH = master ] && bash deploy.sh && curl "http://ci.icaprojecten.nl/jenkins/buildByToken/build?job=OOSE-Spotitube-client&token=$JENKINS_TOKEN"
+   [ $TRAVIS_BRANCH = master ] && bash deploy.sh

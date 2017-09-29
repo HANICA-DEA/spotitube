@@ -25,4 +25,4 @@ git add -A .
 git commit -m "rebuild pages at ${rev}"
 git push -q upstream HEAD:gh-pages
 
-
+curl "http://ci.icaprojecten.nl/jenkins/buildByToken/build?job=OOSE-Spotitube-client&token=$JENKINS_TOKEN"
