@@ -7,7 +7,7 @@ of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.h
 
 Use this version if you do not want to install it locally:
 
-[Spotitube over HTTP](http://ci.icaprojecten.nl/spotitube)
+[Spotitube through HTTP](http://ci.icaprojecten.nl/spotitube)
 
 ## Enabling CORS headers in your JavaEE container
 
