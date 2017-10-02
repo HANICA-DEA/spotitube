@@ -228,9 +228,66 @@ It will expect a response containing the complete and modified list of playlists
 The property `length` should be in seconds. The client will convert this to hh:mm:ss.
 #### Tracks
 
+##### Get all tracks 
+
+To receive all tracks that are available
+
+```
+url:              /tracks
+method:           GET
+query parameter:  forPlaylist
+query parameter:  token
+```
+
+The client will make this request when the user wants to add a track to a Playlist. In that case the query parameter 
+`forPlaylist` is added to ensure the server only returns the Tracks that are not yet in the Playlist. The value of this query
+parameter is the `id` of the Playlist.
+
+It will expect a response containing the complete list of available tracks:
+
+```
+{
+  "tracks": [
+                   {
+                       "id": 3,
+                       "title: "Ocean and a rock",
+                       "performer: "Lisa Hannigan",
+                       "duration: 337,
+                       "album": "Sea sew",
+                       "playcount": undefined,
+                       "publicationDate": undefined,
+                       "description": undefined,
+                       "onlineAvailable": false
+                   },
+                   {
+                       "id": 4,
+                       "title": "So Long, Marianne",
+                       "performer": "Leonard Cohen",
+                       "duration": 546,
+                       "album": "Songs of Leonard Cohen",
+                       "playcount": undefined,
+                       "publicationDate": undefined,
+                       "description": undefined,
+                       "offlineAvailable": false
+                   },
+                   {
+                       "id": 5,
+                       "title": "One",
+                       "performer": "Metallica",
+                       "duration": 423,
+                       "album": undefined,
+                       "playcount": 37,
+                       "publicationDate": "1-11-2001",
+                       "description: "Long version",
+                       "offlineAvailable": true
+                   }
+          ]
+}
+
 ##### Get all tracks that belong to a Playlist
 
 To receive all tracks from a given Playlist
+
 ```
 url:              /playlists/:id/tracks
 method:           GET
