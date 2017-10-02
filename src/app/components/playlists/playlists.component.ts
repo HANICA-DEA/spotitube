@@ -8,6 +8,7 @@ import {AppConstants} from '../../app.constants';
 import {NewPlaylistDialogComponent} from '../../dialogs/new-playlist.dialog/new-playlist.dialog.component';
 import {PlaylistImpl} from '../../models/playlist/playlist.model';
 import {PlaylistsImpl} from '../../models/playlists/playlists.model';
+import {TrackService} from '../../services/track/track.service';
 
 @Component({
   selector: 'app-playlists',
@@ -23,13 +24,16 @@ export class PlaylistsComponent implements OnInit {
 
   @Output() selectedPlaylistChange = new EventEmitter<Playlist>();
 
-  constructor(private playlistService: PlaylistService, public dialog: MdDialog) {
+  constructor(private playlistService: PlaylistService,
+              private tracksService: TrackService,
+              public dialog: MdDialog) {
     this.setEmptyPlaylists();
   }
 
   ngOnInit() {
-    this.playlistService.getPlaylists().then(playlists => this.setPlaylists(playlists))
-      .catch(any => this.setEmptyPlaylists());
+    this.updatePlaylists()
+    this.tracksService.tracksUpdated$.subscribe(tracks => this.updatePlaylists());
+
   }
 
   /**
@@ -92,6 +96,11 @@ export class PlaylistsComponent implements OnInit {
         this.newPlaylistDialogRef = null
       }
     );
+  }
+
+  private updatePlaylists(): void {
+    this.playlistService.getPlaylists().then(playlists => this.setPlaylists(playlists))
+      .catch(any => this.setEmptyPlaylists());
   }
 
   /**

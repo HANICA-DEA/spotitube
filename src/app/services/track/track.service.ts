@@ -8,9 +8,19 @@ import {Track} from '../../models/track/track.interface';
 import {AppConstants} from '../../app.constants';
 import {Playlist} from '../../models/playlist/playlist.interface.model';
 import {Tracks} from '../../models/tracks/tracks.interface.model';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class TrackService extends RestfulSpotitubeClientService {
+
+  private tracksUpdated = new Subject<Tracks>();
+
+  /**
+   * Register to this observable to be notified when the tracks have changed.
+   *
+   * @type {Observable<Tracks>}
+   */
+  public tracksUpdated$ = this.tracksUpdated.asObservable();
 
   /**
    * Create a new TrackService
@@ -37,13 +47,14 @@ export class TrackService extends RestfulSpotitubeClientService {
 
 
     try {
-      const data: Tracks = await this.httpClient.put<Tracks>(endpointUrl,
+      const data: Tracks = await this.httpClient.post<Tracks>(endpointUrl,
         JSON.stringify(track),
         {
           headers: this.headers,
           params: params
         }
       ).toPromise();
+      this.tracksUpdated.next();
       return data;
     } catch (err) {
       this.handleErrors(err)
@@ -64,6 +75,7 @@ export class TrackService extends RestfulSpotitubeClientService {
 
     try {
       const data: Tracks = await this.httpClient.delete<Tracks>(endpointUrl, {params: params}).toPromise();
+      this.tracksUpdated.next();
       return data;
     } catch (err) {
       this.handleErrors(err)
@@ -77,7 +89,6 @@ export class TrackService extends RestfulSpotitubeClientService {
    * @return {Promise<Track[]>} An array of Tracks.
    */
   public async getAllTracks(playlist?: Playlist): Promise<Tracks> {
-    const endpointUrl = this.getTracksEndpoint(playlist);
     const params = this.createtokenParam();
 
     if (playlist) {

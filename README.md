@@ -358,7 +358,7 @@ It will expect a response containing the complete and modified list of tracks:
 
 ```
 url:              /playlists/:id/tracks
-method:           PUT
+method:           POST
 query parameter:  token
 ```
 
