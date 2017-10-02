@@ -257,7 +257,7 @@ It will expect a response containing the complete list of available tracks:
                        "playcount": undefined,
                        "publicationDate": undefined,
                        "description": undefined,
-                       "onlineAvailable": false
+                       "offlineAvailable": false
                    },
                    {
                        "id": 4,
@@ -310,7 +310,7 @@ It will expect a response containing the complete list of tracks for the given P
               "playcount": undefined,
               "publicationDate": undefined,
               "description": undefined,
-              "onlineAvailable": false
+              "offlineAvailable": false
             },
             {
               "id": 2,
@@ -350,7 +350,7 @@ It will expect a response containing the complete and modified list of tracks:
               "playcount": undefined,
               "publicationDate": undefined,
               "description": undefined,
-              "onlineAvailable": false
+              "offlineAvailable": false
             }
           ]
 }
@@ -379,8 +379,8 @@ The body should contain the track to be added:
 }
 ```
 
-Note that the relevant parts are the `id` and `onlineAvailable`. The `id` should be used by the server to lookup the
-Track, before adding it to the Playlist. The online availability should correctly be set.
+Note that the relevant parts are the `id` and `offlineAvailable`. The `id` should be used by the server to lookup the
+Track, before adding it to the Playlist. The offline availability should correctly be set.
 
 It will expect a response containing the complete list of tracks for the given:
 
@@ -397,7 +397,7 @@ It will expect a response containing the complete list of tracks for the given:
               "playcount": undefined,
               "publicationDate": undefined,
               "description": undefined,
-              "onlineAvailable": false
+              "offlineAvailable": false
             },
             {
               "id": 2,
