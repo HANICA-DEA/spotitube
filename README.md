@@ -283,6 +283,7 @@ It will expect a response containing the complete list of available tracks:
                    }
           ]
 }
+```
 
 ##### Get all tracks that belong to a Playlist
 
@@ -295,6 +296,7 @@ query parameter:  token
 ```
 
 It will expect a response containing the complete list of tracks for the given Playlist:
+
 
 ```
 {
@@ -381,6 +383,7 @@ Note that the relevant parts are the `id` and `onlineAvailable`. The `id` should
 Track, before adding it to the Playlist. The online availability should correctly be set.
 
 It will expect a response containing the complete list of tracks for the given:
+
 
 ```
 {
