@@ -31,8 +31,8 @@ export class AddTrackDialogComponent {
   }
 
   public setPlaylist(playlist: Playlist): void {
-    this.playlist = playlist
-    this.trackService.getAllTracks(this.playlist).then(tracks => this.setTracks(tracks))
+    this.playlist = playlist;
+    this.trackService.getAllTracks(playlist).then(tracks => this.setTracks(tracks))
       .catch(any => this.setEmptyTracklists());
   }
 

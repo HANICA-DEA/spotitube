@@ -45,7 +45,6 @@ export class TrackService extends RestfulSpotitubeClientService {
     const endpointUrl = this.getTracksEndpoint(playlist);
     const params = this.createtokenParam();
 
-
     try {
       const data: Tracks = await this.httpClient.post<Tracks>(endpointUrl,
         JSON.stringify(track),
@@ -89,10 +88,10 @@ export class TrackService extends RestfulSpotitubeClientService {
    * @return {Promise<Track[]>} An array of Tracks.
    */
   public async getAllTracks(playlist?: Playlist): Promise<Tracks> {
-    const params = this.createtokenParam();
+    let params = this.createtokenParam();
 
     if (playlist) {
-      params.set('forPlaylist', playlist.id.toString());
+      params = params.append('forPlaylist', playlist.id.toString());
     }
 
     try {
