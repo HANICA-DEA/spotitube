@@ -4,6 +4,7 @@
            fxFlex="100%">
     <div *ngFor="let playlist of playlists.playlists;"
          class="flex-container playlist"
+         [ngClass]="{'selected': playlist.id === selectedPlayistId}"
          fxLayout="row"
          fxLayoutAlign="space-between stretch"
          fxLayoutWrap="nowrap">

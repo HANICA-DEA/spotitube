@@ -19,6 +19,8 @@ export class PlaylistsComponent implements OnInit {
 
   public playlists: Playlists;
 
+  public selectedPlayistId: number;
+
   private editPlaylistDialogRef: MdDialogRef<EditPlaylistDialogComponent>;
   private newPlaylistDialogRef: MdDialogRef<NewPlaylistDialogComponent>;
 
@@ -110,15 +112,30 @@ export class PlaylistsComponent implements OnInit {
    */
   public onPlaylistSelected(playlist: Playlist): void {
     this.selectedPlaylistChange.emit(playlist);
+    if (playlist) {
+      this.selectedPlayistId = playlist.id;
+    } else {
+      this.selectedPlayistId = undefined;
+    }
   }
 
   private setPlaylists(playlists: Playlists): void {
     this.playlists = playlists;
 
     if (playlists.playlists.length > 0) {
-      const firstPlaylist = playlists.playlists[0];
 
-      this.onPlaylistSelected(firstPlaylist)
+      let playlistToSelect = playlists.playlists[0];
+
+      if (this.selectedPlayistId) {
+        for (const playlist of this.playlists.playlists) {
+          if (playlist.id === this.selectedPlayistId) {
+            playlistToSelect = playlist;
+            break;
+          }
+        }
+      }
+
+      this.onPlaylistSelected(playlistToSelect)
     } else {
       this.onPlaylistSelected(undefined);
     }

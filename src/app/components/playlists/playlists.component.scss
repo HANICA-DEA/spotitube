@@ -11,6 +11,10 @@ md-card {
   height: 100%;
 
   .playlist:hover {
+    background: #ff4081;
+  }
+
+  .playlist.selected{
     background: lightgrey;
   }
 
