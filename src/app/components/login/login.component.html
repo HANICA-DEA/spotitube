@@ -9,7 +9,7 @@
              mdInput
              placeholder="Server URL"
              [(ngModel)]="serverUrl"
-             pattern="http://[a-zA-Z0-9:/]+"
+             pattern="http://[a-zA-Z0-9:/.\-]+"
              required>
       <md-error>Please provide a server url, including the substring http://</md-error>
     </md-input-container>
