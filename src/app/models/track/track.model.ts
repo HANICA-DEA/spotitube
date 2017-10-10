@@ -16,7 +16,7 @@ export class TrackImpl implements Track {
     this.title = '';
     this.performer = '';
     this.duration = 0;
-    this.album = '';
+    this.album = undefined;
     this.playcount = undefined;
     this.publicationDate = undefined;
     this.description = undefined;
