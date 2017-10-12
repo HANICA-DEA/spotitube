@@ -303,7 +303,7 @@ It will expect a response containing the complete list of tracks for the given P
   "tracks": [
             {
               "id": 1,
-              "title": '"Song for someone",
+              "title": "Song for someone",
               "performer": "The Frames",
               "duration": 350,
               "album": "The cost",
