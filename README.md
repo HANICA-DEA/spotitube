@@ -150,12 +150,12 @@ The body should contain the new playlist:
 {
   "id"    : -1,
   "name"  : "Progressive Rock",
-  "owner" : true,
+  "owner" : false,
   "tracks": []
 },
 ```
 
-Note that the client will set the id to -1. The server is responsible for generating a unique id, which must be set on the response object.
+Note that the client will set the id to -1, and the 'owner' variable to false. The server is responsible for generating a unique id, and setting the 'owner' variable accordingly. These must be set on the response object.
 
 It will expect a response containing the complete and modified list of playlists:
 
