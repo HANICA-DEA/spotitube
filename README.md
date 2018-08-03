@@ -1,4 +1,4 @@
-# OOSE DEA EAI Client [![Build Status](https://travis-ci.org/meronbrouwer/oose-dea-eai-client.svg?branch=master)](https://travis-ci.org/meronbrouwer/oose-dea-eai-client) [![Coverage Status](https://coveralls.io/repos/github/meronbrouwer/oose-dea-eai-client/badge.svg?branch=master)](https://coveralls.io/github/meronbrouwer/oose-dea-eai-client?branch=master)
+# Spotitube [![Build Status](https://travis-ci.org/meronbrouwer/oose-dea-eai-client.svg?branch=master)](https://travis-ci.org/meronbrouwer/oose-dea-eai-client) [![Coverage Status](https://coveralls.io/repos/github/meronbrouwer/oose-dea-eai-client/badge.svg?branch=master)](https://coveralls.io/github/meronbrouwer/oose-dea-eai-client?branch=master)
 
 This repository contains a front-end for the final programming assignment 
 of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.han.nl/).
@@ -14,12 +14,8 @@ Use this version if you do not want to install it locally:
 To use this Spotitube Client with your own Spotitube Server, you will need to enable CORS headers
 in your JavaEE container. 
 
-This is required because the Client is served from a different domain than the Server. Your browser will only allow this if the Server has the CORS Headers set in its HTTP response.
-
-To enable this, follow the steps below.
-
-* Ensure that you understand the _why_. For instance, read: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
-* Figure out how to perform the _how_. There are enough resources available on the World Wide Web.
+This is required because the Client is served from a different domain than the Server. Your browser will only allow this 
+if the Server has the CORS Headers set in its HTTP response. More information about this will be given during lessons.
  
 ## API
 
@@ -415,7 +411,7 @@ It will expect a response containing the complete list of tracks for the given:
               "title": "So Long, Marianne",
               "performer": "Leonard Cohen",
               "duration": 546,
-              "album": "Songs of Leonard Cohenv,
+              "album": "Songs of Leonard Cohen,
               "playcount": undefined,
               "publicationDate": undefined,
               "description": undefined,
