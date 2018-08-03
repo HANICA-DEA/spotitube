@@ -1,6 +1,5 @@
 language: node_js
 sudo: true
-dist: sugilite
 
 node_js:
   - '7.0'
