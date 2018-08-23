@@ -1,11 +1,11 @@
 {
-  "name": "oose-dea-eai-client",
+  "name": "spotitube",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --target production --base-href \"/oose-dea-eai-client/\"",
+    "build": "ng build --target production --base-href \"/spotitube/\"",
     "test": "ng test --watch false",
     "test-coverage": "ng test --watch false --code-coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
