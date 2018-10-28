@@ -1,20 +1,20 @@
-<md-toolbar color="primary">
+<mat-toolbar color="primary">
   <span class="title">
-      <md-icon>queue_music</md-icon>DEA Spotitube
+      <mat-icon>queue_music</mat-icon>DEA Spotitube
   </span>
   <div *ngIf="user && serverUrl"
        class="mat-body-2">
     {{user}}@{{serverUrl}}
   </div>
-  <button md-icon-button [md-menu-trigger-for]="settings">
-    <md-icon>more_vert</md-icon>
+  <button mat-icon-button [mat-menu-trigger-for]="settings">
+    <mat-icon>more_vert</mat-icon>
   </button>
-  <md-menu x-position="before" y-position="below" #settings="mdMenu">
-    <button [disabled]="!serverUrl && !user" md-menu-item (click)="logout()">
+  <mat-menu x-position="before" y-position="below" #settings="matMenu">
+    <button [disabled]="!serverUrl && !user" mat-menu-item (click)="logout()">
       <span>Logout</span>
     </button>
-  </md-menu>
-</md-toolbar>
+  </mat-menu>
+</mat-toolbar>
 
 <app-playlists-overview
   class="content"

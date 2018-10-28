@@ -1,36 +1,36 @@
-<md-card>
-  <md-card-title>
+<mat-card>
+  <mat-card-title>
     Welcome to Spotitube
-  </md-card-title>
-  <md-card-content class="flex-container"
+  </mat-card-title>
+  <mat-card-content class="flex-container"
                    fxLayout="column">
-    <md-input-container class="flex-item">
+    <mat-input-container class="flex-item">
       <input id="urlInput"
-             mdInput
+             matInput
              placeholder="Server URL"
              [(ngModel)]="serverUrl"
              pattern="http://[a-zA-Z0-9:/.\-]+"
              required>
-      <md-error>Please provide a server url, including the substring http://</md-error>
-    </md-input-container>
+      <mat-error>Please provide a server url, including the substring http://</mat-error>
+    </mat-input-container>
 
-    <md-input-container class="flex-item">
-      <input mdInput
+    <mat-input-container class="flex-item">
+      <input matInput
              placeholder="User"
              [(ngModel)]="user"
              required>
-      <md-error>Please provide an user</md-error>
-    </md-input-container>
+      <mat-error>Please provide an user</mat-error>
+    </mat-input-container>
 
-    <md-input-container class="flex-item">
-      <input type="password" mdInput placeholder="Password" [(ngModel)]="password" required>
-      <md-error>Please provide a password</md-error>
-    </md-input-container>
-  </md-card-content>
+    <mat-input-container class="flex-item">
+      <input type="password" matInput placeholder="Password" [(ngModel)]="password" required>
+      <mat-error>Please provide a password</mat-error>
+    </mat-input-container>
+  </mat-card-content>
 
-  <md-card-actions align="end">
-    <button md-button [disabled]="!user || user.trim() === '' || !serverUrl || serverUrl.trim() === ''"
+  <mat-card-actions align="end">
+    <button mat-button [disabled]="!user || user.trim() === '' || !serverUrl || serverUrl.trim() === ''"
             (click)="login()"> Login
     </button>
-  </md-card-actions>
-</md-card>
+  </mat-card-actions>
+</mat-card>

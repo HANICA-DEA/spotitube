@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import {async, TestBed} from '@angular/core/testing';
 import {NewPlaylistDialogComponent} from './new-playlist.dialog.component';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {NgModule} from '@angular/core';
 import {SpotitubeMaterialModule} from '../../modules/material.module';
 import {SpotitubeAngularModule} from '../../modules/angular.module';
@@ -16,7 +16,7 @@ export class TestModule {
 
 describe('NewPlaylistDialogComponent', () => {
   let component: NewPlaylistDialogComponent;
-  let dialog: MdDialog;
+  let dialog: MatDialog;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('NewPlaylistDialogComponent', () => {
   }));
 
   beforeEach(() => {
-    dialog = TestBed.get(MdDialog);
+    dialog = TestBed.get(MatDialog);
     const dialogRef = dialog.open(NewPlaylistDialogComponent);
     component = dialogRef.componentInstance;
   });

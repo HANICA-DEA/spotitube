@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   templateUrl: './new-playlist.dialog.component.html'
@@ -8,7 +8,7 @@ export class NewPlaylistDialogComponent {
 
   public name: string;
 
-  constructor(private dialogRef: MdDialogRef<NewPlaylistDialogComponent>) {
+  constructor(private dialogRef: MatDialogRef<NewPlaylistDialogComponent>) {
   }
 
   public onOk(): void {

@@ -3,7 +3,7 @@ import {Playlist} from '../../models/playlist/playlist.interface.model';
 import {TrackService} from '../../services/track/track.service';
 import {Tracks} from '../../models/tracks/tracks.interface.model';
 import {TracksImpl} from '../../models/tracks/tracks.model';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
 import {AddTrackDialogComponent} from '../../dialogs/add-track.dialog/add-track.dialog.component';
 import {Track} from '../../models/track/track.interface';
 import {TracksDataSource} from '../../data-sources/tracks/tracks.datasource';
@@ -23,9 +23,9 @@ export class PlaylistComponent {
     'publicationDate', 'description', 'offlineAvailable', 'delete'];
   dataSource = undefined;
 
-  private addTrackDialogRef: MdDialogRef<AddTrackDialogComponent>;
+  private addTrackDialogRef: MatDialogRef<AddTrackDialogComponent>;
 
-  constructor(public dialog: MdDialog, private trackService: TrackService) {
+  constructor(public dialog: MatDialog, private trackService: TrackService) {
     this.setEmptyTracklists();
   }
 
