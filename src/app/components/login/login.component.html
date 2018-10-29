@@ -4,7 +4,7 @@
   </mat-card-title>
   <mat-card-content class="flex-container"
                    fxLayout="column">
-    <mat-input-container class="flex-item">
+    <mat-form-field class="flex-item">
       <input id="urlInput"
              matInput
              placeholder="Server URL"
@@ -12,20 +12,20 @@
              pattern="http://[a-zA-Z0-9:/.\-]+"
              required>
       <mat-error>Please provide a server url, including the substring http://</mat-error>
-    </mat-input-container>
+    </mat-form-field>
 
-    <mat-input-container class="flex-item">
+    <mat-form-field class="flex-item">
       <input matInput
              placeholder="User"
              [(ngModel)]="user"
              required>
       <mat-error>Please provide an user</mat-error>
-    </mat-input-container>
+    </mat-form-field>
 
-    <mat-input-container class="flex-item">
+    <mat-form-field class="flex-item">
       <input type="password" matInput placeholder="Password" [(ngModel)]="password" required>
       <mat-error>Please provide a password</mat-error>
-    </mat-input-container>
+    </mat-form-field>
   </mat-card-content>
 
   <mat-card-actions align="end">
