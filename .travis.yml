@@ -20,7 +20,7 @@ script:
   - ng -v
   - ng lint
   - npm run test-coverage
-  - ng build --target production --base-href "/spotitube/"
+  - ng build --configuration production --base-href "/spotitube/"
   - curl "http://ci.icaprojecten.nl/jenkins/buildByToken/build?job=OOSE-DEA-Spotitube-client&token=$JENKINS_TOKEN"
 
 after_success:
