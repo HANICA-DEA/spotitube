@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import {async, TestBed} from '@angular/core/testing';
 import {AddTrackDialogComponent} from './add-track.dialog.component';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {NgModule} from '@angular/core';
 import {SpotitubeMaterialModule} from '../../modules/material.module';
 import {SpotitubeAngularModule} from '../../modules/angular.module';
@@ -19,7 +19,7 @@ export class TestModule {
 
 describe('AddTrackDialogComponent', () => {
   let component: AddTrackDialogComponent;
-  let dialog: MdDialog;
+  let dialog: MatDialog;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -41,7 +41,7 @@ describe('AddTrackDialogComponent', () => {
   }));
 
   beforeEach(() => {
-    dialog = TestBed.get(MdDialog);
+    dialog = TestBed.get(MatDialog);
     const dialogRef = dialog.open(AddTrackDialogComponent);
     component = dialogRef.componentInstance;
   });

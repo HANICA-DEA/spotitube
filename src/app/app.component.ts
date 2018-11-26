@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from './services/login/login.service';
-import {MdSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material';
 import {Settings} from './models/settings/settings.interface.model';
 import {PlaylistService} from './services/playlist/playlist.service';
 import {TrackService} from './services/track/track.service';
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   constructor(private loginService: LoginService,
               private playlistService: PlaylistService,
               private trackService: TrackService,
-              public snackBar: MdSnackBar) {
+              public snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 <div class="playlists flex-container"
      fxLayout="column">
-  <md-card class="flex-item"
+  <mat-card class="flex-item"
            fxFlex="100%">
     <div *ngFor="let playlist of playlists.playlists;"
          class="flex-container playlist"
@@ -12,39 +12,39 @@
         class="name flex-item"
         fxFlex="100%"
         (click)="onPlaylistSelected(playlist)"
-        md-tooltip="{{playlist.name}}">
+        matTooltip="{{playlist.name}}">
         {{playlist.name}}
       </div>
-      <button md-button
+      <button mat-button
               *ngIf="playlist.owner"
               class="flex-item"
               (click)="onEditName(playlist)"
-              md-tooltip="Edit the name of this playlist">
-        <md-icon>edit</md-icon>
+              matTooltip="Edit the name of this playlist">
+        <mat-icon>edit</mat-icon>
       </button>
-      <button md-button
+      <button mat-button
               *ngIf="playlist.owner"
               class="flex-item"
               (click)="onDelete(playlist)"
-              md-tooltip="Delete this playlist">
-        <md-icon>delete</md-icon>
+              matTooltip="Delete this playlist">
+        <mat-icon>delete</mat-icon>
       </button>
     </div>
-  </md-card>
+  </mat-card>
 
-  <md-card class="flex-item">
-    <md-card-content class="flex-container"
+  <mat-card class="flex-item">
+    <mat-card-content class="flex-container"
                      fxLayout="row"
                      fxLayoutAlign="space-between stretch">
       <span class="flex-item length" fxFlexAlign="center">
         Total length: {{playlists.length | minutes}}
       </span>
-      <button md-button
+      <button mat-button
               class="flex-item" (click)="onNewPlaylist()">
-        <md-icon>playlist_add</md-icon>
+        <mat-icon>playlist_add</mat-icon>
       </button>
-    </md-card-content>
-  </md-card>
+    </mat-card-content>
+  </mat-card>
 </div>
 
 

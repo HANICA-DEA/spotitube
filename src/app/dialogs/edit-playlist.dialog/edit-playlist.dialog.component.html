@@ -1,18 +1,18 @@
-<h1 md-dialog-title>
+<h1 mat-dialog-title>
   Edit Playlist
 </h1>
 
-<md-dialog-content>
-  <md-input-container>
-    <input mdInput
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput
            placeholder="Name"
            required
            [(ngModel)]="name">
-    <md-error>Please provide a name for the playlist</md-error>
-  </md-input-container>
-</md-dialog-content>
+    <mat-error>Please provide a name for the playlist</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
 
-<md-dialog-actions align="end">
-  <button md-button color="primary" [disabled]="!name || name.trim() === ''" (click)="onOk()"> Ok</button>
-  <button md-button color="primary" md-dialog-close> Cancel</button>
-</md-dialog-actions>
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" [disabled]="!name || name.trim() === ''" (click)="onOk()"> Ok</button>
+  <button mat-button color="primary" mat-dialog-close> Cancel</button>
+</mat-dialog-actions>

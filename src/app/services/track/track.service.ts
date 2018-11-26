@@ -3,12 +3,12 @@ import {RestfulSpotitubeClientService} from '../restful-spotitube-client/restful
 import {HttpClient} from '@angular/common/http';
 import {LoggingService} from '../logging/logging.service';
 
-import 'rxjs/add/operator/toPromise';
+
 import {Track} from '../../models/track/track.interface';
 import {AppConstants} from '../../app.constants';
 import {Playlist} from '../../models/playlist/playlist.interface.model';
 import {Tracks} from '../../models/tracks/tracks.interface.model';
-import {Subject} from 'rxjs/Subject';
+import {Subject} from 'rxjs';
 
 @Injectable()
 export class TrackService extends RestfulSpotitubeClientService {

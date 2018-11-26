@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Playlists} from '../../models/playlists/playlists.interface.model';
 import {PlaylistService} from '../../services/playlist/playlist.service';
 import {Playlist} from '../../models/playlist/playlist.interface.model';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
 import {EditPlaylistDialogComponent} from '../../dialogs/edit-playlist.dialog/edit-playlist.dialog.component';
 import {AppConstants} from '../../app.constants';
 import {NewPlaylistDialogComponent} from '../../dialogs/new-playlist.dialog/new-playlist.dialog.component';
@@ -21,14 +21,14 @@ export class PlaylistsComponent implements OnInit {
 
   public selectedPlayistId: number;
 
-  private editPlaylistDialogRef: MdDialogRef<EditPlaylistDialogComponent>;
-  private newPlaylistDialogRef: MdDialogRef<NewPlaylistDialogComponent>;
+  private editPlaylistDialogRef: MatDialogRef<EditPlaylistDialogComponent>;
+  private newPlaylistDialogRef: MatDialogRef<NewPlaylistDialogComponent>;
 
   @Output() selectedPlaylistChange = new EventEmitter<Playlist>();
 
   constructor(private playlistService: PlaylistService,
               private tracksService: TrackService,
-              public dialog: MdDialog) {
+              public dialog: MatDialog) {
     this.setEmptyPlaylists();
   }
 

@@ -8,76 +8,76 @@
     <h1 class="flex-item playlistHeader mat-display-1" fxFlexAlign="center">
       {{playlist.name}}
     </h1>
-    <button md-button
+    <button mat-button
             *ngIf="playlist.owner"
             (click)="onAddTrack()"
             class="flex-item"
-            md-tooltip="Add tracks to this playlist">
-      <md-icon>playlist_add</md-icon>
+            matTooltip="Add tracks to this playlist">
+      <mat-icon>playlist_add</mat-icon>
     </button>
   </div>
 
-  <md-table #table
+  <mat-table #table
             *ngIf="tracks.tracks.length > 0"
             [dataSource]="dataSource">
-    <ng-container mdColumnDef="title">
-      <md-header-cell *mdHeaderCellDef> Title</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.title}}</md-cell>
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title</mat-header-cell>
+      <mat-cell *matCellDef="let track"> {{track.title}}</mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="performer">
-      <md-header-cell *mdHeaderCellDef> Performer</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.performer}}</md-cell>
+    <ng-container matColumnDef="performer">
+      <mat-header-cell *matHeaderCellDef> Performer</mat-header-cell>
+      <mat-cell *matCellDef="let track"> {{track.performer}}</mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="duration">
-      <md-header-cell *mdHeaderCellDef fxFlex="70px"> Duration</md-header-cell>
-      <md-cell *mdCellDef="let track" fxFlex="70px"> {{track.duration | minutes}}</md-cell>
+    <ng-container matColumnDef="duration">
+      <mat-header-cell *matHeaderCellDef fxFlex="70px"> Duration</mat-header-cell>
+      <mat-cell *matCellDef="let track" fxFlex="70px"> {{track.duration | minutes}}</mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="album">
-      <md-header-cell *mdHeaderCellDef> Album</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.album}}</md-cell>
+    <ng-container matColumnDef="album">
+      <mat-header-cell *matHeaderCellDef> Album</mat-header-cell>
+      <mat-cell *matCellDef="let track"> {{track.album}}</mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="playcount">
-      <md-header-cell *mdHeaderCellDef fxFlex="70px"> Play count</md-header-cell>
-      <md-cell *mdCellDef="let track" fxFlex="70px"> {{track.playcount}}</md-cell>
+    <ng-container matColumnDef="playcount">
+      <mat-header-cell *matHeaderCellDef fxFlex="70px"> Play count</mat-header-cell>
+      <mat-cell *matCellDef="let track" fxFlex="70px"> {{track.playcount}}</mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="publicationDate">
-      <md-header-cell *mdHeaderCellDef> Publication date</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.publicationDate}}</md-cell>
+    <ng-container matColumnDef="publicationDate">
+      <mat-header-cell *matHeaderCellDef> Publication date</mat-header-cell>
+      <mat-cell *matCellDef="let track"> {{track.publicationDate}}</mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="description">
-      <md-header-cell *mdHeaderCellDef> Description</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.description}}</md-cell>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description</mat-header-cell>
+      <mat-cell *matCellDef="let track"> {{track.description}}</mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="offlineAvailable">
-      <md-header-cell *mdHeaderCellDef fxFlex="50px"> Offline</md-header-cell>
-      <md-cell *mdCellDef="let track" fxFlex="50px">
-        <md-icon *ngIf="track.offlineAvailable">done</md-icon>
-      </md-cell>
+    <ng-container matColumnDef="offlineAvailable">
+      <mat-header-cell *matHeaderCellDef fxFlex="50px"> Offline</mat-header-cell>
+      <mat-cell *matCellDef="let track" fxFlex="50px">
+        <mat-icon *ngIf="track.offlineAvailable">done</mat-icon>
+      </mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="delete">
-      <md-header-cell *mdHeaderCellDef fxFlex="40px"></md-header-cell>
-      <md-cell *mdCellDef="let track" fxFlex="40px">
-        <button md-icon-button
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef fxFlex="40px"></mat-header-cell>
+      <mat-cell *matCellDef="let track" fxFlex="40px">
+        <button mat-icon-button
           [disabled]="!playlist.owner"
           class="deleteButton"
           (click)="onRemoveTrack(track)"
-          md-tooltip="Remove track from list">
-          <md-icon>delete</md-icon>
+          matTooltip="Remove track from list">
+          <mat-icon>delete</mat-icon>
         </button>
-      </md-cell>
+      </mat-cell>
     </ng-container>
 
-    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 
   <div class='mat-body' *ngIf="tracks.tracks.length == 0">
     This playlist is still empty. <span *ngIf="playlist.owner">Use the button on the top-right to add tracks.</span>

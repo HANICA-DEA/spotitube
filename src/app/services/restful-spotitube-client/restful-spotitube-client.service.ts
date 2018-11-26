@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs/Subject';
+import {Subject} from 'rxjs';
 import {HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {LoggingService} from '../logging/logging.service';
 import {Settings} from '../../models/settings/settings.interface.model';

@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {LoggingService} from '../logging/logging.service';
 import {AppConstants} from '../../app.constants';
 
-import 'rxjs/add/operator/toPromise';
+
 import {Playlist} from '../../models/playlist/playlist.interface.model';
 
 @Injectable()

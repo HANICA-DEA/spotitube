@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material';
 import {Track} from '../../models/track/track.interface';
 import {TrackService} from '../../services/track/track.service';
 import {Playlist} from '../../models/playlist/playlist.interface.model';
@@ -21,7 +21,7 @@ export class AddTrackDialogComponent {
   displayedColumns = ['title', 'performer', 'album', 'description'];
   dataSource = undefined;
 
-  constructor(private dialogRef: MdDialogRef<AddTrackDialogComponent>,
+  constructor(private dialogRef: MatDialogRef<AddTrackDialogComponent>,
               private trackService: TrackService) {
     this.setEmptyTracklists();
   }

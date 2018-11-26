@@ -1,44 +1,44 @@
-<h1 md-dialog-title>
+<h1 mat-dialog-title>
   Add Track
 </h1>
 
-<md-dialog-content>
-  <md-card *ngIf="track">
+<mat-dialog-content>
+  <mat-card *ngIf="track">
     <span class="mat-body">
       {{track.performer}} - {{track.title}}
     </span> <br>
-    <md-checkbox [checked]="track.offlineAvailable" [(ngModel)]="track.offlineAvailable">
+    <mat-checkbox [checked]="track.offlineAvailable" [(ngModel)]="track.offlineAvailable">
       Make this track offline available
-    </md-checkbox>
-  </md-card>
+    </mat-checkbox>
+  </mat-card>
 
-  <md-table #table [dataSource]="dataSource">
-    <ng-container mdColumnDef="title">
-      <md-header-cell *mdHeaderCellDef> Title</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.title}}</md-cell>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title</mat-header-cell>
+      <mat-cell *matCellDef="let track"> {{track.title}}</mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="performer">
-      <md-header-cell *mdHeaderCellDef> Performer</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.performer}}</md-cell>
+    <ng-container matColumnDef="performer">
+      <mat-header-cell *matHeaderCellDef> Performer</mat-header-cell>
+      <mat-cell *matCellDef="let track"> {{track.performer}}</mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="album">
-      <md-header-cell *mdHeaderCellDef> Album</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.album}}</md-cell>
+    <ng-container matColumnDef="album">
+      <mat-header-cell *matHeaderCellDef> Album</mat-header-cell>
+      <mat-cell *matCellDef="let track"> {{track.album}}</mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="description">
-      <md-header-cell *mdHeaderCellDef> Description</md-header-cell>
-      <md-cell *mdCellDef="let track"> {{track.description}}</md-cell>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description</mat-header-cell>
+      <mat-cell *matCellDef="let track"> {{track.description}}</mat-cell>
     </ng-container>
 
-    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *mdRowDef="let row; columns: displayedColumns;" (click)="onSelectTrack(row)"></md-row>
-  </md-table>
-</md-dialog-content>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelectTrack(row)"></mat-row>
+  </mat-table>
+</mat-dialog-content>
 
-<md-dialog-actions align="end">
-  <button md-button color="primary" [disabled]="!track" (click)="onOk()"> Ok</button>
-  <button md-button color="primary" md-dialog-close> Cancel</button>
-</md-dialog-actions>
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" [disabled]="!track" (click)="onOk()"> Ok</button>
+  <button mat-button color="primary" mat-dialog-close> Cancel</button>
+</mat-dialog-actions>

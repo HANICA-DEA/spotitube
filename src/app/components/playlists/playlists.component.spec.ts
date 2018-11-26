@@ -8,6 +8,7 @@ import {LoginService} from '../../services/login/login.service';
 import {LoggingService} from '../../services/logging/logging.service';
 import {MinutesPipe} from '../../pipes/minutes.pipe';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {TrackService} from '../../services/track/track.service';
 
 describe('PlaylistsComponent', () => {
   let component: PlaylistsComponent;
@@ -26,7 +27,8 @@ describe('PlaylistsComponent', () => {
       providers: [
         LoginService,
         LoggingService,
-        PlaylistService
+        PlaylistService,
+        TrackService
       ]
     })
       .compileComponents();
@@ -38,7 +40,7 @@ describe('PlaylistsComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should be created', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should be created', () => {
+    expect(component).toBeTruthy();
+  });
 });
