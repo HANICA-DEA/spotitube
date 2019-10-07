@@ -421,6 +421,11 @@ It will expect a response containing the complete list of tracks for the given:
 }
 ```
 
+## TIPS
+* To implement the DataMapper pattern you can use the code from the book, e.g. the AbstractMapper class. This class has to be modified a little to confom to the JDBC standard but is app. 80% functional.
+* When you save the password in the database using a password type, you can check the value from the database against a hashed version of the password given by the user: ```if (DigestUtils.sha256Hex(pass_given_by_user).equals(pass_from_the_database))) ```
+* To generate a unique token you can use the UUID class: ```UUID.randomUUID()```. Save the generated token in memory (e.g. a List or Map) or in the database.
+
 ## For local installation
 
 To install the client locally you will need Node.js and angular-cli.
