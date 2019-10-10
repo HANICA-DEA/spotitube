@@ -430,7 +430,8 @@ It will expect a response containing the complete list of tracks for the given:
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
-        ```
+```
+
 * To generate a unique token you can use the UUID class: ```UUID.randomUUID()```. Save the generated token in memory (e.g. a List or Map) or in the database.
 
 ## For local installation
