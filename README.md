@@ -273,7 +273,7 @@ It will expect a response containing the complete list of available tracks:
                        "duration": 423,
                        "album": undefined,
                        "playcount": 37,
-                       "publicationDate": "1-11-2001",
+                       "publicationDate": "18-03-2001",
                        "description: "Long version",
                        "offlineAvailable": true
                    }
@@ -315,7 +315,7 @@ It will expect a response containing the complete list of tracks for the given P
               "duration": 423,
               "album": undefined,
               "playcount": 37,
-              "publicationDate": "10-01-2005",
+              "publicationDate": "19-03-2006",
               "description": "Title song from the Album The Cost",
               "offlineAvailable": true
             }
@@ -402,7 +402,7 @@ It will expect a response containing the complete list of tracks for the given:
               "duration": 423,
               "album": undefined,
               "playcount": 37,
-              "publicationDate": "10-01-2005",
+              "publicationDate": "19-03-2006",
               "description": "Title song from the Album The Cost",
               "offlineAvailable": true
             },
