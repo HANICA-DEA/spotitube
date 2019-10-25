@@ -378,7 +378,7 @@ The body should contain the track to be added:
 Note that the relevant parts are the `id` and `offlineAvailable`. The `id` should be used by the server to lookup the
 Track, before adding it to the Playlist. The offline availability should correctly be set.
 
-It will expect a response containing the complete list of tracks for the given:
+It will expect a response containing the complete list of tracks for the given playlist:
 
 
 ```
