@@ -246,9 +246,9 @@ It will expect a response containing the complete list of available tracks:
   "tracks": [
                    {
                        "id": 3,
-                       "title: "Ocean and a rock",
-                       "performer: "Lisa Hannigan",
-                       "duration: 337,
+                       "title": "Ocean and a rock",
+                       "performer": "Lisa Hannigan",
+                       "duration": 337,
                        "album": "Sea sew",
                        "playcount": undefined,
                        "publicationDate": undefined,
