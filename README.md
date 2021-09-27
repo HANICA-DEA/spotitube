@@ -11,17 +11,21 @@ Use this version if you do not want to install it locally:
 
 ## Enabling CORS headers in your JavaEE container
 
-To use this Spotitube Client with your own Spotitube Server, you will need to enable CORS headers
-in your JavaEE container. 
+For the enterity of this assignment, make sure to use your client inspection tools to see what is happening in your client-server communication layer. You may notice errors hinting at a CORS issue.
 
-This is required because the Client is served from a different domain than the Server. Your browser will only allow this 
-if the Server has the CORS Headers set in its HTTP response. More information about this will be given during lessons.
+To use this Spotitube Client with your own Spotitube Server, you will need to enable CORS headers in your JavaEE container. If you have not done this yet, you will receive the HTTP statuscode `0`.
+
+The CORS headers are required because the Client is served from a different domain as the Server. Your browser will only allow this 
+if the Server has the CORS Headers set in its HTTP response. More information about this will be given during class.
+
+To communicate with your server using the Hosted spotitube version, you will first need to login using the login form provided.
+For your Server URL use `localhost` (include protocol and port) as value. The spotitube client application will call the appropriate resource (`/login`) using the correct IP address.
  
 ## API
 
-In general the API must conform the standards of a RESTFull API. It will use HTTP methods and expects HTTP statuscodes in its response.
+In general, the API must conform the standards of a RESTFull API. It will use HTTP methods, returns JSON data (when required) and expects HTTP statuscodes in its response. The API must be backed by a persistence layer that outputs SQL queries to store and retrieve data from your datasource. Login data does not need to be saved (this is handled client-side).
 
-### Methods used 
+### Methods used
 
 * GET : In case of acquiring one, or multiple resources.
 * POST: In case of creating a resource.
@@ -222,6 +226,7 @@ It will expect a response containing the complete and modified list of playlists
 }
 ```
 The property `length` should be in seconds. The client will convert this to hh:mm:ss.
+
 #### Tracks
 
 ##### Get all tracks 
