@@ -90,7 +90,7 @@ method:           GET
 query parameter:  token
 ```
 
-It will expect a response containing the complete list of playlists:
+It will expect a response containing the complete list of playlists with the tracks as an empty array (the tracks will be retrieved later using a different path):
 
 ```
 {
