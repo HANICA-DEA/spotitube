@@ -1,4 +1,4 @@
-# Spotitube [![Build Status](https://travis-ci.org/HANICA-DEA/Spotitube.svg?branch=master)](https://travis-ci.org/HANICA-DEA/Spotitube) [![Coverage Status](https://coveralls.io/repos/github/HANICA-DEA/Spotitube/badge.svg?branch=master)](https://coveralls.io/github/HANICA-DEA/Spotitube?branch=master)
+# Spotitube [![Build Status](https://travis-ci.org/HANICA-DEA/spotitube.svg?branch=master)](https://travis-ci.org/HANICA-DEA/spotitube) [![Coverage Status](https://coveralls.io/repos/github/HANICA-DEA/spotitube/badge.svg?branch=master)](https://coveralls.io/github/HANICA-DEA/spotitube?branch=master)
 
 This repository contains a front-end for the final programming assignment 
 of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.han.nl/).
