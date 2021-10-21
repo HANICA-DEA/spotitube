@@ -7,7 +7,7 @@ of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.h
 
 Use this version if you do not want to install it locally:
 
-[Spotitube through HTTP](https://jenkins.aimsites.nl/Spotitube/)
+[Spotitube through HTTP](https://jenkins.aimsites.nl/spotitube/)
 
 ## The assignment
 The assignment is to build a back-end Web application for the Spotitube front-end, using the JAX-RS stack. All views are provided by
