@@ -1,4 +1,4 @@
-# Spotitube [![Build Status](https://travis-ci.org/HANICA-DEA/spotitube.svg?branch=master)](https://travis-ci.org/HANICA-DEA/spotitube) [![Coverage Status](https://coveralls.io/repos/github/HANICA-DEA/spotitube/badge.svg?branch=master)](https://coveralls.io/github/HANICA-DEA/spotitube?branch=master)
+# Spotitube [![Build Status](https://travis-ci.org/HANICA-DEA/Spotitube.svg?branch=master)](https://travis-ci.org/HANICA-DEA/Spotitube) [![Coverage Status](https://coveralls.io/repos/github/HANICA-DEA/Spotitube/badge.svg?branch=master)](https://coveralls.io/github/HANICA-DEA/Spotitube?branch=master)
 
 This repository contains a front-end for the final programming assignment 
 of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.han.nl/).
@@ -7,26 +7,32 @@ of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.h
 
 Use this version if you do not want to install it locally:
 
-[Spotitube through HTTP](https://jenkins.aimsites.nl/spotitube/)
+[Spotitube through HTTP](https://jenkins.aimsites.nl/Spotitube/)
+
+## The assignment
+The assignment is to build a back-end Web application for the Spotitube front-end, using the JAX-RS stack. All views are provided by
+the Spotitube application and should update accordingly once you implement your API resources as expected.
+
+To communicate with your server using the Spotitube client, you will first need to login using the login form provided.
+For 'Server URL' use `localhost` (include protocol and port) as value. The Spotitube client application will call the appropriate resource (`/login`) using your IP address.
 
 ## Enabling CORS headers in your JavaEE container
 
 For the enterity of this assignment, make sure to use your client inspection tools to see what is happening in your client-server communication layer. You may notice errors hinting at a CORS issue.
+To use this Spotitube client with your back-end application, you will need to enable CORS headers in your JavaEE container. If you have not done this yet, you may receive the HTTP statuscode `0` in your browser.
 
-To use this Spotitube Client with your own Spotitube Server, you will need to enable CORS headers in your JavaEE container. If you have not done this yet, you will receive the HTTP statuscode `0`.
-
-The CORS headers are required because the Client is served from a different domain as the Server. Your browser will only allow this 
+The CORS headers are required because the client is served from a different domain as the Server. Your browser will only allow this 
 if the Server has the CORS Headers set in its HTTP response. More information about this will be given during class.
-
-To communicate with your server using the Hosted spotitube version, you will first need to login using the login form provided.
-For your Server URL use `localhost` (include protocol and port) as value. The spotitube client application will call the appropriate resource (`/login`) using the correct IP address.
  
 ## API
 
-In general, the API must conform the standards of a RESTFull API. It will use HTTP methods, returns JSON data (when required) and expects HTTP statuscodes in its response. The API must be backed by a persistence layer that outputs SQL queries to store and retrieve data from your datasource. Login data does not need to be saved (this is handled client-side).
+In general, your back-end API must conform to the standards of a RESTful API. It must use HTTP methods, return JSON data (when required) and correct HTTP statuscodes in its response. The API must be backed by a persistence layer that outputs SQL queries to store and retrieve data from your datasource.
+
+It is up to you to properly define and implement the correct relations between data objects in your database, e.g. user data.
 
 ### Methods used
 
+For requests and responses specified by the Spotitube client application, use the correct HTTP methods as follows:
 * GET : In case of acquiring one, or multiple resources.
 * POST: In case of creating a resource.
 * PUT: In case of modifying  a resource.
@@ -34,8 +40,7 @@ In general, the API must conform the standards of a RESTFull API. It will use HT
 
 ### Response codes
 
-The client will expect the following respond codes to be used
-
+In addition, the Spotitube client expects correct status codes to be used. For example:
 * 200: OK. A response to a successful GET, PUT or DELETE.
 * 201: Resource has been created. A response to a successful POST.
 * 400: Bad Request. Something is wrong with the request. This could be due to
@@ -46,72 +51,69 @@ a missing query-parameter for the token.
 
 ### HATEOAS
 
-Those that are aware of the concept HATEOAS might notice that this API is not HATEOAS. That is not a problem, HATEOAS is not within the scope of this excercise.
+Those that are aware of the concept HATEOAS might notice that this API is not HATEOAS. That is not a problem, HATEOAS is not within the scope of this exercise.
 
 ### Endpoints
-The following endpoints are expected
+Your API must implement endpoints for all of the following requests and responses.
 
 #### Login
-
+To perform a login:
 ```
 url:    /login 
 method: POST
 ```
 
-It will perform a request with an object in the body of the form
-
-```
+The Spotitube client will perform a JSON request with the following data:
+```json
 {
   "user":     "meron", 
   "password": "MySuperSecretPassword12341"
 }
 ```
 
-It will expect a response containing an object of the form
-
-```
+The Spotitube client will expect a JSON response with the following data:
+```json
 {
   "token":  "1234-1234-1234", 
   "user":   "Meron Brouwer"
 }
 ```
 
-This token is then stored in LocalStorage and used for each following
-request.
+This token is then stored in LocalStorage by the Spotitube client and automatically added to each request.
 
-#### Playlists
+### Playlists
 
 ##### Get all Playlists
 
-To acquire a list of all playlists:
+To acquire a list of all existing playlists:
 ```
 url:              /playlists 
 method:           GET
 query parameter:  token
 ```
 
-It will expect a response containing the complete list of playlists:
-
-```
+The Spotitube client will expect a response containing the complete list of playlists (`tracks` omitted for simplicity, but see below):
+```json
 {
-  "playlists" :[
-               {
-                  "id"    : 1,
-                  "name"  : "Death metal",
-                  "owner" : true,
-                  "tracks": []
-               },
-               {
-                  "id"    : 2,
-                  "name"  : "Pop",
-                  "owner" : false,
-                  "tracks": []
-               }
-              ],
-  "length"  :123445}
+   "playlists": [
+      {
+         "id": 1,
+         "name": "Heavy Metal",
+         "owner": true,
+         "tracks": []
+      },
+      {
+         "id": 2,
+         "name": "Pop",
+         "owner": false,
+         "tracks": []
+      }
+   ],
+   "length": 123445
+}
 ```
 
-The property `length` should be in seconds and represents the total length of all playlists. The client will convert this to hh:mm:ss.
+A playlist can only have one owner. The value of `owner` should be determined by you. The property `length` should be in seconds and represents the total length of all playlists. The client will convert this to hh:mm:ss.
 
 ##### Delete a Playlist
 
@@ -121,19 +123,19 @@ url:              /playlists/:id
 method:           DELETE
 query parameter:  token
 ```
-It will expect a response containing the complete and modified list of playlists:
-
-```
+The Spotitube client will expect a response containing the complete and modified list of playlists:
+```json
 {
-  "playlists" :[
-               {
-                  "id"    : 1,
-                  "name"  : "Heavy Metal",
-                  "owner" : true,
-                  "tracks": []
-               }
-              ],
-  "length"  :6445}
+   "playlists": [
+      {
+         "id": 1,
+         "name": "Heavy Metal",
+         "owner": true,
+         "tracks": []
+      }
+   ],
+   "length": 6445
+}
 ```
 
 ##### Add a Playlist
@@ -146,44 +148,44 @@ query parameter:  token
 ```
 
 The body should contain the new playlist:
-```
+```json
 {
-  "id"    : -1,
-  "name"  : "Progressive Rock",
-  "owner" : false,
-  "tracks": []
-},
+   "id": -1,
+   "name": "Progressive Rock",
+   "owner": false,
+   "tracks": []
+}
 ```
 
-Note that the client will set the id to -1, and the 'owner' variable to false. The server is responsible for generating a unique id, and setting the 'owner' variable accordingly. These must be set on the response object.
+Note that the client will set the id to `-1`. The server is responsible for generating a unique id.
 
-It will expect a response containing the complete and modified list of playlists:
-
-```
+The Spotitube client will expect a response containing the complete and modified list of playlists:
+```json
 {
-  "playlists" :[
-               {
-                  "id"    : 1,
-                  "name"  : "Heavy Metal",
-                  "owner" : true,
-                  "tracks": []
-               },
-               {
-                  "id"    : 2,
-                  "name"  : "Pop",
-                  "owner" : false,
-                  "tracks": []
-               },
-               {
-                 "id"    : 3,
-                 "name"  : "Progressive Rock",
-                 "owner" : true,
-                 "tracks": []
-               },
-              ],
-  "length"  :123445}
+   "playlists": [
+      {
+         "id": 1,
+         "name": "Heavy Metal",
+         "owner": true,
+         "tracks": []
+      },
+      {
+         "id": 2,
+         "name": "Pop",
+         "owner": false,
+         "tracks": []
+      },
+      {
+         "id": 3,
+         "name": "Progressive Rock",
+         "owner": true,
+         "tracks": []
+      }
+   ],
+   "length": 123445
+}
 ```
-The property `length` should be in seconds. The client will convert this to hh:mm:ss.
+The property `length` should be in seconds. The client will convert this to `hh:mm:ss` format.
 
 ##### Edit a Playlist
 
@@ -195,44 +197,82 @@ query parameter:  token
 ```
 
 The body should contain the modified playlist:
-```
+```json
 {
-  "id"    : 1,
-  "name"  : "Heavy Metal",
-  "owner" : true,
-  "tracks": []
-},
-```
-
-It will expect a response containing the complete and modified list of playlists:
-
-```
-{
-  "playlists" :[
-               {
-                  "id"    : 1,
-                  "name"  : "Heavy Metal",
-                  "owner" : true,
-                  "tracks": []
-               },
-               {
-                  "id"    : 2,
-                  "name"  : "Pop",
-                  "owner" : false,
-                  "tracks": []
-               }
-              ],
-  "length"  :123445
+   "id": 1,
+   "name": "Death Metal",
+   "owner": true,
+   "tracks": []
 }
 ```
-The property `length` should be in seconds. The client will convert this to hh:mm:ss.
 
-#### Tracks
+The Spotitube client will expect a response containing the complete and modified list of playlists:
+```json
+{
+   "playlists": [
+      {
+         "id": 1,
+         "name": "Death Metal",
+         "owner": true,
+         "tracks": []
+      },
+      {
+         "id": 2,
+         "name": "Pop",
+         "owner": false,
+         "tracks": []
+      }
+   ],
+   "length": 123445
+}
+```
 
-##### Get all tracks 
+### Tracks
 
-To receive all tracks that are available
+##### Get all tracks that belong to a Playlist
 
+To receive all tracks from a given Playlist
+```
+url:              /playlists/:id/tracks
+method:           GET
+query parameter:  token
+```
+
+The Spotitube client will make this request when viewing a specific Playlist. It will expect a response containing the complete list of tracks for the given Playlist:
+```json
+{
+    "tracks": [
+        {
+            "id": 1,
+            "title": "Song for someone",
+            "performer": "The Frames",
+            "duration": 350,
+            "album": "The cost",
+            "playcount": undefined,
+            "publicationDate": undefined,
+            "description": undefined,
+            "offlineAvailable": false
+        },
+        {
+            "id": 2,
+            "title": "The cost",
+            "performer": "The Frames",
+            "duration": 423,
+            "album": undefined,
+            "playcount": 37,
+            "publicationDate": "19-03-2006",
+            "description": "Title song from the Album The Cost",
+            "offlineAvailable": true
+        }
+    ]
+}
+```
+The property `duration` should be in seconds. The client will convert this to `hh:mm:ss` format.
+The property `publicationDate` should be a String representation of a Date, formatted as `MM-dd-yyyy`. Note: be warned that `M`  is not the same as `m` in this instance. 
+
+##### Get available tracks
+
+To receive the available tracks:
 ```
 url:              /tracks
 method:           GET
@@ -240,120 +280,48 @@ query parameter:  forPlaylist
 query parameter:  token
 ```
 
-The client will make this request when the user wants to add a track to a Playlist. In that case the query parameter 
+The client will make this request when the user wants to add a track to a Playlist. In that case the query parameter
 `forPlaylist` is added to ensure the server only returns the Tracks that are not yet in the Playlist. The value of this query
 parameter is the `id` of the Playlist.
 
-It will expect a response containing the complete list of available tracks:
-
-```
+The Spotitube client will expect a response containing the complete list of available tracks. Some properties may not be included:
+```json
 {
-  "tracks": [
-                   {
-                       "id": 3,
-                       "title": "Ocean and a rock",
-                       "performer": "Lisa Hannigan",
-                       "duration": 337,
-                       "album": "Sea sew",
-                       "playcount": undefined,
-                       "publicationDate": undefined,
-                       "description": undefined,
-                       "offlineAvailable": false
-                   },
-                   {
-                       "id": 4,
-                       "title": "So Long, Marianne",
-                       "performer": "Leonard Cohen",
-                       "duration": 546,
-                       "album": "Songs of Leonard Cohen",
-                       "playcount": undefined,
-                       "publicationDate": undefined,
-                       "description": undefined,
-                       "offlineAvailable": false
-                   },
-                   {
-                       "id": 5,
-                       "title": "One",
-                       "performer": "Metallica",
-                       "duration": 423,
-                       "album": undefined,
-                       "playcount": 37,
-                       "publicationDate": "18-03-2001",
-                       "description: "Long version",
-                       "offlineAvailable": true
-                   }
-          ]
-}
-```
-
-##### Get all tracks that belong to a Playlist
-
-To receive all tracks from a given Playlist
-
-```
-url:              /playlists/:id/tracks
-method:           GET
-query parameter:  token
-```
-
-It will expect a response containing the complete list of tracks for the given Playlist:
-
-
-```
-{
-  "tracks": [
-            {
-              "id": 1,
-              "title": "Song for someone",
-              "performer": "The Frames",
-              "duration": 350,
-              "album": "The cost",
-              "playcount": undefined,
-              "publicationDate": undefined,
-              "description": undefined,
-              "offlineAvailable": false
-            },
-            {
-              "id": 2,
-              "title": "The cost",
-              "performer": "The Frames",
-              "duration": 423,
-              "album": undefined,
-              "playcount": 37,
-              "publicationDate": "19-03-2006",
-              "description": "Title song from the Album The Cost",
-              "offlineAvailable": true
-            }
-          ]
-}
-```
-The property `duration` should be in seconds. The client will convert this to hh:mm:ss.
-The property `publicationDate` should be a String representation of a Date, formatted as MM-dd-yyyy 
-
-##### Remove a track from a Playlist
-
-```
-url:              /playlists/:id/tracks/:id
-method:           DELETE
-query parameter:  token
-```
-It will expect a response containing the complete and modified list of tracks:
-
-```
-{
-  "tracks": [
-            {
-              "id": 1,
-              "title": "Song for someone",
-              "performer": "The Frames",
-              "duration": 350,
-              "album": "The cost",
-              "playcount": undefined,
-              "publicationDate": undefined,
-              "description": undefined,
-              "offlineAvailable": false
-            }
-          ]
+   "tracks": [
+      {
+         "id": 3,
+         "title": "Ocean and a rock",
+         "performer": "Lisa Hannigan",
+         "duration": 337,
+         "album": "Sea sew",
+         "playcount": undefined,
+         "publicationDate": undefined,
+         "description": undefined,
+         "offlineAvailable": false
+      },
+      {
+         "id": 4,
+         "title": "So Long, Marianne",
+         "performer": "Leonard Cohen",
+         "duration": 546,
+         "album": "Songs of Leonard Cohen",
+         "playcount": undefined,
+         "publicationDate": undefined,
+         "description": undefined,
+         "offlineAvailable": false
+      },
+      {
+         "id": 5,
+         "title": "One",
+         "performer": "Metallica",
+         "duration": 423,
+         "album": undefined,
+         "playcount": 37,
+         "publicationDate": "18-03-2001",
+         "description": "Long version",
+         "offlineAvailable": true
+      }
+   ]
 }
 ```
 
@@ -365,79 +333,113 @@ method:           POST
 query parameter:  token
 ```
 
-The body should contain the track to be added:
-```
+The request body should contain the track to be added:
+```json
 {
-  "id": 4,
-  "title": "So Long, Marianne",
-  "performer": "Leonard Cohen",
-  "duration": 546,
-  "album": "Songs of Leonard Cohen",
-  "playcount": undefined,
-  "publicationDate": undefined,
-  "description": undefined,
-  "offlineAvailable": false
+    "id": 4,
+    "title": "So Long, Marianne",
+    "performer": "Leonard Cohen",
+    "duration": 546,
+    "album": "Songs of Leonard Cohen",
+    "playcount": undefined,
+    "publicationDate": undefined,
+    "description": undefined,
+    "offlineAvailable": false
 }
 ```
 
 Note that the relevant parts are the `id` and `offlineAvailable`. The `id` should be used by the server to lookup the
-Track, before adding it to the Playlist. The offline availability should correctly be set.
+Track, before adding it to the Playlist. The offline availability should correctly be set. Offline availability should be registered per playlist, not per user.
+This means that if user 1 sets a playlist to `offlineAvailable: true`, this will be the same for all other users.
 
-It will expect a response containing the complete list of tracks for the given playlist:
-
-
-```
+The Spotitube client will expect a response containing the complete list of tracks for the given playlist.
+Note that different types of Tracks include different properties.
+```json
 {
-  "tracks": [
-            {
-              "id": 1,
-              "title": "Song for someone",
-              "performer": "The Frames",
-              "duration": 350,
-              "album": "The cost",
-              "playcount": undefined,
-              "publicationDate": undefined,
-              "description": undefined,
-              "offlineAvailable": false
-            },
-            {
-              "id": 2,
-              "title": "The cost",
-              "performer": "The Frames",
-              "duration": 423,
-              "album": undefined,
-              "playcount": 37,
-              "publicationDate": "19-03-2006",
-              "description": "Title song from the Album The Cost",
-              "offlineAvailable": true
-            },
-            {
-              "id": 4,
-              "title": "So Long, Marianne",
-              "performer": "Leonard Cohen",
-              "duration": 546,
-              "album": "Songs of Leonard Cohen,
-              "playcount": undefined,
-              "publicationDate": undefined,
-              "description": undefined,
-              "offlineAvailable": false
-            }
-          ]
+    "tracks": [
+        {
+            "id": 1,
+            "title": "Song for someone",
+            "performer": "The Frames",
+            "duration": 350,
+            "album": "The cost",
+            "playcount": undefined,
+            "publicationDate": undefined,
+            "description": undefined,
+            "offlineAvailable": false
+        },
+        {
+            "id": 2,
+            "title": "The cost",
+            "performer": "The Frames",
+            "duration": 423,
+            "album": undefined,
+            "playcount": 37,
+            "publicationDate": "19-03-2006",
+            "description": "Title song from the Album The Cost",
+            "offlineAvailable": true
+        },
+        {
+            "id": 4,
+            "title": "So Long, Marianne",
+            "performer": "Leonard Cohen",
+            "duration": 546,
+            "album": "Songs of Leonard Cohen",
+            "playcount": undefined,
+            "publicationDate": undefined,
+            "description": undefined,
+            "offlineAvailable": false
+        }
+    ]
+}
+```
+
+##### Remove a track from a Playlist
+
+To remove a Track from a Playlist
+```
+url:              /playlists/:id/tracks/:id
+method:           DELETE
+query parameter:  token
+```
+
+The Spotitube client will expect a response containing the complete and modified list of tracks:
+```json
+{
+    "tracks": [
+        {
+            "id": 1,
+            "title": "Song for someone",
+            "performer": "The Frames",
+            "duration": 350,
+            "album": "The cost",
+            "playcount": undefined,
+            "publicationDate": undefined,
+            "description": undefined,
+            "offlineAvailable": false
+        }
+    ]
 }
 ```
 
 ## TIPS
-* To implement the DataMapper pattern you can use the code from the book, e.g. the AbstractMapper class. This class has to be modified a little to confom to the JDBC standard but is app. 80% functional.
-* When you save the password in the database using a password type, you can check the value from the database against a hashed version of the password given by the user: ```if (DigestUtils.sha256Hex(pass_given_by_user).equals(pass_from_the_database))) ``` DigestUtils is a class from the Commons Codecs library:
-```
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.10</version>
-        </dependency>
-```
+* To implement the DataMapper pattern you can use the code from the book, e.g. the AbstractMapper class. This class has to be modified a little to conform to the JDBC standard but should be 80% functional.
+* When you save the password in the database using a password type, you can check the value from the database against a hashed version of the password given by the user:
 
-* To generate a unique token you can use the UUID class: ```UUID.randomUUID()```. Save the generated token in memory (e.g. a List or Map) or in the database.
+  ```java
+  if (DigestUtils.sha256Hex(pass_given_by_user).equals(pass_from_the_database)))
+  ```
+
+  DigestUtils is a class from the Commons Codecs library:
+  ```xml
+  <dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+    <version>1.10</version>
+  </dependency>
+  ```
+
+* To generate a unique token you can use the Java class method `UUID.randomUUID()`. Save the generated token in memory (e.g. a List or Map) or in the database, but be sure to use the same token as a reference to a user on successive requests
 
 ## For local installation
 
@@ -454,9 +456,9 @@ To install [Angular CLI](https://github.com/angular/angular-cli), run the follow
   npm install -g @angular/cli
 ```
 
-### Run the Client
+### Run the client
  
-You can now use Angular CLI to run a local server that hosts the Client. To do this, run the following command:
+You can now use Angular CLI to run a local server that hosts the client. To do this, run the following command:
 ```
 ng serve
 ```
