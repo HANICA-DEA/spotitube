@@ -92,6 +92,7 @@ method:           GET
 query parameter:  token
 ```
 
+
 The Spotitube client will expect a response containing the complete list of playlists (`tracks` omitted for simplicity, but see below):
 ```json
 {
