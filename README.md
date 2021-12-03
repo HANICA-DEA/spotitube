@@ -48,13 +48,14 @@ a missing query-parameter for the token.
 * 401: Unauthorized. Authorization has failed. This can happen if the user tried to log in, but supplied an invalid username/password.
 * 403: Forbidden. The request was valid, but you have requested a resource for which are not authorized. This will probably mean you have provided a token that is invalid.
 * 404: Not found. You have requested an endpoint that is not available.
+* 500: Server error. Something went wrong in your application. This follows most likely from an Exception thrown by JDBC.
 
 ### HATEOAS
 
 Those that are aware of the concept HATEOAS might notice that this API is not HATEOAS. That is not a problem, HATEOAS is not within the scope of this exercise.
 
 ### Endpoints
-Your API must implement endpoints for all of the following requests and responses.
+Your API must implement endpoints for all the following requests and responses.
 
 #### Login
 To perform a login:
