@@ -5,28 +5,30 @@ of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.h
 
 ## Hosted version
 
-Use this version if you do not want to install it locally:
+Local installation (see bottom of this file) of the Spotitube front-end (i.e. the client) is not recommended due to outdated dependencies. Therefore, use the web-based version found here:
 
 [Spotitube through HTTP](https://jenkins.aimsites.nl/spotitube/)
 
 ## The assignment
-The assignment is to build a back-end Web application for the Spotitube front-end, using the JAX-RS stack. All views are provided by
-the Spotitube application and should update accordingly once you implement your API resources as expected.
+The assignment is to build a back-end Web application for the Spotitube front-end, using the Java EE stack that you've learned. The goal is to provide all endpoint implementations based on the mentioned JSON requests/responses.
+All views are provided by the Spotitube client and should update accordingly each time you implement an API endpoint as expected.
 
 To communicate with your server using the Spotitube client, you will first need to login using the login form provided.
-For 'Server URL' use `localhost` (include protocol and port) as value. The Spotitube client application will call the appropriate resource (`/login`) using your IP address.
+For 'Server URL' use `localhost` (include protocol and port) as value. The Spotitube client application will then call the appropriate endpoint (`/login`) on your IP address.
+
+It is _strongly_ recommended that you build your API using the TDD approach. This will greatly aid you in planning your implementation and save a lot of time when done right. Don't forget to regularly check how you are doing using the mentioned assignment criteria. 
 
 ## Enabling CORS headers in your JavaEE container
 
-For the enterity of this assignment, make sure to use your client inspection tools to see what is happening in your client-server communication layer. You may notice errors hinting at a CORS issue.
+For the entirety of this assignment, make sure to use your client inspection tools to see what is happening in your client-server communication layer. You may notice errors hinting at a CORS issue.
 To use this Spotitube client with your back-end application, you will need to enable CORS headers in your JavaEE container. If you have not done this yet, you may receive the HTTP statuscode `0` in your browser.
 
-The CORS headers are required because the client is served from a different domain as the Server. Your browser will only allow this 
+The CORS headers are required because the client is served from a different domain than the Server. Your browser will only allow this 
 if the Server has the CORS Headers set in its HTTP response. More information about this will be given during class.
  
 ## API
 
-In general, your back-end API must conform to the standards of a RESTful API. It must use HTTP methods, return JSON data (when required) and correct HTTP statuscodes in its response. The API must be backed by a persistence layer that outputs SQL queries to store and retrieve data from your datasource.
+In general, your back-end API must conform to the standards of a RESTful API. It must use HTTP methods, return JSON data (when required) and correct HTTP statuscodes in its responses. The API must be backed by a persistence layer that outputs SQL queries to store and retrieve data from your datasource.
 
 It is up to you to properly define and implement the correct relations between data objects in your database, e.g. user data.
 
@@ -49,10 +51,6 @@ a missing query-parameter for the token.
 * 403: Forbidden. The request was valid, but you have requested a resource for which are not authorized. This will probably mean you have provided a token that is invalid.
 * 404: Not found. You have requested an endpoint that is not available.
 * 500: Server error. Something went wrong in your application. This follows most likely from an Exception thrown by JDBC.
-
-### HATEOAS
-
-Those that are aware of the concept HATEOAS might notice that this API is not HATEOAS. That is not a problem, HATEOAS is not within the scope of this exercise.
 
 ### Endpoints
 Your API must implement endpoints for all the following requests and responses.
@@ -351,8 +349,7 @@ The request body should contain the track to be added:
 ```
 
 Note that the relevant parts are the `id` and `offlineAvailable`. The `id` should be used by the server to lookup the
-Track, before adding it to the Playlist. The offline availability should correctly be set. Offline availability should be registered per playlist, not per user.
-This means that if user 1 sets a playlist to `offlineAvailable: true`, this will be the same for all other users.
+Track, before adding it to the Playlist. The offline availability property corresponds to a Track that is downloaded, similarly to Spotify. Think about whether this should be done per playlist and/or per user.
 
 The Spotitube client will expect a response containing the complete list of tracks for the given playlist.
 Note that different types of Tracks include different properties.
@@ -424,8 +421,10 @@ The Spotitube client will expect a response containing the complete and modified
 }
 ```
 
-## TIPS
-* To implement the DataMapper pattern you can use the code from the book, e.g. the AbstractMapper class. This class has to be modified a little to conform to the JDBC standard but should be 80% functional.
+## TIPS / Troubleshooting
+* It is possible you may receive a CORS issue even though your headers are properly set. This may be the result of an inappropriately configured endpoint and/or its parameters
+* Those that are aware of the concept HATEOAS might notice that this API is not HATEOAS. That is not a problem, HATEOAS is not within the scope of this exercise
+* To implement the DataMapper pattern you can use the code from the book, e.g. the AbstractMapper class. This class has to be modified a little to conform to the JDBC standard but should be 80% functional
 * When you save the password in the database using a password type, you can check the value from the database against a hashed version of the password given by the user:
 
   ```java
@@ -443,7 +442,7 @@ The Spotitube client will expect a response containing the complete and modified
 
 * To generate a unique token you can use the Java class method `UUID.randomUUID()`. Save the generated token in memory (e.g. a List or Map) or in the database, but be sure to use the same token as a reference to a user on successive requests
 
-## For local installation
+## For local installation of the client
 
 To install the client locally you will need Node.js and angular-cli.
 
