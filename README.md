@@ -349,7 +349,8 @@ The request body should contain the track to be added:
 ```
 
 Note that the relevant parts are the `id` and `offlineAvailable`. The `id` should be used by the server to lookup the
-Track, before adding it to the Playlist. The offline availability property corresponds to a Track that is downloaded, similarly to Spotify. Think about whether this should be done per playlist and/or per user.
+Track, before adding it to the Playlist. The offline availability property is simply a toggle that does nothing, but should be persisted in the back-end.
+The implementation does not have to be specific for a user or playlist.
 
 The Spotitube client will expect a response containing the complete list of tracks for the given playlist.
 Note that different types of Tracks include different properties.
