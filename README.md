@@ -42,15 +42,17 @@ For requests and responses specified by the Spotitube client application, use th
 
 ### Response codes
 
-In addition, the Spotitube client expects correct status codes to be used. For example:
-* 200: OK. A response to a successful GET, PUT or DELETE.
-* 201: Resource has been created. A response to a successful POST.
-* 400: Bad Request. Something is wrong with the request. This could be due to
-a missing query-parameter for the token.
-* 401: Unauthorized. Authorization has failed. This can happen if the user tried to log in, but supplied an invalid username/password.
-* 403: Forbidden. The request was valid, but you have requested a resource for which are not authorized. This will probably mean you have provided a token that is invalid.
-* 404: Not found. You have requested an endpoint that is not available.
-* 500: Server error. Something went wrong in your application. This follows most likely from an Exception thrown by JDBC.
+In addition, the Spotitube client expects status codes to match their intended use. If not, you may run in to unexpected errors. For example:
+* 200: OK. The request was fulfilled. 
+* 201: CREATED. The request was fulfilled and has resulted in one or more new resources being created.
+* 204: NO_CONTENT. The request was fulfilled and there is no additional content to send in the response payload body. NOTE: All content in the response will be deleted (!).
+* 400: BAD_REQUEST. The request was not fulfilled due to something that is perceived to be a client error.
+* 401: UNAUTHORIZED. The request was not fulfilled because it lacks valid authentication credentials for the target resource.
+* 403: FORBIDDEN. The request was not fulfilled because access to the resource was not authorized.
+* 404: NOT_FOUND. The request was not fulfilled because the (representation for the) resource was not found or does not want to be found.
+* 500: INTERNAL_SERVER_ERROR. The request was not fulfilled because of something that is perceived to be a server error.
+
+You may use any status codes you want to, as long as they are used appropriately. For more detailed information, see the standards defined by the [IETF](https://datatracker.ietf.org/doc/html/rfc7231#section-6.1).
 
 ### Endpoints
 Your API must implement endpoints for all the following requests and responses.
