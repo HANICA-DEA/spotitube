@@ -79,7 +79,7 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <div class='mat-body' *ngIf="tracks.tracks.length == 0">
+  <div class='mat-body' *ngIf="tracks.tracks.length === 0">
     This playlist is still empty. <span *ngIf="playlist.owner">Use the button on the top-right to add tracks.</span>
   </div>
 </div>
