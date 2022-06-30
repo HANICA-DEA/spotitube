@@ -3,10 +3,10 @@ import {Playlist} from '../../models/playlist/playlist.interface.model';
 import {TrackService} from '../../services/track/track.service';
 import {Tracks} from '../../models/tracks/tracks.interface.model';
 import {TracksImpl} from '../../models/tracks/tracks.model';
-import {MatDialog, MatDialogRef} from '@angular/material';
 import {AddTrackDialogComponent} from '../../dialogs/add-track.dialog/add-track.dialog.component';
 import {Track} from '../../models/track/track.interface';
 import {TracksDataSource} from '../../data-sources/tracks/tracks.datasource';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-playlist',
