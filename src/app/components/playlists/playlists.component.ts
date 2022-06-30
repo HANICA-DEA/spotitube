@@ -2,13 +2,13 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Playlists} from '../../models/playlists/playlists.interface.model';
 import {PlaylistService} from '../../services/playlist/playlist.service';
 import {Playlist} from '../../models/playlist/playlist.interface.model';
-import {MatDialog, MatDialogRef} from '@angular/material';
 import {EditPlaylistDialogComponent} from '../../dialogs/edit-playlist.dialog/edit-playlist.dialog.component';
 import {AppConstants} from '../../app.constants';
 import {NewPlaylistDialogComponent} from '../../dialogs/new-playlist.dialog/new-playlist.dialog.component';
 import {PlaylistImpl} from '../../models/playlist/playlist.model';
 import {PlaylistsImpl} from '../../models/playlists/playlists.model';
 import {TrackService} from '../../services/track/track.service';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-playlists',

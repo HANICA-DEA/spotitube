@@ -53,7 +53,7 @@ export class TrackService extends RestfulSpotitubeClientService {
           params: params
         }
       ).toPromise();
-      this.tracksUpdated.next();
+      this.tracksUpdated.next(data);
       return data;
     } catch (err) {
       this.handleErrors(err)
@@ -74,7 +74,7 @@ export class TrackService extends RestfulSpotitubeClientService {
 
     try {
       const data: Tracks = await this.httpClient.delete<Tracks>(endpointUrl, {params: params}).toPromise();
-      this.tracksUpdated.next();
+      this.tracksUpdated.next(data);
       return data;
     } catch (err) {
       this.handleErrors(err)

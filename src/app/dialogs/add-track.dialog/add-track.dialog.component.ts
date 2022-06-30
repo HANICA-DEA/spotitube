@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
 import {Track} from '../../models/track/track.interface';
 import {TrackService} from '../../services/track/track.service';
 import {Playlist} from '../../models/playlist/playlist.interface.model';
@@ -7,6 +6,7 @@ import {Tracks} from '../../models/tracks/tracks.interface.model';
 import {TracksImpl} from '../../models/tracks/tracks.model';
 import {TracksDataSource} from '../../data-sources/tracks/tracks.datasource';
 import {TrackImpl} from '../../models/track/track.model';
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   templateUrl: './add-track.dialog.component.html',

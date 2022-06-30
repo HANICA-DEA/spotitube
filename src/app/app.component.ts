@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from './services/login/login.service';
-import {MatSnackBar} from '@angular/material';
 import {Settings} from './models/settings/settings.interface.model';
 import {PlaylistService} from './services/playlist/playlist.service';
 import {TrackService} from './services/track/track.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
