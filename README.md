@@ -5,9 +5,9 @@ of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.h
 
 ## Hosted version
 
-Local installation (see bottom of this file) of the Spotitube front-end (i.e. the client) is not recommended due to outdated dependencies. Therefore, use the web-based version found here:
+Local installation (see bottom of this file) of the Spotitube front-end (i.e. the client) is not recommended due to possibly outdated dependencies. Therefore, use the web-based version found here:
 
-[Spotitube through HTTP](https://jenkins.aimsites.nl/spotitube/)
+[Spotitube client](https://hanica-dea.github.io/spotitube/)
 
 ## The assignment
 The assignment is to build a back-end Web application for the Spotitube front-end, using the Java EE stack that you've learned. The goal is to provide all endpoint implementations based on the mentioned JSON requests/responses.
