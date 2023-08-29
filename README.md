@@ -14,7 +14,9 @@ The assignment is to build a back-end Web application for the Spotitube front-en
 All views are provided by the Spotitube client and should update accordingly each time you implement an API endpoint as expected.
 
 To communicate with your server using the Spotitube client, you will first need to login using the login form provided.
-For 'Server URL' use `localhost` (include protocol and port) as value. The Spotitube client application will then call the appropriate endpoint (`/login`) on your IP address.
+For 'Server URL' use `localhost` (include protocol and port) as value. Depending on your configuration, your artifact (i.e the WAR file) may be deployed under different context paths. This could be the name of your artifact or it could be empty. To edit the context path, update the `<warName>` tag of your `maven-war-plugin` dependency.
+
+If the entered information is provided accurately, the Spotitube client application will be able to call the appropriate endpoint (`/login`) on your IP address when you hit the `Login` button.
 
 It is _strongly_ recommended that you build your API using the TDD approach. This will greatly aid you in planning your implementation and save a lot of time when done right. Don't forget to regularly check how you are doing using the mentioned assignment criteria. 
 
