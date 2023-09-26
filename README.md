@@ -3,6 +3,17 @@
 This repository contains a front-end for the final programming assignment 
 of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.han.nl/).
 
+## Stories
+
+Stories are created for you to have an overview of the functionality that needs to be implemented and to have a structured working process. These stories include prerequisites and acceptance criteria to provide a clear description of the functionality. See the stories on the [Spotitube project](https://github.com/orgs/HANICA-DEA/projects/4/views/1) page. To copy these stories to your own GitHub user:
+* Click the dots ... below your profile picture and select 'Make a copy'
+* Select the checkbox 'Draft issues will be copied if selected'
+* Use the dropdown menu to select your own GitHub user as the new owner
+* Give the project a name and click on 'Copy project'
+* You should now have your own board with stories
+
+These stories are still in Draft mode. This is not a problem, you can still label the stories and change their respective status. However, if you find that you are missing options, try selecting a story and click 'Convert to issue'. You should now be able to access all options for each story.
+
 ## Hosted version
 
 Local installation (see bottom of this file) of the Spotitube front-end (i.e. the client) is not recommended due to possibly outdated dependencies. Therefore, use the web-based version found here:
