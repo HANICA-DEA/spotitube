@@ -43,7 +43,12 @@ if the Server has the CORS Headers set in its HTTP response. More information ab
 
 In general, your back-end API must conform to the standards of a RESTful API. It must use HTTP methods, return JSON data (when required) and correct HTTP statuscodes in its responses. The API must be backed by a persistence layer that outputs SQL queries to store and retrieve data from your datasource.
 
-It is up to you to properly define and implement the correct relations between data objects in your database, e.g. user data.
+It is up to you to properly define and implement the correct relations between data objects in your database, e.g. user data. The client application requires the following from the REST API to be able to work properly:
+* The REST API has a pre-defined list of user credentials to be able to login
+* The REST API generates a random token upon a successful login
+* The REST API has a pre-defined list of tracks that can be added to a playlist
+
+How to implement these requirements is up to you, but generally using a database is the best option.
 
 ### Methods used
 
@@ -295,9 +300,9 @@ query parameter:  forPlaylist
 query parameter:  token
 ```
 
-The client will make this request when the user wants to add a track to a Playlist. In that case the query parameter
+The client will make this request when the user wants to add a track to a Playlist. In this case the query parameter
 `forPlaylist` is added to ensure the server only returns the Tracks that are not yet in the Playlist. The value of this query
-parameter is the `id` of the Playlist.
+parameter is the `id` of the Playlist. Only tracks that are _not_ yet in a Playlist can be added.
 
 The Spotitube client will expect a response containing the complete list of available tracks. Some properties may not be included:
 ```json
@@ -365,7 +370,7 @@ The request body should contain the track to be added:
 
 Note that the relevant parts are the `id` and `offlineAvailable`. The `id` should be used by the server to lookup the
 Track, before adding it to the Playlist. The offline availability property is simply a toggle that does nothing, but should be persisted in the back-end.
-The implementation does not have to be specific for a user or playlist.
+The implementation does not have to be specific for a user or playlist. This means that this property can only be set once, during adding of a Track to a Playlist.
 
 The Spotitube client will expect a response containing the complete list of tracks for the given playlist.
 Note that different types of Tracks include different properties.
